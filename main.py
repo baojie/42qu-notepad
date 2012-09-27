@@ -4,7 +4,7 @@ from handler import Handler
 
 class HandlerIndex(Handler):
     def get(self):
-        self.render
+        self.render()
 
 
 import tornado.web
