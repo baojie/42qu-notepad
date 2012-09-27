@@ -1,4 +1,5 @@
 #coding:utf-8
+from tornado import web
 from config import render
 
 class Handler(web.RequestHandler):
