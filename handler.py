@@ -1,0 +1,11 @@
+#coding:utf-8
+from config import render
+
+class Handler(web.RequestHandler):
+    def render(self, template_name=None, **kwds):
+        kwds['request'] = self.request
+        kwds['this'] = self
+        kwds['_xsrf'] = self._xsrf
+        if not self._finished:
+            self.finish(render(template_name, **kwds))
+
