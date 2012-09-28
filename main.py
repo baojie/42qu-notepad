@@ -46,7 +46,7 @@ import tornado.web
 from config import DEBUG
 application = tornado.web.Application(
     [
-        (r"/([a-zA-Z0-9]*)", HandlerIndex),
+        (r"/(.*)", HandlerIndex),
     ],
     debug=DEBUG
 )
