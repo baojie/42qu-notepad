@@ -1,5 +1,12 @@
 <%inherit file="/_base.html" />
 <%def name="html_title()">42区记事本</%def>
+<%def name="html_head()">
+<link rel="stylesheet" href="http://nf.42qu.us/css/index.css" type="text/css">
+<script src="http://nf.42qu.us/js/index.js"></script>\
+</%def>
 <div id="textarea_wrap">
 <textarea id="textarea"></textarea>
 </div>
+<script type="text/javascript">
+var NAME = "${url}"
+</script>

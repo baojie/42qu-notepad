@@ -27,7 +27,7 @@ class HandlerIndex(Handler):
                     break
             self.redirect(url)
         else:
-            self.render('/index.html', txt=txt_by_url(url))
+            self.render('/index.html', txt=txt_by_url(url), url=url)
 
     def post(self, url):
         if url:
@@ -42,9 +42,13 @@ class HandlerIndex(Handler):
         self.finish({'time':now})
 
 import tornado.web
-application = tornado.web.Application([
-    (r"/([a-zA-Z0-9]*)", HandlerIndex),
-])
+from config import DEBUG
+application = tornado.web.Application(
+    [
+        (r"/([a-zA-Z0-9]*)", HandlerIndex),
+    ],
+    debug=DEBUG
+)
 
 if __name__ == '__main__':
     import tornado.ioloop
