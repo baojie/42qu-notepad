@@ -2,7 +2,7 @@
 
 from handler import Handler
 from random import choice
-from collection import cursor
+from config import connection
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -15,13 +15,13 @@ class HandlerIndex(Handler):
         else:
             url = url.lower()
             cursor = connection.cursor()
-            cursor.execute("select txt from work_notepad where url=%s")
+            cursor.execute('select txt from notepad where url=%s', url)
             txt = cursor.fetchone()
             if txt:
                 txt = txt[0]
             else:
                 txt = ''
-            self.render('/index.html',txt=txt)
+            self.render('/index.html', txt=txt)
 
     def post(self, url):
         if url:
