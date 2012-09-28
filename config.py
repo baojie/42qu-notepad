@@ -3,6 +3,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+# 初始化 mako 模版 的 查找
 from os.path import dirname, abspath, exists, join
 from mako.lookup import TemplateLookup
 
@@ -26,6 +27,7 @@ def render(html, **kwds):
     return _lookup.get_template(html).render(**kwds)
 
 
+# 初始化数据连接
 import MySQLdb
 from DBUtils.PersistentDB  import PersistentDB as DB
 

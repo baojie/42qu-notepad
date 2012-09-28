@@ -7,22 +7,27 @@ from time import time
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
+def txt_by_url(url):
+    url = url.lower()
+    cursor = connection.cursor()
+    cursor.execute('select txt from notepad where url=%s', url)
+    txt = cursor.fetchone()
+    if txt:
+        txt = txt[0]
+    else:
+        txt = ''
+    return txt
 
 class HandlerIndex(Handler):
     def get(self, url):
         if not url:
-            url = ''.join(choice(URL_ENCODE) for i in xrange(9))
+            while True:
+                url = ''.join(choice(URL_ENCODE) for i in xrange(9))
+                if not txt_by_url(url):
+                    break
             self.redirect(url)
         else:
-            url = url.lower()
-            cursor = connection.cursor()
-            cursor.execute('select txt from notepad where url=%s', url)
-            txt = cursor.fetchone()
-            if txt:
-                txt = txt[0]
-            else:
-                txt = ''
-            self.render('/index.html', txt=txt)
+            self.render('/index.html', txt=txt_by_url(url))
 
     def post(self, url):
         if url:
