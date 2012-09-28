@@ -2,6 +2,7 @@
 
 from handler import Handler
 from random import choice
+from collection import cursor
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -12,9 +13,19 @@ class HandlerIndex(Handler):
             url = ''.join(choice(URL_ENCODE) for i in xrange(9))
             self.redirect(url)
         else:
-            self.render('/index.html')
+            url = url.lower()
+            cursor = connection.cursor()
+            cursor.execute("select txt from work_notepad where url=%s")
+            txt = cursor.fetchone()
+            if txt:
+                txt = txt[0]
+            else:
+                txt = ''
+            self.render('/index.html',txt=txt)
 
     def post(self, url):
+        if url:
+            url = url.lower()
         self.finish('{}')
 
 import tornado.web
