@@ -35,4 +35,4 @@ def _connection(*args, **kwds):
     conn = persist.connection()
     return conn
 
-connection = _connection(host='127.0.0.1', user='root', passwd='42qu', db='notepad')
+connection = _connection(host='127.0.0.1', user='root', passwd='42qu', db='work_notepad')
