@@ -33,7 +33,7 @@ class HandlerIndex(Handler):
         if url:
             cursor = connection.cursor()
             url = url.lower()
-            txt = self.get_argument('txt', False)
+            txt = self.get_argument('txt', False).rstrip()
             now = time()
             cursor.execute(
                 'insert into notepad (url,txt,`time`) values '
