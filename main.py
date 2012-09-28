@@ -31,6 +31,7 @@ class HandlerIndex(Handler):
 
     def post(self, url):
         if url:
+            cursor = connection.cursor()
             url = url.lower()
             txt = self.get_argument('txt', False)
             now = time()
