@@ -3,6 +3,7 @@
 from handler import Handler
 from random import choice
 from config import connection
+from time import time
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -26,7 +27,10 @@ class HandlerIndex(Handler):
     def post(self, url):
         if url:
             url = url.lower()
-        self.finish('{}')
+            txt = self.get_argument('txt', False)
+            now = time()
+            cursor.execute("insert into notepad (url,txt,`time`) values (%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s", (url,txt,now,txt,now))
+        self.finish({'time':now})
 
 import tornado.web
 application = tornado.web.Application([
