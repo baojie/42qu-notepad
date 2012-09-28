@@ -34,7 +34,11 @@ class HandlerIndex(Handler):
             url = url.lower()
             txt = self.get_argument('txt', False)
             now = time()
-            cursor.execute("insert into notepad (url,txt,`time`) values (%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s", (url,txt,now,txt,now))
+            cursor.execute(
+                'insert into notepad (url,txt,`time`) values '
+                '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
+                (url, txt, now, txt, now)
+            )
         self.finish({'time':now})
 
 import tornado.web
