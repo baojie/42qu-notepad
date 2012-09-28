@@ -14,6 +14,9 @@ class HandlerIndex(Handler):
         else:
             self.render('/index.html')
 
+    def post(self, url):
+        self.finish('{}')
+
 import tornado.web
 application = tornado.web.Application([
     (r"/([a-zA-Z0-9]*)", HandlerIndex),
