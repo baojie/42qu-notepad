@@ -18,7 +18,7 @@ padding-right:24px;
 }
 #txt{
 resize:none;
-color:#cecece;
+color:#ddd;
 font-size:16px;
 line-height:33px;
 font-family:Segoe UI,Tahoma,Arial,Verdana,sans-serif;
@@ -28,6 +28,6 @@ border:0;
 background:none repeat scroll 0 0 transparent;
 padding:0 24px;
 margin:0;
-text-shadow:1px -1px 24px #ccc;
+text-shadow:1px -1px 2px #000;
 }
 
