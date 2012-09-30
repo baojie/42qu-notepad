@@ -33,13 +33,16 @@ class HandlerIndex(Handler):
         if url:
             cursor = connection.cursor()
             url = url.lower()
-            txt = self.get_argument('txt', False).rstrip()
+            txt = self.get_argument('txt', '').rstrip()
             now = time()
-            cursor.execute(
-                'insert into notepad (url,txt,`time`) values '
-                '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
-                (url, txt, now, txt, now)
-            )
+            if txt:
+                cursor.execute(
+                    'insert into notepad (url,txt,`time`) values '
+                    '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
+                    (url, txt, now, txt, now)
+                )
+            else:
+                cursor.execute('delete from notepad where url=%s', url)
         self.finish({'time':now})
 
 import tornado.web
