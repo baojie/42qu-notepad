@@ -18,6 +18,7 @@ def txt_by_url(url):
         txt = ''
     return txt
 
+#@route("/xxxxx")
 class HandlerIndex(Handler):
     def get(self, url):
         if not url:
@@ -31,10 +32,10 @@ class HandlerIndex(Handler):
 
     def post(self, url):
         if url:
-            cursor = connection.cursor()
             url = url.lower()
             txt = self.get_argument('txt', '').rstrip()
             now = time()
+            cursor = connection.cursor()
             if txt:
                 cursor.execute(
                     'insert into notepad (url,txt,`time`) values '
@@ -55,8 +56,13 @@ application = tornado.web.Application(
 )
 
 if __name__ == '__main__':
+    import sys
     import tornado.ioloop
-    application.listen(8888)
+    if len(sys.argv)>1:
+        port = sys.argv[1]
+    else:
+        port = 8888
+    application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
 
 
