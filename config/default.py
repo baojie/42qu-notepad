@@ -9,9 +9,6 @@ sys.setdefaultencoding('utf-8')
 
 def pre_config(o):
     o.HOST = "42qu.cc"
-    o.HOST_CSS_JS = o.HOST
-    o.HOST_DEV_PREFIX = o.HOST
-    o.JS_CONST = o.HOST
     try:
         import sae.const
     except ImportError:
@@ -35,7 +32,7 @@ def pre_config(o):
     o.render = render
 
 def post_config(o):
-    o.HOST_CSS_JS = 's.%s'%o.HOST
+    o.HOST_CSS_JS = o.HOST
 
 #    o.URL_CSS_JS = '//%s'%o.HOST_CSS_JS
 
