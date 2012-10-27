@@ -2,12 +2,12 @@
 
 import tornado.web
 from config import DEBUG
-from view.index import ViewIndex
-from view.signin import GoogleHandler
+from view.index import ViewIndex, SignIndex, GoogleHandler
 
 application = tornado.web.Application(
     [
-        (r"/signin", GoogleHandler),
+        (r"/signin", SignIndex),
+        (r"/oauth", GoogleHandler),
         (r"/(.*)", ViewIndex),
     ],
     debug=DEBUG

@@ -24,6 +24,9 @@ class ViewIndex(View):
             save_txt(url, txt)
         self.finish({'time':int(time.time())})
 
+class SignIndex(View):
+    def get(self):
+            self.render('/signin.html')
 
 
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
@@ -40,4 +43,3 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
         else:
             print 'user', type(user), user
             self.redirect('/')
-
