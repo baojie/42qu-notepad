@@ -3,9 +3,11 @@
 import tornado.web
 from config import DEBUG
 from view.index import ViewIndex
+from view.signin import GoogleHandler
 
 application = tornado.web.Application(
     [
+        (r"/signin", GoogleHandler),
         (r"/(.*)", ViewIndex),
     ],
     debug=DEBUG
