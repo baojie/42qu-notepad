@@ -2,7 +2,7 @@
 from tornado import web
 from config import render
 
-class View(web.RequestView):
+class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
         kwds['request'] = self.request
         kwds['this'] = self
