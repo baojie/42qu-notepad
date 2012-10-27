@@ -11,7 +11,7 @@ import envoy
 import zweb
 import os
 from tempfile import mktemp
-from misc.config import HOST_CSS_JS, HOST_DEV_PREFIX,  JS_CONST 
+from config import HOST_CSS_JS, HOST_DEV_PREFIX,  JS_CONST 
 from json import dumps
 #from misc.config.cid import CID
 #
