@@ -9,6 +9,12 @@ class KvStorage(object):
 
     def get(self, k):
         return self.db.get(k)
+    
+    def get_multi(self, keys):
+        result = {}
+        for i in keys:
+            result[i] = self.get(i)
+        return result        
 
     def set(self, k, v):
         self.db[k] = v

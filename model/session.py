@@ -8,18 +8,15 @@ from model._db import kv
 key = 'address'
 
 def session_new(user_id):
-    db = kv()
     s = str(uuid.uuid4()).replace('-', '')
-    db.set(s, user_id)
+    kv.set(s, user_id)
     return s
 
 def user_id_by_session(s):
-    db = kv()
-    return db.get(s)
+    return kv.get(s)
 
 def session_rm(s):
-    db = kv()
-    db.set(s, '')
+    kv.set(s, '')
 
 if __name__ == "__main__":
     pass

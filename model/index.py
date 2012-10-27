@@ -11,7 +11,7 @@ URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 def txt_by_url(url):
     url_id = url_new(url)
-    return kv.get(url_id) or ''
+    return kv.get(str(url_id)) or ''
 
 def gen_url():
     while True:
@@ -58,6 +58,7 @@ def last_update(url_id):
 def txt_log_save(user_id, url_id, txt):
     txt_ori = kv.get(url_id)
     now = int(time.time())
+    print last_update(url_id)
     if txt_ori and txt_ori != txt and now - last_update(url_id) > 600:
         cursor = connection.cursor()
         cursor.execute(
