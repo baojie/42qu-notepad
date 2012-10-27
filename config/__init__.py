@@ -6,9 +6,9 @@ import _env
 import getpass
 import socket
 import sys
-from lib import config_loader
+from lib.config_loader import load 
 
-config_loader(
+load(
     vars(),
     'default',
     '_host.%s' % socket.gethostname(),
