@@ -9,19 +9,18 @@ __HASH__ =  {
 }
 
 
-from config import DEBUG, HOST_CSS_JS, HOST_DEV_PREFIX
+from config import DEBUG, HOST, HOST_CSS_JS
 from os.path import dirname,basename
 __vars__ = vars()
 
 for file_name, hash in __HASH__.iteritems():
     
     if DEBUG:
-        value = "http://%s%s%s/%s"%(HOST_DEV_PREFIX, basename(dirname(__file__)), HOST_CSS_JS,  file_name)
+        value = "http://%s/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
     else:
-        value = "http://%s/%s"%(HOST_CSS_JS, hash) 
+        value = "http://%s/build/%s"%(HOST_CSS_JS, hash) 
     
     name = file_name.rsplit('.', 1)[0].replace('.', '_').replace('-', '_').replace('/', '_')
     
     __vars__[name] = value
-                           
- 
+                            

@@ -11,7 +11,8 @@ import envoy
 import zweb
 import os
 from tempfile import mktemp
-from config import HOST_CSS_JS,   JS_CONST 
+from config import HOST_CSS_JS
+#,   JS_CONST 
 from json import dumps
 #from misc.config.cid import CID
 #
@@ -190,9 +191,9 @@ __vars__ = vars()
 for file_name, hash in __HASH__.iteritems():
     
     if DEBUG:
-        value = "http://%s/build/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
+        value = "http://%s/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
     else:
-        value = "http://%s/%s"%(HOST_CSS_JS, hash) 
+        value = "http://%s/build/%s"%(HOST_CSS_JS, hash) 
     
     name = file_name.rsplit('.', 1)[0].replace('.', '_').replace('-', '_').replace('/', '_')
     
