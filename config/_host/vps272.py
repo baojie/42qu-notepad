@@ -5,6 +5,7 @@ def pre_config(o):
     o.HOST = '42qu.me'
     o.MYSQL_USER = 'work'
     o.MYSQL_PASSWD = '42qu'
+    o.MYSQL_DB = 'work_notepad'
     o.DEBUG = True
     pass
 
