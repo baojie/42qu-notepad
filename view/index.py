@@ -6,7 +6,6 @@ import urllib
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login
-from model._db import connection
 from model.index import gen_url, save_txt, txt_by_url
 from model.account import account_new
 
