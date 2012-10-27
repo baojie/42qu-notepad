@@ -9,11 +9,10 @@ sys.setdefaultencoding('utf-8')
 
 def pre_config(o):
     o.HOST = "42qu.cc"
-    o.HOST_CSS_JS = o.HOST
     try:
         import sae.const
     except ImportError:
-        o.DEBUG = False 
+        o.DEBUG = True 
         o.MYSQL_HOST = '127.0.0.1'
         o.MYSQL_PORT = 3306
         o.MYSQL_USER = 'work'
@@ -33,7 +32,7 @@ def pre_config(o):
     o.render = render
 
 def post_config(o):
-    o.HOST_CSS_JS = 's.%s'%o.HOST
+    o.HOST_CSS_JS = o.HOST
 
 #    o.URL_CSS_JS = '//%s'%o.HOST_CSS_JS
 
