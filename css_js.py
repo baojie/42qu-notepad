@@ -183,7 +183,7 @@ __HASH__ =  {
         h.write("""
 
 
-from misc.config import DEBUG, HOST_CSS_JS, HOST_DEV_PREFIX
+from config import DEBUG, HOST_CSS_JS, HOST_DEV_PREFIX
 from os.path import dirname,basename
 __vars__ = vars()
 
