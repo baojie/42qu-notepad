@@ -1,3 +1,6 @@
+<%
+import sae.const
+%>
 <%inherit file="/_base.html" />
 <%def name="html_title()">42qu . 记事本</%def>
 <%def name="html_head()">
@@ -5,6 +8,7 @@
 </%def>
 
 <div id="main">
+    ${str(dir(sae.const))}
     <textarea id="txt">${txt}</textarea>
     <div id="left">
         <a class="more"></a>
