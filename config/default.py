@@ -13,7 +13,7 @@ def pre_config(o):
     try:
         import sae.const
     except ImportError:
-        o.DEBUG = True 
+        o.DEBUG = False 
         o.MYSQL_HOST = '127.0.0.1'
         o.MYSQL_PORT = 3306
         o.MYSQL_USER = 'work'
