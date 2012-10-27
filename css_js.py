@@ -11,7 +11,7 @@ import envoy
 import zweb
 import os
 from tempfile import mktemp
-from config import HOST_CSS_JS, HOST_DEV_PREFIX,  JS_CONST 
+from config import HOST_CSS_JS,   JS_CONST 
 from json import dumps
 #from misc.config.cid import CID
 #
@@ -78,7 +78,7 @@ def merge_js( src_list):
     ]
 
     for i in src_list:
-        result.append("""LOAD('http://%sjs%s%s')"""%(HOST_DEV_PREFIX, HOST_CSS_JS, i[len(_env.PREFIX)+3:]))
+        result.append("""LOAD('http://%sjs%s%s')"""%( HOST_CSS_JS, i[len(_env.PREFIX)+3:]))
     return result
 
 
@@ -183,14 +183,14 @@ __HASH__ =  {
         h.write("""
 
 
-from config import DEBUG, HOST_CSS_JS, HOST_DEV_PREFIX
+from config import DEBUG, HOST, HOST_CSS_JS
 from os.path import dirname,basename
 __vars__ = vars()
 
 for file_name, hash in __HASH__.iteritems():
     
     if DEBUG:
-        value = "http://%s%s%s/%s"%(HOST_DEV_PREFIX, basename(dirname(__file__)), HOST_CSS_JS,  file_name)
+        value = "http://%s/build/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
     else:
         value = "http://%s/%s"%(HOST_CSS_JS, hash) 
     

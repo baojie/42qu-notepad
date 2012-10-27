@@ -23,4 +23,5 @@ for file_name, hash in __HASH__.iteritems():
     name = file_name.rsplit('.', 1)[0].replace('.', '_').replace('-', '_').replace('/', '_')
     
     __vars__[name] = value
-                            
+                           
+ 
