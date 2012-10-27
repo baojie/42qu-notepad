@@ -2,7 +2,7 @@
 
 from _view import View
 from random import choice
-from config import connection
+from model._db import connection
 from time import time
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'

@@ -1,4 +1,5 @@
 #coding:utf-8
+import _env
 from tornado import web
 from config import render
 
