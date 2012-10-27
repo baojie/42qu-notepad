@@ -21,4 +21,5 @@ def _():
 
 _()
 import sys
-print sys.path
+for i in sys.path:
+    print i
