@@ -19,14 +19,13 @@ else:
         '_host.%s' % socket.gethostname(),
     )
 
+import getpass
 try:
-    import getpass
-except ImportError:
-    pass
-else:
     _ARGS.append(
         '_user.%s' % getpass.getuser(),
     )
+except ImportError:
+    pass
 
 load(
     vars(), *_ARGS
