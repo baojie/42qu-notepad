@@ -21,7 +21,7 @@ from json import dumps
 #    const.write("CID = %s\n"%dumps(result, indent=4))
 #    const.write("CONST = %s"%dumps(JS_CONST[1],indent=4))
 
-BULID = join(_env.PREFIX, '.build')
+BULID = join(_env.PREFIX, 'build')
 BULID_EXIST = set(glob(BULID+'/*'))
 PATH2HASH = {}
 if not exists(BULID):
