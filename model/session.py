@@ -14,6 +14,7 @@ def session_new(user_id):
     db = kv()
     s = str(uuid.uuid4()).replace('-', '')
     db.set(s, user_id)
+    return s
 
 def user_id_by_session(s):
     db = kv()

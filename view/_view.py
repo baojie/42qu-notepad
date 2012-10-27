@@ -22,7 +22,7 @@ class View(web.RequestHandler):
                 return user_id
 
 
-def login(user_id):
+def login(self, user_id):
     user_id = int(user_id)
     session = session_new(user_id)
     self.set_cookie('S', session)

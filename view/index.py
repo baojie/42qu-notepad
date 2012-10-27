@@ -4,13 +4,15 @@ import _env
 import time
 import tornado.web
 import tornado.auth
-from _view import View
+from _view import View, login
 from model._db import connection
 from model.index import gen_url, save_txt, txt_by_url
+from model.account import account_new
 
 
 class ViewIndex(View):
     def get(self, url):
+        print self.user_id
         if not url:
             url = gen_url()
             self.redirect(url)
@@ -28,7 +30,6 @@ class SignIndex(View):
     def get(self):
             self.render('/signin.html')
 
-
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
@@ -41,5 +42,8 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
         if not user:
             raise tornado.web.HTTPError(500, "Google auth failed")
         else:
-            print 'user', type(user), user
+            name = user['name']
+            email = user['email']
+            user_id = account_new(name, email)
+            login(self, user_id)
             self.redirect('/')

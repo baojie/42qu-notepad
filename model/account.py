@@ -5,14 +5,17 @@ import string
 from _db import connection
 
 
-def account_new(username, email):
-    username, email = map(string.strip, (username, email))
-    if not user_id_by_email(email):
+def account_new(name, email):
+    name, email = map(string.strip, (name, email))
+    user_id = user_id_by_email(email)
+    if not user_id:
         cursor = connection.cursor()
         if email:
             cursor.execute(
-                '''insert into `account` (name, email) values (%s,%s)''', (username, email)
+                '''insert into `account` (name, email) values (%s,%s)''', (name, email)
             )
+        user_id = user_id_by_email(email)
+    return user_id
     
 
 def user_id_by_email(email):

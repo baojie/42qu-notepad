@@ -1,21 +1,22 @@
 #coding:utf-8
+import shelve
 
-CACHE_DICT = {}
 
-class InterCache(object):
-    def __init__(self, cache_dict):
-        self.cache = cache_dict
+class KvStorage(object):
+    def __init__(self, path):
+        db = shelve.open(path)
+        self.db = db
 
     def get(self, k):
-        return self.cache.get(k)
+        return self.db.get(k)
 
     def set(self, k, v):
-        self.cache[k] = v
+        self.db[k] = v
+        self.db.sync()
 
-cache = InterCache(CACHE_DICT)
 
 def kv():
-    return cache
+    return KvStorage('/tmp/42qu.db')
 
 if __name__ == "__main__":
     pass
