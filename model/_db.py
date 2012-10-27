@@ -13,5 +13,5 @@ def _connection(*args, **kwds):
     return conn
 
 connection = _connection(
-    host=MYSQL_HOST, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB
+    host=MYSQL_HOST, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB, charset='utf8'
 )
