@@ -1,31 +1,18 @@
 #coding:utf-8
 
+import _env
+import time
+import tornado.web
+import tornado.auth
 from _view import View
-from random import choice
 from model._db import connection
-from time import time
+from model.index import gen_url, save_txt, txt_by_url
 
-URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
-def txt_by_url(url):
-    url = url.lower()
-    cursor = connection.cursor()
-    cursor.execute('select txt from notepad where url=%s', url)
-    txt = cursor.fetchone()
-    if txt:
-        txt = txt[0]
-    else:
-        txt = ''
-    return txt
-
-#@route("/xxxxx")
 class ViewIndex(View):
     def get(self, url):
         if not url:
-            while True:
-                url = ''.join(choice(URL_ENCODE) for i in xrange(9))
-                if not txt_by_url(url):
-                    break
+            url = gen_url()
             self.redirect(url)
         else:
             self.render('/index.html', txt=txt_by_url(url), url=url)
@@ -34,14 +21,23 @@ class ViewIndex(View):
         if url:
             url = url.lower()
             txt = self.get_argument('txt', '').rstrip()
-            now = time()
-            cursor = connection.cursor()
-            if txt:
-                cursor.execute(
-                    'insert into notepad (url,txt,`time`) values '
-                    '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
-                    (url, txt, now, txt, now)
-                )
-            else:
-                cursor.execute('delete from notepad where url=%s', url)
-        self.finish({'time':now})
+            save_txt(url, txt)
+        self.finish({'time':int(time.time())})
+
+
+
+class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
+    @tornado.web.asynchronous
+    def get(self):
+        if self.get_argument("openid.mode", None):
+            user = self.get_authenticated_user(self.async_callback(self._on_auth))
+            return
+        self.authenticate_redirect()
+
+    def _on_auth(self, user):
+        if not user:
+            raise tornado.web.HTTPError(500, "Google auth failed")
+        else:
+            print 'user', type(user), user
+            self.redirect('/')
+

@@ -1,9 +1,9 @@
 #coding:utf-8
 
-from _view import View
+import _env
+import time
 from random import choice
-from model._db import connection
-from time import time
+from _db import connection
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -18,30 +18,22 @@ def txt_by_url(url):
         txt = ''
     return txt
 
-#@route("/xxxxx")
-class ViewIndex(View):
-    def get(self, url):
-        if not url:
-            while True:
-                url = ''.join(choice(URL_ENCODE) for i in xrange(9))
-                if not txt_by_url(url):
-                    break
-            self.redirect(url)
-        else:
-            self.render('/index.html', txt=txt_by_url(url), url=url)
+def gen_url():
+    while True:
+        url = ''.join(choice(URL_ENCODE) for i in xrange(9))
+        if not txt_by_url(url):
+            break
+    return url
 
-    def post(self, url):
-        if url:
-            url = url.lower()
-            txt = self.get_argument('txt', '').rstrip()
-            now = time()
-            cursor = connection.cursor()
-            if txt:
-                cursor.execute(
-                    'insert into notepad (url,txt,`time`) values '
-                    '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
-                    (url, txt, now, txt, now)
-                )
-            else:
-                cursor.execute('delete from notepad where url=%s', url)
-        self.finish({'time':now})
+
+def save_txt(url, txt):
+    now = int(time.time())
+    cursor = connection.cursor()
+    if txt:
+        cursor.execute(
+            'insert into notepad (url,txt,`time`) values '
+            '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
+            (url, txt, now, txt, now)
+        )
+    else:
+        cursor.execute('delete from notepad where url=%s', url)
