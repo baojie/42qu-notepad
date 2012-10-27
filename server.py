@@ -2,10 +2,11 @@
 
 import tornado.web
 from config import DEBUG
-from view.index import ViewIndex
+from view.index import ViewIndex,SignIndex
 
 application = tornado.web.Application(
     [
+        (r"/signin", SignIndex),
         (r"/(.*)", ViewIndex),
     ],
     debug=DEBUG

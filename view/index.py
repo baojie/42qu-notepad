@@ -45,3 +45,7 @@ class ViewIndex(View):
             else:
                 cursor.execute('delete from notepad where url=%s', url)
         self.finish({'time':now})
+
+class SignIndex(View):
+    def get(self):
+            self.render('/signin.html')
