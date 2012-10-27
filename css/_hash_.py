@@ -19,7 +19,6 @@ for file_name, hash in __HASH__.iteritems():
         value = "http://%s/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
     else:
         value = "http://%s/build/%s"%(HOST_CSS_JS, hash) 
-    print "http://%s/build/%s"%(HOST_CSS_JS, hash) 
     
     name = file_name.rsplit('.', 1)[0].replace('.', '_').replace('-', '_').replace('/', '_')
     
