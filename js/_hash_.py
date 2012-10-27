@@ -3,8 +3,8 @@
 import _env
 
 __HASH__ =  {
-    "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
     "index.js" : 'MVD361eEnY8QtCDZNSCOzw.js', #index
+    "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
 }
 
 

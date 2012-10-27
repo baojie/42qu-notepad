@@ -20,6 +20,3 @@ def _():
             sys.path.insert(0, path)
 
 _()
-import sys
-for i in sys.path:
-    print i
