@@ -7,9 +7,9 @@ if sys.getdefaultencoding() != 'utf-8':
     sys.setdefaultencoding('utf-8')
 
 
-
+PREFIX = dirname(abspath(__file__))
 def _():
-    PREFIX = dirname(abspath(__file__))
+    global PREFIX 
     PWD = abspath(__file__)
     while True and len(PWD) > 1:
         PWD = dirname(PWD)
