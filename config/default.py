@@ -35,7 +35,7 @@ def pre_config(o):
     o.MYSQL_PORT = '3306'
     o.MYSQL_USER = 'work'
     o.MYSQL_PASSWD = '42qu'
-
+    o.DEBUG = True
 
 def post_config(o):
     o.HOST_CSS_JS = 's.%s'%o.HOST
