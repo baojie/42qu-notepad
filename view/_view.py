@@ -1,5 +1,6 @@
 #coding:utf-8
 import _env
+import json
 from tornado import web
 from config import render
 from model.session import session_new, user_id_by_session
@@ -27,6 +28,10 @@ class LoginView(View):
         if not self.user_id:
             self.redirect('/signin')
 
+class JsonView(View):
+    def finish(self, arg):
+        self.set_header('Content-Type', 'application/json; charset=UTF-8')
+        super(JsonView, self).finish(json.dumps(arg))    
 
 def login(self, user_id):
     user_id = int(user_id)
