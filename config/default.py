@@ -3,18 +3,11 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-
-
-
-
 def pre_config(o):
-    o.HOST = "42qu.cc"
-    o.HOST_CSS_JS = o.HOST
-    o.HOST_DEV_PREFIX = o.HOST
-    o.JS_CONST = o.HOST
     try:
         import sae.const
     except ImportError:
+        o.HOST = "42qu.cc"
         o.DEBUG = True 
         o.MYSQL_HOST = '127.0.0.1'
         o.MYSQL_PORT = 3306
@@ -23,6 +16,7 @@ def pre_config(o):
         o.MYSQL_DB = 'work_notepad'
     else:
         #o.DEBUG = False 
+        o.HOST = "pymo.sinaapp.com"
         o.DEBUG = True 
         o.MYSQL_HOST = sae.const.MYSQL_HOST 
         o.MYSQL_PORT = int(sae.const.MYSQL_PORT)
@@ -35,7 +29,7 @@ def pre_config(o):
     o.render = render
 
 def post_config(o):
-    o.HOST_CSS_JS = 's.%s'%o.HOST
+    o.HOST_CSS_JS = o.HOST
 
 #    o.URL_CSS_JS = '//%s'%o.HOST_CSS_JS
 

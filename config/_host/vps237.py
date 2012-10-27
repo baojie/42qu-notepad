@@ -2,9 +2,9 @@
 #coding:utf-8
 
 def pre_config(o):
-    o.HOST = '42qu.me'
-    o.MYSQL_USER = 'work'
-    o.MYSQL_PASSWD = '42qu'
+    o.HOST = 'shanshui.me'
+    o.MYSQL_USER = 'jack'
+    o.MYSQL_PASSWD = 'awdz!@#'
     o.MYSQL_DB = 'work_notepad'
     o.DEBUG = True
     pass

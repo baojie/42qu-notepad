@@ -13,7 +13,7 @@ right: 0;
 bottom: 0;
 padding: 0;
 border:0;
-background:url(img/index_bg.png) no-repeat 100% 100% #000;
+background:url(/css/img/index_bg.png) no-repeat 100% 100% #000;
 padding-right:24px;
 }
 #txt{
