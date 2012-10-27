@@ -20,15 +20,15 @@ from tempfile import mktemp
 #    result = dict((k,v) for k,v in CID.__dict__.iteritems() if k[0]!="_")
 #    const.write("CID = %s\n"%dumps(result, indent=4))
 #    const.write("CONST = %s"%dumps(JS_CONST[1],indent=4))
-
-BULID = join(_env.PREFIX, '.build')
+PREIFX = join(_env.PREFIX,static)
+BULID = join(PREFIX, '.build')
 BULID_EXIST = set(glob(BULID+'/*'))
 PATH2HASH = {}
 if not exists(BULID):
     mkdir(BULID)
 
 def dirwalk(dirname):
-    base = join(_env.PREFIX, 'static', dirname)
+    base = join(PREFIX, dirname)
     merge = []
     file = []
     suffix = '.%s'%dirname
@@ -163,7 +163,7 @@ for file_name, hash in  PATH2HASH.iteritems():
     init[dirname].append(( file_name, hash ))
 
 for suffix, flist in init.iteritems():
-    with open(join(_env.PREFIX, suffix, '_hash_.py'), 'w') as h:
+    with open(join(PREFIX, suffix, '_hash_.py'), 'w') as h:
         h.write("""#coding:utf-8\n
 import _env
 
