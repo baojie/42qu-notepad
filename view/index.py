@@ -2,9 +2,10 @@
 
 import _env
 import time
+import urllib
 import tornado.web
 import tornado.auth
-from _view import View, login
+from _view import View, LoginView, login
 from model._db import connection
 from model.index import gen_url, save_txt, txt_by_url
 from model.account import account_new
@@ -12,7 +13,6 @@ from model.account import account_new
 
 class ViewIndex(View):
     def get(self, url):
-        print self.user_id
         if not url:
             url = gen_url()
             self.redirect(url)
@@ -26,9 +26,15 @@ class ViewIndex(View):
             save_txt(url, txt)
         self.finish({'time':int(time.time())})
 
+class History(LoginView):
+    def get(self):
+        self.render('/history.html')
+        
+
 class SignIndex(View):
     def get(self):
-            self.render('/signin.html')
+        self.render('/signin.html')
+
 
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
@@ -36,7 +42,10 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
         if self.get_argument("openid.mode", None):
             user = self.get_authenticated_user(self.async_callback(self._on_auth))
             return
-        self.authenticate_redirect()
+        ax_attrs=["name", "email", "language", "username"]
+        callback_uri = self.request.uri
+        args = self._openid_args(callback_uri, ax_attrs=ax_attrs)
+        self.redirect(self._OPENID_ENDPOINT + "?hl=zh-CN&" + urllib.urlencode(args))
 
     def _on_auth(self, user):
         if not user:
