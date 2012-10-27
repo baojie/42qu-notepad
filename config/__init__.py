@@ -3,14 +3,31 @@
 
 # 初始化python的查找路径
 import _env
-import getpass
-import socket
 import sys
 from lib.config_loader import load 
 
-load(
-    vars(),
+_ARGS = [
     'default',
-    '_host.%s' % socket.gethostname(),
-    '_user.%s' % getpass.getuser(),
+]
+
+try:
+    import socket
+except ImportError:
+    pass
+else:
+    _ARGS.append(
+        '_host.%s' % socket.gethostname(),
+    )
+
+try:
+    import getpass
+except ImportError:
+    pass
+else:
+    _ARGS.append(
+        '_user.%s' % getpass.getuser(),
+    )
+
+load(
+    vars(), *_ARGS
 )

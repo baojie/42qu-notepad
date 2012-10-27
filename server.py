@@ -1,17 +1,19 @@
 #coding:utf-8
 
-import tornado.web
 from config import DEBUG
-from view.index import ViewIndex, SignIndex, History, GoogleHandler
+import tornado.web
+import view._url
+from view._route import route
 
 application = tornado.web.Application(
-    [
-        (r"/signin", SignIndex),
-        (r"/history", History),
-        (r"/oauth", GoogleHandler),
-        (r"/(.*)", ViewIndex),
-    ],
-    debug=DEBUG
+    route.handlers,
+    debug=DEBUG,
+#    [
+#        (r"/signin", SignIndex),
+#        (r"/history", History),
+#        (r"/oauth", GoogleHandler),
+#        (r"/(.*)", ViewIndex),
+#    ],
 )
 
 def run():
