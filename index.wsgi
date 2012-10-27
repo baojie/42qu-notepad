@@ -1,15 +1,12 @@
 import _env
 import tornado.web
 from tornado.httpclient import AsyncHTTPClient
-from view.index import ViewIndex
- 
+import view._url
+from view._route import route
+
+from config import DEBUG 
  
 settings = {
-    "debug": True,
+    "debug": DEBUG,
 }
- 
-# application should be an instance of `tornado.web.Application`,
-# and don't wrap it with `sae.create_wsgi_app`
-application = tornado.web.Application([
-    (r"/", ViewIndex),
-], **settings)
+application = tornado.web.Application(route.handlers, **settings)
