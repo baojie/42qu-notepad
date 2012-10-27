@@ -8,7 +8,8 @@ import tornado.auth
 from _view import View, LoginView, login
 from model.index import gen_url, txt_save, txt_by_url
 from model.account import account_new
-#from model.history import history_get
+from model.history import history_get, history_count
+from lib.page import page_limit_offset
 from _route import route
 
 @route('//')
@@ -44,10 +45,18 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             self.redirect('/')
 
 @route('/j/history')
+@route('/j/history-(\d+)')
 class J_History(LoginView):
-    def get(self):
-    #[timestamp,content, url , count ]
-        pass
+    def get(self, n=1):
+        #[timestamp,content, url , count ]
+        user_id = self.user_id
+        page , limit , offset = page_limit_offset(
+            '/history-%s',
+            history_count(user_id),
+            n,
+            42
+        )
+        _history = history_get(user_id, offset, limit)
         
 
 @route('/(.*)')
