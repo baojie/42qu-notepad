@@ -2,6 +2,7 @@
 
 
 # 初始化数据连接
+import _env
 import MySQLdb
 from DBUtils.PersistentDB  import PersistentDB as DB
 from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD
