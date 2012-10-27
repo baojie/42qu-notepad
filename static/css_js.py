@@ -28,7 +28,7 @@ if not exists(BULID):
     mkdir(BULID)
 
 def dirwalk(dirname):
-    base = join(_env.PREFIX, dirname)
+    base = join(_env.PREFIX, 'static', dirname)
     merge = []
     file = []
     suffix = '.%s'%dirname
@@ -85,7 +85,6 @@ def merge_js( src_list):
 def run(suffix):
     file_list , merge_list = dirwalk(suffix)
     file_set = set(file_list)
-
     to_merge = defaultdict(list)
     for merge_conf, merge in merge_list:
         for to_file, src_list in merge.iteritems():
