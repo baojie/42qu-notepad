@@ -3,10 +3,7 @@
 import time
 import string
 import uuid
-try:
-    from sae.kvdb import KVClient as kv
-except:
-    from kvstore import kv
+from model._db import kv
 
 key = 'address'
 

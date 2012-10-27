@@ -17,6 +17,7 @@ connection = _connection(
 )
 
 try:
-    from sae.kvdb import KVClient as kv
+    from sae.kvdb import KVClient
+    kv = KVClient()
 except:
     from kvstore import kv

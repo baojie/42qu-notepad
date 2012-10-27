@@ -21,6 +21,7 @@ class View(web.RequestHandler):
                 self.clear_cookie('S')
             else:
                 return user_id
+        return 0
 
 class LoginView(View):
     def prepare(self):

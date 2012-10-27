@@ -21,7 +21,8 @@ DROP TABLE IF EXISTS `work_notepad`.`url`;
 CREATE TABLE  `work_notepad`.`url` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `url` char(9) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 DROP TABLE IF EXISTS `work_notepad`.`txt_log`;
 CREATE TABLE  `work_notepad`.`txt_log` (

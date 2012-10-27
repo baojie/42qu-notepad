@@ -15,8 +15,7 @@ class KvStorage(object):
         self.db.sync()
 
 
-def kv():
-    return KvStorage('/tmp/42qu.db')
+kv = KvStorage('/tmp/42qu.db')
 
 if __name__ == "__main__":
     pass

@@ -6,7 +6,7 @@ import urllib
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login
-from model.index import gen_url, save_txt, txt_by_url
+from model.index import gen_url, txt_save, txt_by_url
 from model.account import account_new
 from _route import route
 
@@ -21,9 +21,8 @@ class ViewIndex(View):
 
     def post(self, url):
         if url:
-            url = url.lower()
             txt = self.get_argument('txt', '').rstrip()
-            save_txt(url, txt)
+            txt_save(self.user_id, url, txt)
         self.finish({'time':int(time.time())})
 
 class History(LoginView):
