@@ -1,48 +1,37 @@
 #coding:utf-8
 
+import time
 import string
-from _view import View
-from random import choice
-from model._db import connection
-from time import time
+from _db import connection
 
 
 def account_new(username, email):
-    u, e = map(string,strip, (username, email))
-    if not user_id_by_email(e):
+    username, email = map(string,strip, (username, email))
+    if not user_id_by_email(email):
         cursor = connection.cursor()
-        if txt:
+        if email:
+            now = int(time.time())
+            print now
             cursor.execute(
-                'insert into notepad (url,txt,`time`) values '
-                '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
-                (url, txt, now, txt, now)
+                'insert into account (username, email, `time`) values (%s,%s,%s)' % (username, email, now)
             )
+            cursor.commit()
     
-    pass
 
 def user_id_by_email(email):
     cursor = connection.cursor()
     cursor.execute('select id from account where email=%s',email)
     user_id = cursor.fetchone()
+    print user_id
     if user_id:
         user_id = user_id[0]
     else:
         user_id = 0
     return user_id
 
-
-    def post(self, url):
-        if url:
-            url = url.lower()
-            txt = self.get_argument('txt', '').rstrip()
-            now = time()
-            cursor = connection.cursor()
-            if txt:
-                cursor.execute(
-                    'insert into notepad (url,txt,`time`) values '
-                    '(%s,%s,%s) ON DUPLICATE KEY UPDATE txt=%s,`time`=%s',
-                    (url, txt, now, txt, now)
-                )
-            else:
-                cursor.execute('delete from notepad where url=%s', url)
-        self.finish({'time':now})
+if "__name__" == "__main__":
+    account_new('Lerry', 'lvdachao@gmail.com')
+    print user_id_by_email('lvdachao@gmail.com')
+    cursor = connection.cursor()
+    cursor.execute('select * from notepad')
+    print cursor.fetchall()
