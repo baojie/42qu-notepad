@@ -8,33 +8,20 @@ import tornado.auth
 from _view import View, LoginView, login
 from model.index import gen_url, txt_save, txt_by_url
 from model.account import account_new
+#from model.history import history_get
 from _route import route
 
-
-class ViewIndex(View):
-    def get(self, url):
-        if not url:
-            url = gen_url()
-            self.redirect(url)
-        else:
-            self.render('/index.html', txt=txt_by_url(url), url=url)
-
-    def post(self, url):
-        if url:
-            txt = self.get_argument('txt', '').rstrip()
-            txt_save(self.user_id, url, txt)
-        self.finish({'time':int(time.time())})
-
+@route('//')
 class History(LoginView):
     def get(self):
         self.render('/history.html')
         
-
+@route('/signin')
 class SignIndex(View):
     def get(self):
         self.render('/signin.html')
 
-
+@route('/oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
@@ -56,10 +43,16 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             login(self, user_id)
             self.redirect('/')
 
-@route("/(.*)")
-class ViewIndex(View):
+@route('/j/history')
+class J_History(LoginView):
+    def get(self):
+    #[timestamp,content, url , count ]
+        pass
+        
+
+@route('/(.*)')
+class Index(View):
     def get(self, url):
-        print self.user_id
         if not url:
             url = gen_url()
             self.redirect(url)
@@ -68,7 +61,6 @@ class ViewIndex(View):
 
     def post(self, url):
         if url:
-            url = url.lower()
             txt = self.get_argument('txt', '').rstrip()
-            save_txt(url, txt)
+            txt_save(self.user_id, url, txt)
         self.finish({'time':int(time.time())})
