@@ -8,7 +8,7 @@ RENDER_PATH = [join(_env.PREFIX, 'html')]
 
 template_lookup = TemplateLookup(
     directories=tuple(RENDER_PATH),
-    module_directory='/tmp/%s'%RENDER_PATH[0].strip('/').replace('/', '.'),
+    #module_directory='/tmp/%s'%RENDER_PATH[0].strip('/').replace('/', '.'),
     disable_unicode=True,
     encoding_errors='ignore',
     default_filters=['str', 'h'],
