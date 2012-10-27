@@ -3,9 +3,9 @@
 import _env
 
 __HASH__ =  {
-    "base.css" : 'ZRqkbXAIZACZJjuGvLmEcg.css', #base
     "index.css" : 'qTMnS3GxpD9Dx12nLVX1eQ.css', #index
     "reset.css" : '2e3_01C9IYVx_RQanGWNKQ.css', #reset
+    "base.css" : 'ZRqkbXAIZACZJjuGvLmEcg.css', #base
 }
 
 
@@ -19,7 +19,6 @@ for file_name, hash in __HASH__.iteritems():
         value = "http://%s/%s/%s"%(HOST, basename(dirname(__file__)),   file_name)
     else:
         value = "http://%s/build/%s"%(HOST_CSS_JS, hash) 
-    print "http://%s/build/%s"%(HOST_CSS_JS, hash) 
     
     name = file_name.rsplit('.', 1)[0].replace('.', '_').replace('-', '_').replace('/', '_')
     
