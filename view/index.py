@@ -26,7 +26,7 @@ class ViewIndex(View):
             save_txt(url, txt)
         self.finish({'time':int(time.time())})
 
-def History(LoginView):
+class History(LoginView):
     def get(self):
         self.render('/history.html')
         
