@@ -1,0 +1,251 @@
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>dpaste.de: Snippet #211902</title>
+	<link rel="stylesheet" media="screen, projection" href="/static/theme.css"/>
+	
+     
+
+</head>
+<body>
+
+<div id="header">
+    <span class="new_snippet"><a href="/">New snippet &rarr;</a></span>
+	
+    <h1>
+        Snippet #211902
+        
+        <span class="date">Oct. 27, 2012, 9:55 a.m. (UTC)</span>
+    </h1>
+
+</div>
+
+<div id="sidebar">
+	
+    <h2>History</h2>
+
+    <form method="get" id="diffform" action="/diff/">
+    
+    <div class="tree">
+        
+        <ul><li>
+        <div>
+        <span class="diff">
+            <input type="radio" name="a" value="211902" />
+            <input type="radio" name="b" value="211902" checked="checked"/>
+        </span>
+        
+            <strong>Snippet #211902</strong>
+       
+        </div>
+        </li></ul>
+        
+        <div class="submit">
+            <input type="submit" value="Compare"/>
+        </div>
+    </div>
+    </form>
+
+    <h2>Options</h2>
+    <p><a href="/6jnmP/raw/">View raw</a></p>
+
+</div>
+
+
+<div id="content">
+	
+<div id="diff" style="display:none;">diff</div>
+
+<div class="accordion">
+    <div class="snippet-options">
+        <abbr title="Time to life">TTL:</abbr> 4 weeks, 1 day
+        &mdash;
+        
+        <span id="toggleWordwrap"><input type="checkbox"/> <a href="#">Wordwrap</a></span>
+    </div>
+    <h2>
+         Snippet #211902
+        <span></span>
+    </h2>
+
+    <div class="container">
+        <div class="snippet">
+        <table>
+            <tr>
+                <th><pre class="code"><a href="#l1" id="l1">1</a><a href="#l2" id="l2">2</a><a href="#l3" id="l3">3</a><a href="#l4" id="l4">4</a><a href="#l5" id="l5">5</a><a href="#l6" id="l6">6</a><a href="#l7" id="l7">7</a><a href="#l8" id="l8">8</a><a href="#l9" id="l9">9</a><a href="#l10" id="l10">10</a><a href="#l11" id="l11">11</a><a href="#l12" id="l12">12</a><a href="#l13" id="l13">13</a><a href="#l14" id="l14">14</a><a href="#l15" id="l15">15</a><a href="#l16" id="l16">16</a></pre></th>
+                <td><pre class="code"><div class="line" id="l1"><span class="kn">import</span> <span class="nn">_env</span></div><div class="line" id="l2"><span class="kn">import</span> <span class="nn">tornado.web</span></div><div class="line" id="l3"><span class="kn">from</span> <span class="nn">tornado.httpclient</span> <span class="kn">import</span> <span class="n">AsyncHTTPClient</span></div><div class="line" id="l4"><span class="kn">from</span> <span class="nn">view.index</span> <span class="kn">import</span> <span class="n">ViewIndex</span></div><div class="line" id="l5">&nbsp;</div><div class="line" id="l6">&nbsp;</div><div class="line" id="l7"><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span></div><div class="line" id="l8">    <span class="s">&quot;debug&quot;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span></div><div class="line" id="l9"><span class="p">}</span></div><div class="line" id="l10">&nbsp;</div><div class="line" id="l11"><span class="c"># application should be an instance of `tornado.web.Application`,</span></div><div class="line" id="l12"><span class="c"># and don&#39;t wrap it with `sae.create_wsgi_app`</span></div><div class="line" id="l13"><span class="n">application</span> <span class="o">=</span> <span class="n">tornado</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">([</span></div><div class="line" id="l14">    <span class="p">(</span><span class="s">r&quot;/&quot;</span><span class="p">,</span> <span class="n">ViewIndex</span><span class="p">),</span></div><div class="line" id="l15"><span class="p">],</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span></div></pre></td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+    <h2>Write an answer &rarr;</h2>
+    <div class="container" style="display: none;">
+        
+<form method="post" action="." class="snippetform">
+
+
+
+
+<ol>
+    
+    <li >
+        
+        <label for="id_content">Content</label>
+        <textarea id="id_content" rows="10" cols="40" name="content">import _env
+import tornado.web
+from tornado.httpclient import AsyncHTTPClient
+from view.index import ViewIndex
+
+
+settings = {
+    &quot;debug&quot;: True,
+}
+
+# application should be an instance of `tornado.web.Application`,
+# and don&#39;t wrap it with `sae.create_wsgi_app`
+application = tornado.web.Application([
+    (r&quot;/&quot;, ViewIndex),
+], **settings)
+
+</textarea>
+        
+    </li>
+    
+    <li >
+        
+        <label for="id_lexer">Lexer</label>
+        <select name="lexer" id="id_lexer">
+<option value="bash">Bash</option>
+<option value="c">C</option>
+<option value="css">CSS</option>
+<option value="diff">Diff</option>
+<option value="django">Django/Jinja</option>
+<option value="html">HTML</option>
+<option value="irc">IRC logs</option>
+<option value="js">JavaScript</option>
+<option value="php">PHP</option>
+<option value="pycon">Python console session</option>
+<option value="pytb">Python Traceback</option>
+<option value="python" selected="selected">Python</option>
+<option value="python3">Python 3</option>
+<option value="rst">Restructured Text</option>
+<option value="sql">SQL</option>
+<option value="text">Text only</option>
+</select>
+        
+    </li>
+    
+    <li >
+        
+        <label for="id_expire_options">Expires</label>
+        <select name="expire_options" id="id_expire_options">
+<option value="3600">In one hour</option>
+<option value="604800">In one week</option>
+<option value="2592000" selected="selected">In one month</option>
+</select>
+        
+    </li>
+    
+    <li style="display: none">
+        
+        <label for="id_title">Title</label>
+        <input autocomplete="off" type="text" name="title" id="id_title" />
+        
+    </li>
+    
+    <li class="submit"><input type="submit" value="Paste it"/></li>
+</ol>
+</form>
+    </div>
+</div>
+
+</div>
+
+<div id="footer">
+    <a href="/your-latest/">Recent snippets</a>
+    <a href="/your-settings/">Settings</a>
+    <a href="/about/">About</a>
+</div>
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/raven-0.4.min.js"></script>
+<script type="text/javascript">
+    Raven.config('http://0afbf6df0a9749f9985059ed6c527b19@ohnoez.mahner.org/2');
+    window.onerror = Raven.process;
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+    curLine = document.location.hash;
+    if(curLine.substring(0,2) == '#l'){
+        $('div.snippet div.line'+curLine).addClass('marked');
+    }
+
+    $("div.accordion").accordion({
+       autoHeight: false,
+       header: 'h2',
+       animation: 'bounceslide',
+       duration: 2000,
+    });
+
+    /**
+    * Diff Ajax Call
+    */
+    $("form#diffform").submit(function() {
+        $.get("/diff/", {
+            a: $("input[name=a]:checked").val(),
+            b: $("input[name=b]:checked").val()
+        }, function(data){
+            $('#diff').html(data).slideDown('fast');
+        });
+        return false;
+    });
+
+    /**
+    * Wordwrap
+    */
+    $('#toggleWordwrap a').click(function(){
+        $('#toggleWordwrap input').trigger('click').trigger('change');
+    });
+
+    $('#toggleWordwrap input').change(function(){
+        if($(this).attr('checked')) {
+            $('div.snippet pre.code').css('white-space', 'pre-wrap');
+        } else {
+            $('div.snippet pre.code').css('white-space', 'pre');
+        }
+    });
+
+    // Activate wordwrap for text heavy lexers or if enabled in the settings
+    if('False' === 'True' || '' === 'True') {
+        $('#toggleWordwrap a').trigger('click');
+    }
+
+    /**
+    * Line Highlighting
+    */
+    $('div.snippet th a').each(function(i){
+        $(this).click(function(){
+            var j = $(this).text();
+            $('div.snippet div.line.marked').removeClass('marked');
+            $('div.snippet div.line#l'+j).toggleClass('marked');
+        });
+    });
+
+    
+});
+</script>
+
+
+</body>
+</html>
