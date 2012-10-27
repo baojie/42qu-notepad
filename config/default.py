@@ -10,8 +10,6 @@ sys.setdefaultencoding('utf-8')
 def pre_config(o):
     o.HOST = "42qu.cc"
     o.HOST_CSS_JS = o.HOST
-    o.HOST_DEV_PREFIX = "" 
-    o.JS_CONST = o.HOST
     try:
         import sae.const
     except ImportError:
