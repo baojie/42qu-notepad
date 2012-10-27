@@ -11,7 +11,7 @@ application = tornado.web.Application(
     debug=DEBUG
 )
 
-if __name__ == '__main__':
+def run():
     import sys
     import tornado.ioloop
     if len(sys.argv)>1:
@@ -21,4 +21,5 @@ if __name__ == '__main__':
     application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
 
-
+if __name__ == '__main__':
+    run()
