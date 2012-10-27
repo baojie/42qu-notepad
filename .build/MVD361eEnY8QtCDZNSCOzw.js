@@ -1,0 +1,1 @@
+(function(){var e,t,n,r,i,s,o;s=$("#txt"),e=new Date,r=!0,i=0,o="",n=function(){return!r&&o!==s.val()&&(r=!1,$.post(location.href,{txt:s.val()},function(){return r=!0,o=s.val()})),i&&clearTimeout(i),i=setTimeout(n,3e3)},t=function(){return r=!1,1},s.keydown(t),s.keyup(t),n(),focus(s[0])}).call(this);

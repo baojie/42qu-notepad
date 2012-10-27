@@ -3,11 +3,7 @@
 import _env
 import time
 from random import choice
-from _db import connection
-try:
-    from sae.kvdb import KVClient as kv
-except:
-    from kvstore import kv
+from _db import connection, kv
     
     
 

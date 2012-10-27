@@ -15,9 +15,11 @@ def _():
         PWD = dirname(PWD)
         if exists('%s/model'%PWD) and exists('%s/lib'%PWD) and exists('%s/view'%PWD):
             PREFIX = PWD
+
     for path in (PREFIX, join(PREFIX,".site-packages")):
         if path and path not in sys.path:
             sys.path.insert(0, path)
+
 
 _()
 import sys

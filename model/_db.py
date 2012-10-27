@@ -15,3 +15,8 @@ def _connection(*args, **kwds):
 connection = _connection(
     host=MYSQL_HOST, port=MYSQL_PORT, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB, charset='utf8'
 )
+
+try:
+    from sae.kvdb import KVClient as kv
+except:
+    from kvstore import kv
