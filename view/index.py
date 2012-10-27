@@ -12,7 +12,6 @@ from model.account import account_new
 
 class ViewIndex(View):
     def get(self, url):
-        print self.user_id
         if not url:
             url = gen_url()
             self.redirect(url)
