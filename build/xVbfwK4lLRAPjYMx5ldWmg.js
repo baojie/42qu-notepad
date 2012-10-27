@@ -1,0 +1,1 @@
+function _focus(e,t,n){if(e.setSelectionRange)e.focus(),e.setSelectionRange(t,n);else if(e.createTextRange){var r=e.createTextRange();r.collapse(!0),r.moveEnd("character",n),r.moveStart("character",t),r.select()}}function focus(e){length=e.value.length,_focus(e,length,length)};
