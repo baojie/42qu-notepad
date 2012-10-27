@@ -10,7 +10,7 @@ sys.setdefaultencoding('utf-8')
 def pre_config(o):
     o.HOST = "42qu.cc"
     o.MYSQL_HOST = '127.0.0.1'
-    o.MYSQL_PORT = '3306'
+    o.MYSQL_PORT = 3306
     o.MYSQL_USER = 'work'
     o.MYSQL_PASSWD = '42qu'
     o.MYSQL_DB = 'work_notepad'
