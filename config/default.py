@@ -16,7 +16,7 @@ def pre_config(o):
         o.MYSQL_DB = 'work_notepad'
     else:
         #o.DEBUG = False 
-        o.HOST = "pymo.sinaapp.com"
+        o.HOST = "%s.sinaapp.com"%sae.const.APP_NAME
         o.DEBUG = True 
         o.MYSQL_HOST = sae.const.MYSQL_HOST 
         o.MYSQL_PORT = int(sae.const.MYSQL_PORT)
