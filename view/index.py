@@ -4,6 +4,7 @@ import _env
 import time
 import urllib
 import json
+import bz2
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
