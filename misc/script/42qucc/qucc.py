@@ -24,7 +24,6 @@ def help():
 
 def post(url=''):
     data = ''.join(sys.stdin.readlines())
-    print data
     files = {'file': ('txt', bz2.compress(data) )}
     r = requests.post(API_URL+url, files=files, timeout=3)
     print HOST_HTTP+"/"+r.text
@@ -39,13 +38,11 @@ def main():
         url = argv[1]
         if url.startswith(HOST_HTTP):
             url = url[len(HOST_HTTP):] 
-            r = requests.get(API_URL++url, timeout=3) 
+            r = requests.get(API_URL+url, timeout=3) 
             print r.text.rstrip()
             return
         else:
             url = argv[1].lstrip("/")
-    else:
-        url = "/"+url
 
     post(url)
 
