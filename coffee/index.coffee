@@ -47,5 +47,24 @@ $ ->
     window.onbeforeunload = ->
         if posted = false
             post()
-    
 
+
+###
+    $('.more').hover(
+         
+        ->
+            $(this).animate(
+                "margin-left":"21px",
+                1500,
+                "linear"
+            )
+        ,
+        ->
+            $(this).animate(
+                "margin-left":"13px",
+                1500,
+                "linear"
+            )
+    )
+    
+###
