@@ -3,7 +3,7 @@ import _env
 import json
 from tornado import web
 from config import render
-from model.session import session_new, user_id_by_session
+from model.session import session_new, session_rm, user_id_by_session
 import css,js
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
@@ -36,7 +36,7 @@ class JsonView(View):
         self.set_header('Content-Type', 'application/json; charset=UTF-8')
         super(JsonView, self).finish(json.dumps(arg))    
 
-class JsonLoginView(LoginView, JsonView):
+class JsonLoginView(LoginView):
     pass
 
 def login(self, user_id):
@@ -44,3 +44,8 @@ def login(self, user_id):
     session = session_new(user_id)
     self.set_cookie('S', session)
 
+def logout(self):
+    s = self.get_cookie('S')
+    session_rm(s)
+    self.clear_cookie('S')
+    

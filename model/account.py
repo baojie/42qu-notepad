@@ -20,7 +20,7 @@ def account_new(name, email):
 
 def user_id_by_email(email):
     cursor = connection.cursor()
-    cursor.execute('select id from account where email=%s',email)
+    cursor.execute('select user_id from account where email=%s',email)
     user_id = cursor.fetchone()
     if user_id:
         user_id = user_id[0]
