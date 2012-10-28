@@ -5,7 +5,7 @@ import time
 from random import choice
 from _db import connection, kv, McCache
 from lib.txt_diff import diff_get
-from model.history import mc_txt_brief, mc_url_id_list_by_user_id
+from model.history import mc_txt_brief, mc_url_id_list_by_user_id, KV_TXT_SAVE_TIME
     
 KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
