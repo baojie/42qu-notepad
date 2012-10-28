@@ -17,10 +17,15 @@ def account_new(name, email):
         user_id = user_id_by_email(email)
     return user_id
     
+def user_by_id(user_id):
+    cursor = connection.cursor()
+    cursor.execute('select name, email from account where id=%s', user_id)
+    user = cursor.fetchone()
+    return user
 
 def user_id_by_email(email):
     cursor = connection.cursor()
-    cursor.execute('select user_id from account where email=%s',email)
+    cursor.execute('select id from account where email=%s',email)
     user_id = cursor.fetchone()
     if user_id:
         user_id = user_id[0]

@@ -2,10 +2,10 @@ DROP DATABASE IF EXISTS `work_notepad`;
 CREATE DATABASE IF NOT EXISTS `work_notepad`;
 DROP TABLE IF EXISTS `work_notepad`.`account`;
 CREATE TABLE  `work_notepad`.`account` (
-  `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) COLLATE utf8_bin NOT NULL,
   `email` varchar(45) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 DROP TABLE IF EXISTS `work_notepad`.`user_note`;
 CREATE TABLE  `work_notepad`.`user_note` (
