@@ -7,6 +7,7 @@ from _db import connection, kv, McCache
 from lib.txt_diff import diff_get
 from model.history import mc_txt_brief, mc_url_id_list_by_user_id
     
+KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -55,14 +56,15 @@ def txt_save(user_id, url, txt):
     mc_txt_brief.delete(url_id)
     mc_url_id_list_by_user_id.delete(user_id)
     kv.set(str(url_id), txt or '')
+    now = int(time.time())
     if user_id:
-        now = int(time.time())
         cursor = connection.cursor()
         cursor.execute(
             'insert into user_note (user_id, url_id, view_time) values '
             '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
             (user_id, url_id, now, now)
         )
+    kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
     txt_log_save(user_id, url_id, txt, txt_old)
 
 mc_txt_log_last_time = McCache("TxtLogLastTime:%s")
