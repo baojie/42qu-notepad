@@ -15,19 +15,24 @@ def _connection(*args, **kwds):
 connection = _connection(
     host=MYSQL_HOST, port=MYSQL_PORT, user=MYSQL_USER, passwd=MYSQL_PASSWD, db=MYSQL_DB, charset='utf8'
 )
-
 try:
-    from sae.kvdb import KVClient
-    kv = KVClient()
-    import pylibmc
-    mc = pylibmc.Client()
-except:
-    from kvstore import kv
+    import sae.const
+except ImportError:
     import cmemcached
     from config import MEMCACHED_ADDR
     kw = {}
     kw['comp_threshold'] = 4096
     mc = cmemcached.Client(MEMCACHED_ADDR)
+else:
+    import pylibmc
+    mc = pylibmc.Client()
+
+
+try:
+    from sae.kvdb import KVClient
+    kv = KVClient()
+except ImportError:
+    from kvstore import kv
 
 from zorm_sae.mc_connection import init_mc
 import zorm_sae.config 
