@@ -9,8 +9,7 @@
     margin:32px 0;
 }
 #main {
-    margin: 0 auto;
-    text-align:left;
+    margin-left: 250px;
 }
 </style>
 </%def>
@@ -19,11 +18,15 @@
 <ul id="nav">
 <li id="nav-new"><a href="/">42qu.cc</a></li>
 <li id="nav-help"><a href="/:help"><strong>帮助</strong></a></li>
+% if current_user:
 <li id="nav-signout"><a href="/:auth/logout?${_xsrf}">登出</a></li>
+% else:
+<li id="nav-signout"><a href="/:auth/oauth">登录</a></li>
+% endif
 </ul>
 </div>
 
-<div id="section paging">
+<div id="main">
 <p>
   42qu.cc 是在线的随手贴 <br> 可以随意的自定义网址来 自己记录 或与 朋友分享 文字 , 比如 :
 </p>

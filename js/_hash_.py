@@ -6,7 +6,7 @@ __HASH__ =  {
     "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
     "paging.js" : 'hryVvC25JZZrNdSLdz71aw.js', #paging
     "index.js" : '0b0VXNxPkjs-OpTrZz5q3A.js', #index
-    "history.js" : 'dnZ-ErAVSaYCNRqnLmYH_g.js', #history
+    "history.js" : '8Gm7xxmfwpbBYsVs3fOtNQ.js', #history
     "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
 }
 
