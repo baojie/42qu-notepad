@@ -23,15 +23,17 @@
   };
 
   post = function() {
-    if (!posted && (txt_val !== txt.val())) {
+    var val;
+    val = $.trim(txt.val());
+    if (!posted && (txt_val !== val)) {
       posted = false;
       fav("/css/img/load.gif");
       $.post(location.href, {
-        txt: txt.val()
+        txt: val
       }, function() {
         fav("/css/img/fav.gif");
         posted = true;
-        return txt_val = txt.val();
+        return txt_val = val;
       });
     }
     timer && clearTimeout(timer);
@@ -39,19 +41,22 @@
   };
 
   key = function() {
-    if (posted) {
+    if (posted && txt_val !== $.trim(txt.val())) {
       fav('/css/img/favicon.gif');
+      posted = false;
     }
-    posted = false;
     return 1;
   };
 
-  txt.keydown(key);
-
-  txt.keyup(key);
-
-  post();
-
-  focus(txt[0]);
+  $(function() {
+    txt_val = $.trim(txt.val());
+    txt.keydown(key);
+    txt.keyup(key);
+    post();
+    focus(txt[0]);
+    return window.onbeforeunload = function() {
+      return post();
+    };
+  });
 
 }).call(this);

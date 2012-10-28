@@ -2,8 +2,8 @@ txt = $ '#txt'
 date = new Date()
 posted = true
 timer = 0
-txt_val = ''
 
+txt_val = ''
 
 fav = (href)-> 
     $('#favicon').remove()
@@ -16,30 +16,35 @@ fav = (href)->
 
 
 post = ->
-    if ! posted && (txt_val!=txt.val())
+    val = $.trim(txt.val())
+    if ! posted && (txt_val!=val)
         posted = false
         fav("/css/img/load.gif")
         $.post(
             location.href,
-            {txt: txt.val()},
+            {txt: val},
             ->
                 fav("/css/img/fav.gif")
                 posted = true 
-                txt_val = txt.val()
+                txt_val = val
         )
     timer && clearTimeout timer
     timer = setTimeout(post,3000)
 
 key = ->
-    if posted
+    if posted and txt_val!=$.trim(txt.val())
         fav('/css/img/favicon.gif')
-    posted = false
+        posted = false
     return 1
 
-txt.keydown(key)       
-txt.keyup(key)
+$ ->
+    txt_val = $.trim(txt.val())
+    txt.keydown(key)       
+    txt.keyup(key)
 
-post()
-focus txt[0]
-
+    post()
+    focus txt[0]
+    window.onbeforeunload = ->
+        post()
+    
 
