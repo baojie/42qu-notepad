@@ -54,7 +54,7 @@ def txt_save(user_id, url, txt):
             '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
             (user_id, url_id, now, now)
         )
-    txt_log_save(user_id, url_id, txt, txt_ori)
+    #txt_log_save(user_id, url_id, txt, txt_ori)
 
 def last_update(url_id):
     '''
