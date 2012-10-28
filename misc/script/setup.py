@@ -4,17 +4,17 @@ from setuptools import setup, find_packages
 
 setup(
     name='42qucc',
-    version="0.0.2",
+    version="0.0.1",
     description= """
-            A paste tool of CLI
-        1.Paste file to 42qucc
-          hi@Mars ~$ 42cc < foo.txt  
-          http://42qu.cc/xa47qt471
-        2.Custom url 
-          hi@Mars ~$ 42qucc hi < foo.txt
-          http://42qu.cc/hi
-        3.Save web page to local file
-          hi@Mars ~$ 42cc  http://42qu.cc/xa47qt471  >  foo.txt
+    A paste tool in CLI, the following is the usage:
+      1.Paste file to 42qu.cc
+        hi@Mars ~$ 42qucc < foo.txt            
+        http://42qu.cc/xa47qt471        
+      2.Custom url           
+        hi@Mars ~$ 42qucc hi < foo.txt          
+        http://42qu.cc/hi        
+      3.Save web page to local file          
+        hi@Mars ~$ 42qucc  http://42qu.cc/xa47qt471  >  foo.txt
         """,
     author="42qu.com 42区",
     author_email="admin@42qu.com",
