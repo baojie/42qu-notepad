@@ -48,11 +48,12 @@ class Api(View):
         if txt:
             txt = txt[0]['body']
         if txt:
+            url = url.strip()
             if not url:
                 url = url_random()
             txt = bz2.decompress(str(txt))
             txt_save(self.current_user_id, url, txt)
-            self.finish(url)
+            self.finish('--'+url)
         self.finish('')
 
 @route('/\:auth/oauth')
@@ -118,3 +119,4 @@ class Index(View):
 
 if __name__ == '__main__':
     pass
+    print url_random()
