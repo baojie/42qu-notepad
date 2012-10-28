@@ -57,7 +57,7 @@ if __name__ == "__main__":
         for id, i in zip(id_list, mc_txt_brief.get_list(id_list)):
             if i is None:
                 txt = kv.get("Txt:%s"%id)
-                i = (cnenoverflow(txt, 333),字数)
+                i = (cnenoverflow(txt, 333),3323)
                 mc_txt_brief.set(id, i)
             result.append(i) 
  

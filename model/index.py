@@ -33,6 +33,9 @@ def url_new(url):
 
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
+    txt_ori = kv.get(str(url_id))
+    if txt_ori == txt:
+        return
     kv.set(str(url_id), txt or '')
     if user_id:
         now = int(time.time())
@@ -42,7 +45,7 @@ def txt_save(user_id, url, txt):
             '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
             (user_id, url_id, now, now)
         )
-    txt_log_save(user_id, url_id, txt)
+    txt_log_save(user_id, url_id, txt, txt_ori)
 
 def last_update(url_id):
     '''
@@ -57,10 +60,9 @@ def last_update(url_id):
     t = cursor.fetchone()
     return t[0] if t else 0
 
-def txt_log_save(user_id, url_id, txt):
-    txt_ori = kv.get(str(url_id))
+def txt_log_save(user_id, url_id, txt, txt_ori):
     now = int(time.time())
-    if txt_ori and txt_ori != txt and now - last_update(url_id) > 6:
+    if txt_ori and now - last_update(url_id) > 6:
         cursor = connection.cursor()
         cursor.execute(
             'insert delayed into txt_log (url_id, user_id, time) values (%s,%s,%s)',
