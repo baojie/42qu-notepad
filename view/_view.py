@@ -47,7 +47,7 @@ class View(web.RequestHandler):
     def on_finish(self):
         mc.reset()
 
-
+    @property
     def _xsrf(self):
         return '_xsrf=%s'%self.xsrf_token
 
@@ -56,7 +56,7 @@ class LoginView(View):
     def prepare(self):
         super(LoginView, self).prepare()
         if not self.current_user_id:
-            self.redirect('/:signin')
+            self.redirect('/:help')
 
 def login(self, user_id):
     user_id = int(user_id)
