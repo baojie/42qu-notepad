@@ -47,8 +47,8 @@ def url_new(url):
 
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
-    txt_ori = kv.get(str(url_id))
-    if txt_ori == txt:
+    txt_old = kv.get(str(url_id))
+    if txt_old == txt:
         return
     kv.set(str(url_id), txt or '')
     if user_id:
@@ -59,7 +59,7 @@ def txt_save(user_id, url, txt):
             '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
             (user_id, url_id, now, now)
         )
-    txt_log_save(user_id, url_id, txt, txt_ori)
+    txt_log_save(user_id, url_id, txt, txt_old)
 
 mc_txt_log_last_time = McCache("TxtLogLastTime:%s")
 
@@ -77,17 +77,17 @@ def txt_log_last_time(url_id):
     t = cursor.fetchone()
     return t[0] if t else 0
 
-def txt_log_save(user_id, url_id, txt, txt_ori):
+def txt_log_save(user_id, url_id, txt, txt_old):
     now = int(time.time())
-    if txt_ori and now - txt_log_last_time(url_id) > 600:
+    if txt_old and now - txt_log_last_time(url_id) > 600:
         cursor = connection.cursor()
         cursor.execute(
             'insert into txt_log (url_id, user_id, time) values (%s,%s,%s)',
             (url_id, user_id, int(time.time()))
         )
         id = cursor.lastrowid
-        kv.set('TxtLog:%s' % id, txt_ori)
-        diff = diff_get(txt_ori, txt)
+        kv.set('TxtLog:%s' % id, txt_old)
+        diff = diff_get(txt_old, txt)
         kv.set('TxtDiff:%s' % id, diff)
         mc_txt_log_last_time.set(id, now) 
 
