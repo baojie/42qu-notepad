@@ -17,8 +17,9 @@ def pre_config(o):
         o.MEMCACHED_ADDR = ( '127.0.0.1:11211', )
  
     else:
-        #o.DEBUG = False 
-        o.HOST = "%s.sinaapp.com"%sae.const.APP_NAME
+        #o.DEBUG = False
+        o.HOST = "42qu.cc"
+        o.HOST_CSS_JS = "%s.sinaapp.com"%sae.const.APP_NAME
         o.DEBUG = True 
         o.MYSQL_HOST = sae.const.MYSQL_HOST 
         o.MYSQL_PORT = int(sae.const.MYSQL_PORT)
@@ -32,7 +33,8 @@ def pre_config(o):
     o.render = render
 
 def post_config(o):
-    o.HOST_CSS_JS = o.HOST
+    if not o.HOST_CSS_JS:
+        o.HOST_CSS_JS = o.HOST
 
 #    o.URL_CSS_JS = '//%s'%o.HOST_CSS_JS
 
