@@ -45,6 +45,7 @@ $ ->
     post()
     focus txt[0]
     window.onbeforeunload = ->
-        post()
+        if posted = false
+            post()
     
 
