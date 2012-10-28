@@ -2,11 +2,12 @@
 
 import _env
 import time
-from _db import connection, kv, McNum, McCache, McLimitM
+from _db import connection, kv, McNum, McCache, McLimitM, McLimitA
 from lib.txt import cnenoverflow
 from time import time
-from index import KV_TXT_SAVE_TIME
 mc_txt_brief = McCache("TxtBrief:%s")
+
+KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
 def history_get(user_id, offset=0, limit=0):
     #[timestamp,content, url , count ]
@@ -35,7 +36,7 @@ def history_count(user_id):
     )
     return cursor.fetchone()[0]
 
-mc_url_id_list_by_user_id = McLimitA("UrlListByUserId<%s", 256)
+mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
 @mc_url_id_list_by_user_id("{user_id}")
 def url_id_list_by_user_id(user_id, limit, offset):
     cursor = connection.cursor()
@@ -44,19 +45,19 @@ def url_id_list_by_user_id(user_id, limit, offset):
         'order by view_time DESC limit %s offset %s',
         (user_id, limit, offset)
     )
-    return [i[0] for i in cursor]
+    return [str(i[0]) for i in cursor]
 
 
 def url_id_time_list_by_user_id(user_id, limit, offset):
     id_list = url_id_list_by_user_id(user_id, limit, offset)
-    time_dict =  kv.get_mulit(id_list,key_prefix=KV_TXT_SAVE_TIME)
+    time_dict =  kv.get_multi(id_list,key_prefix=KV_TXT_SAVE_TIME)
     result = []
     for i in map(str,id_list):
         _time = time_dict[i]
         if not _time:
             _time = time()
             kv.set(KV_TXT_SAVE_TIME+i,_time) 
-        result.append(i,_time)
+        result.append([i,_time])
 
     return result 
 
