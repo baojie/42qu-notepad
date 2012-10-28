@@ -5,10 +5,11 @@ import time
 import urllib
 import tornado.web
 import tornado.auth
-from _view import View, LoginView, login
+from _view import View, LoginView, JsonLoginView, login, logout
 from model.index import gen_url, txt_save, txt_by_url
 from model.account import account_new
 from model.history import history_get, history_count
+from config import HOST
 from lib.page import page_limit_offset
 from _route import route
 
@@ -16,6 +17,27 @@ from _route import route
 class History(LoginView):
     def get(self):
         self.render('/history.html')
+
+@route('//logout')
+class History(LoginView):
+    def get(self):
+        logout(self)
+        self.redirect('/')
+
+@route('//api/(.*)')
+class ScriptApi(View):
+    def get(self, url):
+        if not url:
+            self.finish('')
+        else:
+            self.finish(txt_by_url(url))
+
+    def post(self, url=''):
+        if not url:
+            url = gen_url()
+        txt = self.get_argument('txt', '').rstrip()
+        txt_save(self.user_id, url, txt)
+        self.finish('http://%s/%s' % (HOST, url))
         
 @route('/signin')
 class SignIndex(View):
@@ -46,7 +68,7 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
 
 @route('/j/history')
 @route('/j/history-(\d+)')
-class J_History(LoginView):
+class J_History(JsonLoginView):
     def get(self, n=1):
         #[timestamp,content, url , count ]
         user_id = self.user_id
@@ -57,6 +79,7 @@ class J_History(LoginView):
             42
         )
         _history = history_get(user_id, offset, limit)
+        self.finish(_history)
         
 
 @route('/(.*)')
