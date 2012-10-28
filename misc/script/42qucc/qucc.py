@@ -24,7 +24,9 @@ def help():
 
 def post(url=''):
     data = ''.join(sys.stdin.readlines())
+    print API_URL+url
     files = {'file': ('txt', bz2.compress(data) )}
+    print files
     r = requests.post(API_URL+url, files=files, timeout=3)
     print r.text
 
