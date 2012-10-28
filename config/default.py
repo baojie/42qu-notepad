@@ -17,10 +17,10 @@ def pre_config(o):
         o.MEMCACHED_ADDR = ( '127.0.0.1:11211', )
  
     else:
-        #o.DEBUG = False
+        #o.DEBUG = True 
+        o.DEBUG = False
         o.HOST = "42qu.cc"
         o.HOST_CSS_JS = "%s.sinaapp.com"%sae.const.APP_NAME
-        o.DEBUG = True 
         o.MYSQL_HOST = sae.const.MYSQL_HOST 
         o.MYSQL_PORT = int(sae.const.MYSQL_PORT)
         o.MYSQL_USER = sae.const.MYSQL_USER 
