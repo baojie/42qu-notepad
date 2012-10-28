@@ -19,7 +19,7 @@ def history_get(user_id, offset=0, limit=0):
     for id, i in zip(id_li, mc_txt_brief.get_list(id_li)):
         if i is None:
             txt = kv.get(str(id))
-            i = (cnenoverflow(txt, 333)[0], len(txt))
+            i = (cnenoverflow(txt, 96)[0], len(txt.decode('utf-8',"ignore")))
             mc_txt_brief.set(id, i)
         digest_li.append(i[0])
         count_li.append(i[1])
