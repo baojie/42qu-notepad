@@ -1,4 +1,4 @@
-<%inherit file="/_base.html" />
+<%inherit file="/_nav.html" />
 <%def name="html_title()">42qu . 记事本</%def>
 <%def name="html_head()">
 <link rel="stylesheet" href="${css.history}" type="text/css">
@@ -9,21 +9,15 @@
     margin:32px 0;
 }
 #main {
-    margin: 0 auto;
-    text-align:left;
+    margin-left: 250px;
+}
+#nav-help strong{
+    font-size:16px;
 }
 </style>
 </%def>
-<div class="section nav">
-<p class="time"></p>
-<ul id="nav">
-<li id="nav-new"><a href="/">42qu.cc</a></li>
-<li id="nav-help"><a href="/:help"><strong>帮助</strong></a></li>
-<li id="nav-signout"><a href="/:auth/logout?${_xsrf}">登出</a></li>
-</ul>
-</div>
 
-<div id="section paging">
+<div id="main">
 <p>
   42qu.cc 是在线的随手贴 <br> 可以随意的自定义网址来 自己记录 或与 朋友分享 文字 , 比如 :
 </p>
@@ -34,15 +28,14 @@
 </p>
 
 
-<strong>命令行</strong>
 
 <p>Linux / Mac 下的用户可以用命令来安装</p>
-<pre class="url">easy_install 42qucc</pre>
+<pre class="url">easy_install cc42</pre>
 
-<p>
-* 粘贴文件 42qucc < test.txt
+<p>粘贴文件</p>
+<pre class="url"> 42qucc &lt; test.txt</pre>
 * 手工输入 42qucc (按 Ctrl + D , 然后回车结束输入)
-* 下载文件 42qucc http://42qu.cc/hi > hi.txt
+* 下载文件 42qucc http://42qu.cc/hi &gt; hi.txt
 </p>
 
 <strong>小技巧</strong>

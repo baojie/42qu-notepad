@@ -5,14 +5,17 @@ import time
 from random import choice
 from _db import connection, kv, McCache
 from lib.txt_diff import diff_get
-from model.history import mc_txt_brief, mc_url_id_list_by_user_id
-    
+from model.history import mc_txt_brief, mc_url_id_list_by_user_id, KV_TXT_SAVE_TIME, history_count, txt_get, txt_set, USER_NOTE
+
+KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
+        
+ 
 def txt_by_url(url):
     url_id = url_new(url)
-    return kv.get(str(url_id)) or ''
+    return txt_get(url)
 
 def url_random():
     while True:
@@ -49,21 +52,49 @@ def url_new(url):
 
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
+    txt=txt.rstrip()
+    if not txt:
+        txt_hide(user_id, url_id)       
     txt_old = kv.get(str(url_id))
     if txt_old == txt:
         return
     mc_txt_brief.delete(url_id)
-    mc_url_id_list_by_user_id.delete(user_id)
-    kv.set(str(url_id), txt or '')
-    if user_id:
-        now = int(time.time())
-        cursor = connection.cursor()
-        cursor.execute(
-            'insert into user_note (user_id, url_id, view_time) values '
-            '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
-            (user_id, url_id, now, now)
-        )
+    txt_set(url_id, txt)
+    now = int(time.time())
+    if txt:
+        txt_touch(user_id, url_id)
+    kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
     txt_log_save(user_id, url_id, txt, txt_old)
+    mc_url_id_list_by_user_id.delete(user_id)
+
+def txt_hide(user_id, url_id):
+    cursor = connection.cursor()
+    cursor.execute('select state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
+    r = cursor.fetchone()
+    cursor.execute('update user_note set state=%s where url_id=%s and user_id=%s',(USER_NOTE.RM,url_id, user_id))
+    if r and r[0] > USER_NOTE.RM:
+        mc_url_id_list_by_user_id.delete(user_id)
+        history_count.delete(user_id)
+    
+
+def txt_touch(user_id, url_id):
+    if not user_id:return
+    now = int(time.time())
+    cursor = connection.cursor()
+    cursor.execute('select id,state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
+    r = cursor.fetchone()
+    if r:
+        cursor.execute('update user_note set view_time=%s , state=%s where id=%s',(now,USER_NOTE.DEFAULT, r[0]))
+        if r[1] < USER_NOTE.DEFAULT:
+            from model.history import mc_url_id_list_by_user_id
+            mc_url_id_list_by_user_id.delete(user_id)
+    else:
+        cursor.execute(
+            'insert into user_note (user_id, url_id, view_time, state) values '
+            '(%s,%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s, state=%s',
+            (user_id, url_id, now, USER_NOTE.DEFAULT, now, USER_NOTE.DEFAULT)
+        )
+        history_count.delete(user_id)
 
 mc_txt_log_last_time = McCache("TxtLogLastTime:%s")
 

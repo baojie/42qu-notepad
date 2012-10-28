@@ -14,40 +14,44 @@ section_tmpl = (o) ->
     for data in o[..-2]
        date_string = date_build(data[0])
        _ """
-          <div class="section">
-               #{date_string}
-               <p class="content">
-                     #{$.escape(data[1])}
-               </p>
-               <a class='more' href="/:jump/#{data[2]}">#{data[3]}<span>字<span></a>
-          </div>
+  <div class="section">
+       #{date_string}
+       <p class="content">
+             #{$.escape(data[1])}
+       </p>
+       <a class="more" href="/:id/#{data[2]}" target="_blank">#{data[3]}<span>字<span></a>
+  </div>
        """
     _.html() 
 
 
 
 
-page_history = (pathname) -> 
-    if pathname == "/:"
-        pathname = "/history"
-    else
-        pathname = "/#{pathname[2..]}"
-    console.log("/:j#{pathname}")
+window.page_history = (page) ->
+    if not page
+        page = 1 
 
+    if page > 1
+        hash = "#!"+page
+    else
+        hash = ''
+    location.hash = hash
+    note_list = $('#note-list')
+    $('.page').html('<div id="note_list_loading"/>')
     $.getJSON(
-       "/:j#{pathname}",
+       "/:j/history-#{page}",
        (data)->
-           console.log(data)
-           $('.nav').after(section_tmpl(data))
-           href="http://42qu.cc/history%s"
+           note_list.html(section_tmpl(data))
+           href="javascript:page_history($page);void(0);"
            count = data[data.length-1][0]
            now = data[data.length-1][1]
            limit = data[data.length-1][2]
-           page(href,count,now,limit)
+           $('.page').html(pager(href,count,now,limit))
+           $(window).scrollTop(0)
     )
 
 
 
     
 
-page_history(document.location.pathname)
+page_history(location.hash.slice(2))

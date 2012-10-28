@@ -10,11 +10,12 @@ CREATE TABLE  `user_note` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL,
   `url_id` bigint(20) unsigned NOT NULL,
+  `state` tinyint unsigned NOT NULL default 10,
   `view_time` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id-url_id` (`user_id`,`url_id`),
   UNIQUE KEY `url_id` (`url_id`),
-  KEY `user_id-view_time` (`user_id`,`view_time`)
+  KEY `user_id-view_time` (`user_id`, `state`,`view_time`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 DROP TABLE IF EXISTS `url`;
 CREATE TABLE  `url` (
