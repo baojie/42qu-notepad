@@ -37,8 +37,6 @@ class Help(View):
 @route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
-        print url
-        print '-'*20 
         if not url:
             self.finish('')
         else:
