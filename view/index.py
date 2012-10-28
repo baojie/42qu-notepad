@@ -12,7 +12,7 @@ from model.account import account_new
 from _route import route
 
 @route('//')
-class History(LoginView):
+class History(View):
     def get(self):
         self.render('/history.html')
         
