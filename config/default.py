@@ -14,6 +14,8 @@ def pre_config(o):
         o.MYSQL_USER = 'work'
         o.MYSQL_PASSWD = '42qu'
         o.MYSQL_DB = 'work_notepad'
+        o.MEMCACHED_ADDR = ( '127.0.0.1:11211', )
+ 
     else:
         #o.DEBUG = False 
         o.HOST = "%s.sinaapp.com"%sae.const.APP_NAME
@@ -24,6 +26,7 @@ def pre_config(o):
         o.MYSQL_PASSWD = sae.const.MYSQL_PASS
         o.MYSQL_DB = sae.const.MYSQL_DB 
 
+    o.DISABLE_LOCAL_CACHED = False
 
     from render import render
     o.render = render

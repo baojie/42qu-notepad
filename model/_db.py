@@ -19,5 +19,19 @@ connection = _connection(
 try:
     from sae.kvdb import KVClient
     kv = KVClient()
+    import pylibmc
+    mc = pylibmc.Client()
 except:
     from kvstore import kv
+    import cmemcached
+    from config import MEMCACHED_ADDR
+    kw = {}
+    kw['comp_threshold'] = 4096
+    mc = cmemcached.Client(memcached_addr, memcached_addr=MEMCACHED_ADDR)
+
+from zorm_sae.mc_connection import init_mc
+import zorm_sae.config as zorm_config
+
+zorm_sae_config.mc = init_mc(
+    disable_local_cached=DISABLE_LOCAL_CACHED
+)
