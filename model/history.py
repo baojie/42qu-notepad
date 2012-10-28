@@ -13,7 +13,7 @@ def history_get(user_id, offset=0, limit=0):
         (user_id, limit, offset)
     )
     _history = cursor.fetchall()
-    id_li = [i[0] for i in _history]
+    id_li = [str(i[0]) for i in _history]
     time_li = [i[1] for i in _history]
     txt_dict = kv.get_multi(id_li)
     txt_li = [txt_dict[i] for i in id_li]

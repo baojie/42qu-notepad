@@ -66,8 +66,8 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             login(self, user_id)
             self.redirect('/')
 
-@route('/j/history')
-@route('/j/history-(\d+)')
+@route('//j/history')
+@route('//j/history-(\d+)')
 class J_History(JsonLoginView):
     def get(self, n=1):
         #[timestamp,content, url , count ]
