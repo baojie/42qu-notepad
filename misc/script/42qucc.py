@@ -9,7 +9,7 @@ HOST = 'pymo.sinaapp.com'
 HOST_HTTP = 'http://%s'%HOST
 API_URL = '%s//api'%HOST_HTTP
 
-def help():
+def usage():
     print """
 1.Paste file to 42qucc
   hi@Mars ~$ 42cc < foo.txt  
@@ -31,7 +31,7 @@ def main():
     url = ''
     if len(argv) > 1:
         if len(argv) > 2:
-            help()
+            usage()
             return
         url = argv[1]
         if url.startswith(HOST_HTTP):
