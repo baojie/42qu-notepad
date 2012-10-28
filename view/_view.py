@@ -6,16 +6,42 @@ from config import render
 from model.session import session_new, session_rm, user_id_by_session
 import css, js
 from model._db import mc
+from model.user import User
 
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
-        kwds['request'] = self.request
-        kwds['this'] = self
-        kwds['css'] = css
-        kwds['js'] = js
-        kwds['_xsrf'] = self._xsrf
         if not self._finished:
+            kwds['request'] = self.request
+            kwds['this'] = self
+            kwds['css'] = css
+            kwds['js'] = js
+            kwds['_xsrf'] = self._xsrf
+            kwds['current_user'] = current_user
+            kwds['current_user_id'] = self.current_user_id
             self.finish(render(template_name, **kwds))
+
+
+
+    @property
+    def current_user_id(self):
+        if not hasattr(self, '_current_user_id'):
+            current_user = self.current_user
+            if current_user:
+                self._current_user_id = current_user.id
+            else:
+                self._current_user_id = 0
+        return self._current_user_id
+
+
+    def get_current_user(self):
+        s = self.get_cookie('S')
+        if s:
+            user_id = user_id_by_session(s)
+            if not user_id:
+                self.clear_cookie('S')
+            else:
+                return User(user_id)
+        return None 
 
     def on_finish(self):
         mc.reset()
@@ -24,16 +50,6 @@ class View(web.RequestHandler):
     def _xsrf(self):
         return '_xsrf=%s'%self.xsrf_token
 
-    @property
-    def user_id(self):
-        s = self.get_cookie('S')
-        if s:
-            user_id = user_id_by_session(s)
-            if not user_id:
-                self.clear_cookie('S')
-            else:
-                return user_id
-        return 0
 
 class LoginView(View):
     def prepare(self):

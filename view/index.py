@@ -17,10 +17,12 @@ from _route import route
 @route('/\:')
 class History(LoginView):
     def get(self):
+        if not self.current_user_id:
+            return self.redirect("/:help")
         name = user_by_id(self.user_id)[0]
         self.render('/history.html', name=name)
 
-@route('/\:logout')
+@route('/\:auth/logout')
 class Logout(LoginView):
     def get(self):
         self.check_xsrf_cookie()
@@ -36,7 +38,7 @@ class Logout(LoginView):
 #        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
 
 
-@route('/\:api/(.*)')
+@route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
         if not url:
@@ -51,12 +53,8 @@ class Api(View):
         txt_save(self.user_id, url, txt)
         self.finish('http://%s/%s' % (HOST, url))
         
-@route('/\:signin')
-class SignIndex(View):
-    def get(self):
-        self.render('/signin.html')
 
-@route('/\:oauth')
+@route('/\:auth/oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
@@ -95,8 +93,7 @@ class J_History(LoginView):
         _history = history_get(user_id, offset, limit)
         self.finish(json.dumps(_history + [[count, int(n), limit]]))
         
-@route('/\:jump/(\d+)')
-@route('/\:jump')
+@route('/\:id/(\d+)')
 class UrlJump(View):
     def get(self, id=0):
         url = url_by_id(id)
