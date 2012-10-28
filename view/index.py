@@ -19,7 +19,7 @@ class History(LoginView):
     def get(self):
         if not self.current_user_id:
             return self.redirect("/:help")
-        name = user_by_id(self.user_id)[0]
+        name = user_by_id(self.current_user_id)[0]
         self.render('/history.html', name=name)
 
 @route('/\:auth/logout')
@@ -50,7 +50,7 @@ class Api(View):
         if not url:
             url = url_random()
         txt = self.get_argument('txt', '').rstrip()
-        txt_save(self.user_id, url, txt)
+        txt_save(self.current_user_id, url, txt)
         self.finish('http://%s/%s' % (HOST, url))
         
 
@@ -82,7 +82,7 @@ class J_History(LoginView):
     def get(self, n=1):
         #[timestamp,content, url , count ]
         self.set_header('Content-Type', 'application/json; charset=UTF-8')
-        user_id = self.user_id
+        user_id = self.current_user_id
         count = history_count(user_id)
         page , limit , offset = page_limit_offset(
             '/history-%s',
@@ -112,5 +112,5 @@ class Index(View):
     def post(self, url):
         if url:
             txt = self.get_argument('txt', '').rstrip()
-            txt_save(self.user_id, url, txt)
+            txt_save(self.current_user_id, url, txt)
         self.finish({'time':int(time.time())})

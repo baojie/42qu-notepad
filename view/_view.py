@@ -16,7 +16,7 @@ class View(web.RequestHandler):
             kwds['css'] = css
             kwds['js'] = js
             kwds['_xsrf'] = self._xsrf
-            kwds['current_user'] = current_user
+            kwds['current_user'] = self.current_user
             kwds['current_user_id'] = self.current_user_id
             self.finish(render(template_name, **kwds))
 
@@ -54,7 +54,7 @@ class View(web.RequestHandler):
 class LoginView(View):
     def prepare(self):
         super(LoginView, self).prepare()
-        if not self.user_id:
+        if not self.current_user_id:
             self.redirect('/:signin')
 
 def login(self, user_id):
