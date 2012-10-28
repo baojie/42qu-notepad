@@ -76,6 +76,7 @@ def txt_save(user_id, url, txt):
 
 def txt_touch(user_id, url_id):
     if not user_id:return
+    now = int(time.time())
     cursor = connection.cursor()
     cursor.execute('select id from user_note where url_id=%s and user_id=%s',(url_id, user_id))
     r = cursor.fetchone()
