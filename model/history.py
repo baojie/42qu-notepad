@@ -34,7 +34,7 @@ def history_count(user_id):
     )
     return cursor.fetchone()[0]
 
-mc_url_id_list_by_user_id = McLimitA("TxtBriefByUserId:%s", 64)
+mc_url_id_list_by_user_id = McLimitM("UrlListByUserId:%s", 256)
 @mc_url_id_list_by_user_id("{user_id}")
 def url_id_list_by_user_id(user_id, limit, offset):
     cursor = connection.cursor()
