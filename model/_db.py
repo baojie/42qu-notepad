@@ -40,12 +40,12 @@ zorm_sae.config.mc = init_mc(
 from zorm_sae.mc import McCacheM, McCache, McNum, McCache, McLimitA, McCacheA, McLimitM
 
 if __name__ == "__main__":
-
-    mc_txt_brief_by_user_id = McLimitM("TxtBriefByUserId:%s", 512)
+    mc_txt_brief_by_user_id = McLimitM("TxtBriefByUserId:%s", 64)
     
     @mc_txt_brief_by_user_id("{user_id}")
     def txt_brief_by_user_id(user_id, limit, offset):
-        return ('32223232 ...',32)
-
+        return (('32223232 ...',32),)
+    
+    mc_txt_brief_by_user_id.delete(user_id)
     print txt_brief_by_user_id(1,3,0)
 
