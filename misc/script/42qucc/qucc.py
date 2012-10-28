@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 #coding:utf-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import urllib
 import requests 
 import urllib2
@@ -37,9 +40,9 @@ def main():
             return
         url = argv[1]
         if url.startswith(HOST_HTTP):
-            url = url[len(HOST_HTTP):] 
+            url = url[len(HOST_HTTP)+1:] 
             r = requests.get(API_URL+url, timeout=3) 
-            print r.text.rstrip()
+            print r.text
             return
         else:
             url = argv[1].lstrip("/")

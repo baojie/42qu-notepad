@@ -119,4 +119,4 @@ class Index(View):
 
 if __name__ == '__main__':
     pass
-    print url_random()
+    #print url_random()
