@@ -1,5 +1,4 @@
 #coding:utf-8
-
 import _env
 import time
 import urllib
@@ -30,6 +29,11 @@ class Logout(LoginView):
         logout(self)
         self.redirect('/')
 
+@route('/\:help')
+class Help(View):
+    def get(self):
+        self.render('/help.html')
+
 @route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
@@ -50,7 +54,6 @@ class Api(View):
             txt_save(self.current_user_id, url, txt)
             self.finish('http://%s/%s' % (HOST, url))
         self.finish('')
-        
 
 @route('/\:auth/oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
