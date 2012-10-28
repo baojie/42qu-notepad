@@ -7,7 +7,7 @@ import json
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
-from model.index import gen_url, txt_save, txt_by_url, url_by_id
+from model.index import url_random, txt_save, txt_by_url, url_by_id
 from model.account import account_new
 from model.history import history_get, history_count
 from config import HOST
@@ -44,7 +44,7 @@ class ScriptApi(View):
 
     def post(self, url=''):
         if not url:
-            url = gen_url()
+            url = url_random()
         txt = self.get_argument('txt', '').rstrip()
         txt_save(self.user_id, url, txt)
         self.finish('http://%s/%s' % (HOST, url))
@@ -105,7 +105,7 @@ class Index(View):
     def get(self, url):
 #        return self.finish(self.request.path)
         if not url:
-            url = gen_url()
+            url = url_random()
             self.redirect(url)
         else:
             self.render('/index.html', txt=txt_by_url(url), url=url)
