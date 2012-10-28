@@ -7,7 +7,7 @@ import json
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
-from model.index import gen_url, txt_save, txt_by_url
+from model.index import gen_url, txt_save, txt_by_url, url_by_id
 from model.account import account_new
 from model.history import history_get, history_count
 from config import HOST
@@ -94,6 +94,12 @@ class J_History(LoginView):
         _history = history_get(user_id, offset, limit)
         self.finish(json.dumps(_history + [[count, int(n), limit]]))
         
+@route('/\:jump/(\d+)')
+@route('/\:jump')
+class UrlJump(View):
+    def get(self, id=0):
+        url = url_by_id(id)
+        self.redirect('/%s' % url)
 
 @route('/(.*)')
 class Index(View):
