@@ -8,7 +8,7 @@ import bz2
 
 HOST = 'pymo.sinaapp.com'
 HOST_HTTP = 'http://%s'%HOST
-API_URL = '%s//api'%HOST_HTTP
+API_URL = '%s/:api'%HOST_HTTP
 
 def help():
     print """
