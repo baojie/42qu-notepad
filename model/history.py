@@ -66,7 +66,7 @@ def url_id_time_list_by_user_id(user_id, limit, offset):
     time_dict =  kv.get_multi(id_list,key_prefix=KV_TXT_SAVE_TIME)
     result = []
     for i in map(str,id_list):
-        _time = time_dict[i]
+        _time = time_dict.get(i,0)
         if not _time:
             _time = time()
             kv.set(KV_TXT_SAVE_TIME+i,_time) 
