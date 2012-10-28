@@ -13,11 +13,16 @@ class View(web.RequestHandler):
         kwds['this'] = self
         kwds['css'] = css
         kwds['js'] = js
+        kwds['_xsrf'] = self._xsrf
         if not self._finished:
             self.finish(render(template_name, **kwds))
 
     def on_finish(self):
         mc.reset()
+
+
+    def _xsrf(self):
+        return '_xsrf=%s'%self.xsrf_token
 
     @property
     def user_id(self):
