@@ -5,7 +5,7 @@ import requests
 import urllib2
 import sys
 import bz2
-
+from os.path import join
 HOST = '42qu.cc'
 HOST_HTTP = 'http://%s'%HOST
 API_URL = '%s/:api/txt/'%HOST_HTTP
@@ -27,7 +27,6 @@ def post(url=''):
     print data
     files = {'file': ('txt', bz2.compress(data) )}
     r = requests.post(API_URL+url, files=files, timeout=3)
-    print r.text
     print HOST_HTTP+"/"+r.text
 
 def main():
@@ -44,9 +43,7 @@ def main():
             print r.text.rstrip()
             return
         else:
-            url = argv[1]
-            if url[0]!="/":
-                url = "/"+url
+            url = argv[1].lstrip("/")
     else:
         url = "/"+url
 

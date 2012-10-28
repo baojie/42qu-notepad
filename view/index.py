@@ -53,7 +53,7 @@ class Api(View):
                 url = url_random()
             txt = bz2.decompress(str(txt))
             txt_save(self.current_user_id, url, txt)
-            self.finish('--'+url)
+            self.finish(url)
         self.finish('')
 
 @route('/\:auth/oauth')
