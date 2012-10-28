@@ -25,11 +25,20 @@ class History(LoginView):
         logout(self)
         self.redirect('/')
 
+#@route('/api/(.*)')
+#class ScriptApi(View):
+#    def get(self,url=1):
+#        from server import application
+#        handlers = application.handlers[0]
+#        print handlers
+#        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
+
+
 @route('//api/(.*)')
 class ScriptApi(View):
-    def get(self, url):
+    def get(self, url=''):
         if not url:
-            self.finish('')
+            self.finish('..hi.')
         else:
             self.finish(txt_by_url(url))
 
@@ -38,7 +47,8 @@ class ScriptApi(View):
             url = gen_url()
         txt = self.get_argument('txt', '').rstrip()
         txt_save(self.user_id, url, txt)
-        self.finish('http://%s/%s' % (HOST, url))
+        self.finish('ok')
+        #self.finish('http://%s/%s' % (HOST, url))
         
 @route('/signin')
 class SignIndex(View):
@@ -88,6 +98,7 @@ class J_History(LoginView):
 @route('/(.*)')
 class Index(View):
     def get(self, url):
+#        return self.finish(self.request.path)
         if not url:
             url = gen_url()
             self.redirect(url)
