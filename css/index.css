@@ -13,22 +13,54 @@ right: 0;
 bottom: 0;
 padding: 0;
 border:0;
-background:url(/css/img/index_bg.png) no-repeat 100% 100% #000;
+background:url(/css/img/grey.png) repeat 100% 100% #000;
 padding-right:24px;
 }
-#txt{
-resize:none;
-color:#ddd;
-font-size:16px;
-line-height:33px;
-font-family:Segoe UI,Tahoma,Arial,Verdana,sans-serif;
-width:100%;
-height:100%;
-border:0;
-background:none repeat scroll 0 0 transparent;
-margin:0;
-text-shadow:1px -1px 2px #000;
-padding-left:24px;
-outline:none;
+.main_wrap{
+    background: url("/css/img/notepad.png") repeat-y scroll 0 0 transparent;
+    height: 100%;
+    margin-left: -2px;
 }
-
+#main{
+margin-left:-1px;
+height:100%;
+overflow:hidden;
+padding:0 0 0 49px;
+}
+#txt{
+ background: none repeat scroll 0 0 transparent;
+    color: #000000;
+    float: left;
+    font-family: Helvetica;
+    font-size: 16px;
+    height: 100%;
+    line-height: 33px;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: 0;
+    outline: medium none;
+    padding-left: 26px;
+    padding-top: 17px;
+    resize: none;
+    width: 100%;
+}
+#left{
+float:left;
+height:100%;
+left:-93px;
+margin-left:-100%;
+position:relative;
+width:40px;
+}
+.more {
+    background: url("/css/img/bookmark.png") no-repeat scroll center center transparent;
+    bottom: 0;
+    display: block;
+    height: 41px;
+    left: 0;
+    position: absolute;
+    width: 67px;
+    margin-bottom: 23px;
+    margin-left: 18px;
+    cursor:pointer;
+}
