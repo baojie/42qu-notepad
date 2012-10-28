@@ -52,15 +52,17 @@ def url_new(url):
 
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
+    txt=txt.rstrip()
+    if not txt:
+        txt_hide(user_id, url_id)       
     txt_old = kv.get(str(url_id))
     if txt_old == txt:
         return
-    if not txt:
-        txt_hide(user_id, url_id)       
     mc_txt_brief.delete(url_id)
     txt_set(url_id, txt)
     now = int(time.time())
-    txt_touch(user_id, url_id)
+    if txt:
+        txt_touch(user_id, url_id)
     kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
     txt_log_save(user_id, url_id, txt, txt_old)
     mc_url_id_list_by_user_id.delete(user_id)
@@ -69,11 +71,10 @@ def txt_hide(user_id, url_id):
     cursor = connection.cursor()
     cursor.execute('select state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
     r = cursor.fetchone()
+    cursor.execute('update user_note set state=%s where url_id=%s and user_id=%s',(USER_NOTE.RM,url_id, user_id))
     if r and r[0] > USER_NOTE.RM:
         mc_url_id_list_by_user_id.delete(user_id)
         history_count.delete(user_id)
-    cursor.execute('update user_note set state=%s where url_id=%s and user_id=%s',(USER_NOTE.RM,url_id, user_id))
-    
     
 
 def txt_touch(user_id, url_id):

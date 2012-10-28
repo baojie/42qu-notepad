@@ -51,7 +51,7 @@ def _history_count(user_id):
 history_count = McNum(_history_count, "HistoryCount:%s") 
 
 mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
-@mc_url_id_list_by_user_id("{user_id}")
+#@mc_url_id_list_by_user_id("{user_id}")
 def url_id_list_by_user_id(user_id, limit, offset):
     cursor = connection.cursor()
     cursor.execute(
@@ -60,7 +60,6 @@ def url_id_list_by_user_id(user_id, limit, offset):
         (USER_NOTE.DEFAULT,user_id, limit, offset)
     )
     return [str(i[0]) for i in cursor]
-
 
 def url_id_time_list_by_user_id(user_id, limit, offset):
     id_list = url_id_list_by_user_id(user_id, limit, offset)
@@ -78,3 +77,10 @@ def url_id_time_list_by_user_id(user_id, limit, offset):
 if __name__ == "__main__":
     pass
     
+    cursor = connection.cursor()
+    cursor.execute(
+        'select url_id,state from user_note where state>=%s and user_id = %s '
+        'order by view_time DESC limit %s offset %s',
+        (USER_NOTE.DEFAULT,1, 13,0)
+    )
+    print cursor.fetchall()
