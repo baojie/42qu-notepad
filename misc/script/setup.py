@@ -3,8 +3,8 @@
 from setuptools import setup, find_packages 
 
 setup(
-    name='cc42',
-    version="0.0.1",
+    name='42cc',
+    version="0.0.2",
     description= """
             A paste tool of CLI
         1.Paste file to 42qucc
@@ -27,7 +27,7 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            'cc42=cc42.cc42:main',
+            '42cc=cc42.cc42:main',
         ],
     },
 
