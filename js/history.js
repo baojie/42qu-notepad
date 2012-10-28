@@ -23,11 +23,7 @@
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       data = _ref[_i];
       date_string = date_build(data[0]);
-<<<<<<< local
-      _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class='more' href=\"/:id/" + data[2] + "\">" + data[3] + "<span>字<span></a>\n</div>");
-=======
       _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class='more' href=\"/:jump/" + data[2] + "\" target=_blank>" + data[3] + "<span>字<span></a>\n</div>");
->>>>>>> other
     }
     return _.html();
   };
