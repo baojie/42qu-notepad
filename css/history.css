@@ -95,6 +95,13 @@ width:160px;
 height:24px;
 background:url(/css/img/list-load.gif) no-repeat center center #fff;
 }
+#nav-new a{
+font-size:18px;
+font-family:Lato;
+}
+#nav-his strong{
+font-size:16px;
+}
 #nav-signout a,#nav-help a,.nav a{
 color:#555;
 }
