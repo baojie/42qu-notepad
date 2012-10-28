@@ -21,6 +21,7 @@ def gen_url():
     return url
 
 def url_new(url):
+    print 'URL new', url
     url = str(url.lower())
     cursor = connection.cursor()
     cursor.execute('select id from url where url=%s', url)
@@ -32,6 +33,7 @@ def url_new(url):
         return cursor.lastrowid
 
 def txt_save(user_id, url, txt):
+    print 'TXT save-----------------------------', user_id, url, txt
     url_id = url_new(url)
     kv.set(url_id, txt or '')
     now = int(time.time())
@@ -41,12 +43,13 @@ def txt_save(user_id, url, txt):
         '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
         (url_id, url_id, now, now)
     )
-    #txt_log_save()
+    txt_log_save(url_id, url_id, txt)
 
 def last_update(url_id):
     '''
     返回文本上次更新时间
     '''
+    print 'LAST UPDATE', url_id
     cursor = connection.cursor()
     cursor.execute(
         'select time from txt_log where url_id = %s order by view_time DESC',
@@ -56,6 +59,7 @@ def last_update(url_id):
     return t[0] if t else 0
 
 def txt_log_save(user_id, url_id, txt):
+    print 'TXT_LOG_SAVE', user_id, url_id, txt
     txt_ori = kv.get(url_id)
     now = int(time.time())
     print last_update(url_id)
