@@ -5,8 +5,16 @@ import tornado.web
 import view._url
 from view._route import route
 
+handlers = route.handlers
+try:
+    import sae.const
+except ImportError:
+    pass
+else:
+    handlers = tuple(reversed(handlers))
+
 application = tornado.web.Application(
-    route.handlers,
+    handlers,
     debug=DEBUG,
 #    [
 #        (r"/signin", SignIndex),

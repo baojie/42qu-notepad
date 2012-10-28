@@ -6,7 +6,7 @@ import urllib2
 import sys
 import bz2
 
-HOST = '42qu.cc'
+HOST = 'pymo.sinaapp.com'
 HOST_HTTP = 'http://%s'%HOST
 API_URL = '%s//api'%HOST_HTTP
 
@@ -26,7 +26,6 @@ def post(url=''):
     data = ''.join(sys.stdin.readlines())
     print API_URL+url
     files = {'file': ('txt', bz2.compress(data) )}
-    print files
     r = requests.post(API_URL+url, files=files, timeout=3)
     print r.text
 
@@ -47,6 +46,9 @@ def main():
             url = argv[1]
             if url[0]!="/":
                 url = "/"+url
+    else:
+        url = "/"+url
+
     post(url)
 
 if __name__ == '__main__':
