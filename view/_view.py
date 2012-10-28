@@ -11,12 +11,13 @@ from model.user import User
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
         if not self._finished:
+            current_user = self.current_user
             kwds['request'] = self.request
             kwds['this'] = self
             kwds['css'] = css
             kwds['js'] = js
             kwds['_xsrf'] = self._xsrf
-            kwds['current_user'] = current_user
+            kwds['current_user'] = self.current_user
             kwds['current_user_id'] = self.current_user_id
             self.finish(render(template_name, **kwds))
 
@@ -46,7 +47,7 @@ class View(web.RequestHandler):
     def on_finish(self):
         mc.reset()
 
-
+    @property
     def _xsrf(self):
         return '_xsrf=%s'%self.xsrf_token
 
@@ -54,8 +55,8 @@ class View(web.RequestHandler):
 class LoginView(View):
     def prepare(self):
         super(LoginView, self).prepare()
-        if not self.user_id:
-            self.redirect('/:signin')
+        if not self.current_user_id:
+            self.redirect('/:help')
 
 def login(self, user_id):
     user_id = int(user_id)
