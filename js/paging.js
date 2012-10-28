@@ -107,12 +107,10 @@
       links.push("<span class=\"pgt\">&gt;</span>");
     }
     htm = "";
-    if (links.length > 2) {
-      i = 0;
-      while (i < links.length) {
-        htm += links[i];
-        i++;
-      }
+    i = 0;
+    while (i < links.length) {
+      htm += links[i];
+      i++;
     }
     return htm;
   };
