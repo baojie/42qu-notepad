@@ -53,16 +53,20 @@ def url_new(url):
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
     txt=txt.rstrip()
+
     if not txt:
         txt_hide(user_id, url_id)
+
     txt_old = kv.get(str(url_id)) or ''
     if txt_old == txt:
         return
     mc_txt_brief.delete(url_id)
     txt_set(url_id, txt)
     now = int(time.time())
+
     if txt:
         txt_touch(user_id, url_id)
+
     kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
     txt_log_save(user_id, url_id, txt, txt_old)
 
@@ -82,15 +86,14 @@ def txt_touch(user_id, url_id):
     r = cursor.fetchone()
     if r:
         cursor.execute('update user_note set view_time=%s , state=%s where id=%s',(now,USER_NOTE.DEFAULT, r[0]))
-        if r[1] < USER_NOTE.DEFAULT:
-            mc_url_id_list_by_user_id.delete(user_id)
     else:
         cursor.execute(
             'insert into user_note (user_id, url_id, view_time, state) values '
             '(%s,%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s, state=%s',
             (user_id, url_id, now, USER_NOTE.DEFAULT, now, USER_NOTE.DEFAULT)
         )
-        _mc_flush(user_id)
+        history_count.delete(user_id)
+    mc_url_id_list_by_user_id.delete(user_id)
 
 def _mc_flush(user_id, url_id):
     history_count.delete(user_id)

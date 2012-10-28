@@ -4,7 +4,7 @@ import _env
 
 __HASH__ =  {
     "base.css" : 'dEnughKoGCBkAXRcphq2pg.css', #base
-    "history.css" : 'QJh6xjheEv54-gotCvIE9g.css', #history
+    "history.css" : 'OYjOjx-UCcLJCFnOWMPNlQ.css', #history
     "reset.css" : '4yUW2pgRTE8SngskVbqJRQ.css', #reset
     "index.css" : 'vEWFegO-5PjMkjQxyUFdhQ.css', #index
 }
