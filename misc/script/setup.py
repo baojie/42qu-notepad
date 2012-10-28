@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages 
 
 setup(
-    name='42qucc',
+    name='cc42',
     version="0.0.1",
     description= """
             A paste tool of CLI
@@ -19,7 +19,7 @@ setup(
     author="42qu.com 42区",
     author_email="admin@42qu.com",
     url="http://42qu.cc/:help",
-    packages = ['42qucc'],
+    packages = ['cc42'],
     zip_safe=False,
     include_package_data=True,
     install_requires = [
@@ -27,7 +27,7 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            '42qucc=42qucc.qucc:main',
+            'cc42=cc42.cc42:main',
         ],
     },
 
