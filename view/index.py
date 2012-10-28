@@ -111,8 +111,10 @@ class Index(View):
         else:
             user_id = self.current_user_id
             id = url_new(url)
-            txt_touch(user_id, id)
-            self.render('/index.html', txt=txt_get(id), url=url)
+            txt = txt_get(id)
+            if txt:
+                txt_touch(user_id, id)
+            self.render('/index.html', txt=txt, url=url)
 
     def post(self, url):
         if url:
