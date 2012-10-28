@@ -39,7 +39,7 @@ class LoginView(View):
     def prepare(self):
         super(LoginView, self).prepare()
         if not self.user_id:
-            self.redirect('/signin')
+            self.redirect('/:signin')
 
 def login(self, user_id):
     user_id = int(user_id)

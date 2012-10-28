@@ -7,8 +7,8 @@ import json
 import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
+from model.account import account_new, user_by_id
 from model.index import url_random, txt_save, txt_by_url, url_by_id
-from model.account import account_new
 from model.history import history_get, history_count
 from config import HOST
 from lib.page import page_limit_offset
@@ -17,11 +17,13 @@ from _route import route
 @route('/\:')
 class History(LoginView):
     def get(self):
-        self.render('/history.html')
+        name = user_by_id(self.user_id)[0]
+        self.render('/history.html', name=name)
 
 @route('/\:logout')
-class History(LoginView):
+class Logout(LoginView):
     def get(self):
+        self.check_xsrf_cookie()
         logout(self)
         self.redirect('/')
 
@@ -35,7 +37,7 @@ class History(LoginView):
 
 
 @route('/\:api/(.*)')
-class ScriptApi(View):
+class Api(View):
     def get(self, url=''):
         if not url:
             self.finish('..hi.')
@@ -74,7 +76,7 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             email = user['email']
             user_id = account_new(name, email)
             login(self, user_id)
-            self.redirect('/')
+            self.redirect('/:')
 
 @route('/\:j/history')
 @route('/\:j/history-(\d+)')
