@@ -8,6 +8,17 @@ from time import time
 mc_txt_brief = McCache("TxtBrief:%s")
 
 KV_TXT_SAVE_TIME = "TxtSaveTime:"
+KV_TXT = "Txt:"
+def txt_get(id):
+    return kv.get(KV_TXT+str(id)) or '' 
+
+def txt_set(id, txt):
+    txt = txt.rstrip()
+    key = KV_TXT+str(id)
+    if txt:
+        return kv.set(key,txt)   
+    else:
+        kv.delete(key)
 
 def history_get(user_id, offset=0, limit=0):
     #[timestamp,content, url , count ]
@@ -20,7 +31,7 @@ def history_get(user_id, offset=0, limit=0):
     count_li = []
     for id, i in zip(id_li, mc_txt_brief.get_list(id_li)):
         if i is None:
-            txt = kv.get(str(id))
+            txt = txt_get(id) 
             i = (cnenoverflow(txt, 96)[0], len(txt.decode('utf-8',"ignore")))
             mc_txt_brief.set(id, i)
         digest_li.append(i[0])

@@ -5,23 +5,12 @@ import time
 from random import choice
 from _db import connection, kv, McCache
 from lib.txt_diff import diff_get
-from model.history import mc_txt_brief, mc_url_id_list_by_user_id, KV_TXT_SAVE_TIME, history_count
-    
+from model.history import mc_txt_brief, mc_url_id_list_by_user_id, KV_TXT_SAVE_TIME, history_count, txt_get, txt_set
+
 KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
-KV_TXT = "Txt:"
 
-def txt_get(id):
-    return kv.get(KV_TXT+str(id)) or '' 
-
-def txt_set(id, txt):
-    txt = txt.rstrip()
-    key = KV_TXT+str(id)
-    if txt:
-        return kv.set(key,txt)   
-    else:
-        kv.delete(key)
         
  
 def txt_by_url(url):
