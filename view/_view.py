@@ -5,6 +5,8 @@ from tornado import web
 from config import render
 from model.session import session_new, user_id_by_session
 import css,js
+from model._db import mc
+
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
         kwds['request'] = self.request
@@ -13,6 +15,9 @@ class View(web.RequestHandler):
         kwds['js']=js
         if not self._finished:
             self.finish(render(template_name, **kwds))
+    
+    def on_finish(self):
+        mc.reset()
 
     @property
     def user_id(self):
