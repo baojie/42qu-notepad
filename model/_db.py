@@ -40,12 +40,27 @@ zorm_sae.config.mc = init_mc(
 from zorm_sae.mc import McCacheM, McCache, McNum, McCache, McLimitA, McCacheA, McLimitM
 
 if __name__ == "__main__":
-    mc_txt_brief_by_user_id = McLimitM("TxtBriefByUserId:%s", 64)
-    
-    @mc_txt_brief_by_user_id("{user_id}")
-    def txt_brief_by_user_id(user_id, limit, offset):
-        return (('32223232 ...',32),)
-    
-    mc_txt_brief_by_user_id.delete(user_id)
-    print txt_brief_by_user_id(1,3,0)
+    mc_url_id_list_by_user_id = McLimitA("TxtBriefByUserId:%s", 64)
 
+    #mc_user_last_view_id = McCache("UserLastView:%s")
+    
+ 
+    @url_id_list_by_user_id("{user_id}")
+    def url_id_list_by_user_id(user_id, limit, offset):
+        return (1,2,3) 
+  
+    mc_txt_brief = McCache("TxtBrief:%s")
+ 
+    def txt_list_by_user_id(user_id):
+        id_list = url_id_list_by_user_id(user_id, limit, offset)
+        result = []
+        for id, i in zip(id_list, mc_txt_brief.get_list(id_list)):
+            if i is None:
+                txt = kv.get("Txt:%s"%id)
+                i = (cnenoverflow(txt, 333),字数)
+                mc_txt_brief.set(id, i)
+            result.append(i) 
+ 
+     
+
+    
