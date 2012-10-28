@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 #coding:utf-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import urllib
 import requests 
 import urllib2
 import sys
 import bz2
-
+from os.path import join
 HOST = '42qu.cc'
 HOST_HTTP = 'http://%s'%HOST
 API_URL = '%s/:api/txt/'%HOST_HTTP
@@ -37,16 +40,12 @@ def main():
             return
         url = argv[1]
         if url.startswith(HOST_HTTP):
-            url = url[len(HOST_HTTP):] 
-            r = requests.get(API_URL++url, timeout=3) 
-            print r.text.rstrip()
+            url = url[len(HOST_HTTP)+1:] 
+            r = requests.get(API_URL+url, timeout=3) 
+            print r.text
             return
         else:
-            url = argv[1]
-            if url[0]!="/":
-                url = "/"+url
-    else:
-        url = "/"+url
+            url = argv[1].lstrip("/")
 
     post(url)
 
