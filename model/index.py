@@ -66,12 +66,13 @@ def txt_save(user_id, url, txt):
     mc_url_id_list_by_user_id.delete(user_id)
 
 def txt_hide(user_id, url_id):
-    cursor.execute('update user_note set state=%s where url_id=%s and user_id=%s',(USER_NOTE.RM,url_id, user_id))
+    cursor = connection.cursor()
     cursor.execute('select state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
     r = cursor.fetchone()
     if r and r[0] > USER_NOTE.RM:
         mc_url_id_list_by_user_id.delete(user_id)
         history_count.delete(user_id)
+    cursor.execute('update user_note set state=%s where url_id=%s and user_id=%s',(USER_NOTE.RM,url_id, user_id))
     
     
 
@@ -83,7 +84,7 @@ def txt_touch(user_id, url_id):
     r = cursor.fetchone()
     if r:
         cursor.execute('update user_note set view_time=%s , state=%s where id=%s',(now,USER_NOTE.DEFAULT, r[0]))
-        if state < USER_NOTE.DEFAULT:
+        if r[1] < USER_NOTE.DEFAULT:
             from model.history import mc_url_id_list_by_user_id
             mc_url_id_list_by_user_id.delete(user_id)
     else:

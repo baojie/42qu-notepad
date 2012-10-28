@@ -44,7 +44,7 @@ def history_get(user_id, offset=0, limit=0):
 def _history_count(user_id):
     cursor = connection.cursor()
     cursor.execute(
-        'select count(1) from user_note where user_id = %s and state=%s', user_id, USER_NOTE.DEFAULT
+        'select count(1) from user_note where user_id = %s and state=%s', (user_id, USER_NOTE.DEFAULT)
     )
     return cursor.fetchone()[0]
 
