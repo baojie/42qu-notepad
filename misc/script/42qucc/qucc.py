@@ -22,7 +22,7 @@ def help():
     """
 
 def post(url=''):
-    data = ''.join(sys.stdin)
+    data = ''.join(sys.stdin.readlines())
     r = requests.post(API_URL+url, data={'txt':data}, timeout=3) 
     print r.text
 
