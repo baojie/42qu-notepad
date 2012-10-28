@@ -2,7 +2,7 @@
 
 import _env
 import time
-from _db import connection, kv, McNum, McCache, McLimitA
+from _db import connection, kv, McNum, McCache, McLimitM
 from lib.txt import cnenoverflow
 
 mc_txt_brief = McCache("TxtBrief:%s")
@@ -16,10 +16,10 @@ def history_get(user_id, offset=0, limit=0):
         time_li.append(view_time)
     digest_li = []
     count_li = []
-    for id, i in zip(id_li, mc_txt_brief.get_list(id_list)):
+    for id, i in zip(id_li, mc_txt_brief.get_list(id_li)):
         if i is None:
             txt = kv.get(str(id))
-            i = cnenoverflow((txt, 333), len(txt))
+            i = (cnenoverflow(txt, 333)[0], len(txt))
             mc_txt_brief.set(id, i)
         digest_li.append(i[0])
         count_li.append(i[1])

@@ -82,7 +82,6 @@ class J_History(LoginView):
             15
         )
         _history = history_get(user_id, offset, limit)
-        print limit, count, type(limit), type(count)
         self.finish(json.dumps(_history + [[count, int(n), limit]]))
         
 
