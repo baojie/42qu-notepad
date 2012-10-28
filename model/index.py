@@ -77,12 +77,17 @@ def txt_save(user_id, url, txt):
 def txt_touch(user_id, url_id):
     if not user_id:return
     cursor = connection.cursor()
-    cursor.execute(
-        'insert into user_note (user_id, url_id, view_time) values '
-        '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
-        (user_id, url_id, now, now)
-    )
-    history_count.delete(user_id)
+    cursor.execute('select id from user_note where url_id=%s and user_id=%s',(url_id, user_id))
+    r = cursor.fetchone()
+    if r:
+        cursor.execute('update user_note set view_time=%s where id=%s',(now, r[0]))
+    else:
+        cursor.execute(
+            'insert into user_note (user_id, url_id, view_time) values '
+            '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
+            (user_id, url_id, now, now)
+        )
+        history_count.delete(user_id)
 
 mc_txt_log_last_time = McCache("TxtLogLastTime:%s")
 

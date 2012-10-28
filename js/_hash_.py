@@ -4,9 +4,9 @@ import _env
 
 __HASH__ =  {
     "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
-    "paging.js" : 'faFA36Okp4InzxWSI2hQyw.js', #paging
+    "paging.js" : 'HV6PX0oDIW5R2pqlIMActw.js', #paging
     "index.js" : 'Ecv6zA41z3KoKRVLg8Qm0g.js', #index
-    "history.js" : 'JP_APz154aKcfD_uCZdDJQ.js', #history
+    "history.js" : 'Xq3bMOEKVQYf7yCq9K818A.js', #history
     "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
 }
 

@@ -8,7 +8,7 @@ import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
 from model.account import account_new, user_by_id
-from model.index import url_random, txt_save, txt_by_url, url_id, url_by_id,txt_touch, txt_get
+from model.index import url_random, txt_save, txt_by_url, url_new, url_by_id,txt_touch, txt_get
 from model.history import history_get, history_count
 from config import HOST
 from lib.page import page_limit_offset
@@ -109,7 +109,7 @@ class Index(View):
             self.redirect(url)
         else:
             user_id = self.current_user_id
-            id = url_id(url)
+            id = url_new(url)
             txt_touch(user_id, id)
             self.render('/index.html', txt=txt_get(id), url=url)
 

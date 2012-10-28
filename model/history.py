@@ -33,7 +33,8 @@ def _history_count(user_id):
         'select count(1) from user_note where user_id = %s ', user_id
     )
     return cursor.fetchone()[0]
-history_count = McNum("HistoryCount:%s",history_count) 
+
+history_count = McNum("HistoryCount:%s",_history_count) 
 
 mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
 @mc_url_id_list_by_user_id("{user_id}")
