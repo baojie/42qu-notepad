@@ -36,12 +36,6 @@ class LoginView(View):
         if not self.user_id:
             self.redirect('/signin')
 
-class JsonLoginView(LoginView):
-    def finish(self, arg):
-        self.set_header('Content-Type', 'application/json; charset=UTF-8')
-        super(JsonLoginView, self).finish(json.dumps(arg))    
-
-
 def login(self, user_id):
     user_id = int(user_id)
     session = session_new(user_id)

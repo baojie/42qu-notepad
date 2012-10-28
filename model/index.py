@@ -21,7 +21,6 @@ def gen_url():
     return url
 
 def url_new(url):
-    print 'URL new', url
     url = str(url.lower())
     cursor = connection.cursor()
     cursor.execute('select id from url where url=%s', url)
@@ -33,17 +32,20 @@ def url_new(url):
         return cursor.lastrowid
 
 def txt_save(user_id, url, txt):
-    print 'TXT save-----------------------------', user_id, url, txt
     url_id = url_new(url)
+    txt_ori = kv.get(str(url_id))
+    if txt_ori == txt:
+        return
     kv.set(str(url_id), txt or '')
-    now = int(time.time())
-    cursor = connection.cursor()
-    cursor.execute(
-        'insert into user_note (user_id, url_id, view_time) values '
-        '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
-        (user_id, url_id, now, now)
-    )
-    txt_log_save(user_id, url_id, txt)
+    if user_id:
+        now = int(time.time())
+        cursor = connection.cursor()
+        cursor.execute(
+            'insert into user_note (user_id, url_id, view_time) values '
+            '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
+            (user_id, url_id, now, now)
+        )
+    txt_log_save(user_id, url_id, txt, txt_ori)
 
 def last_update(url_id):
     '''
@@ -58,12 +60,9 @@ def last_update(url_id):
     t = cursor.fetchone()
     return t[0] if t else 0
 
-def txt_log_save(user_id, url_id, txt):
-    print 'TXT_LOG_SAVE', user_id, url_id, txt
-    txt_ori = kv.get(str(url_id))
+def txt_log_save(user_id, url_id, txt, txt_ori):
     now = int(time.time())
-    print last_update(url_id)
-    if txt_ori and txt_ori != txt and now - last_update(url_id) > 6:
+    if txt_ori and now - last_update(url_id) > 6:
         cursor = connection.cursor()
         cursor.execute(
             'insert delayed into txt_log (url_id, user_id, time) values (%s,%s,%s)',
