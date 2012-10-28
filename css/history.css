@@ -112,3 +112,17 @@ width:36px;
 height:34px;
 background:url(/css/img/logo.png) no-repeat center center #fff;
 }
+
+
+.add{
+width:32px;
+height:32px;
+background:url(/css/img/add.png) no-repeat center center #fff;
+margin-top:64px;
+display:block;
+}
+.foot{
+padding:0 250px 0 50px;
+margin:auto;
+width:540px;
+}
