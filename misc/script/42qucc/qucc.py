@@ -4,6 +4,7 @@ import urllib
 import requests 
 import urllib2
 import sys
+import bz2
 
 HOST = 'pymo.sinaapp.com'
 HOST_HTTP = 'http://%s'%HOST
@@ -22,17 +23,15 @@ def help():
     """
 
 def post(url=''):
-    r = requests.post(API_URL+url, data={'txt':data}, timeout=3) 
+    data = ''.join(sys.stdin.readlines())
+    files = {'file': ('txt', bz2.compress(data) )}
+    r = requests.post(API_URL+url, files=files, timeout=3)
     print r.text
 
 def main():
     argv = sys.argv
-    data = ''.join(sys.stdin)
     url = ''
-    if len(argv) == 1 and not data:
-        help()
-        return
-    elif len(argv) > 1:
+    if len(argv) > 1:
         if len(argv) > 2:
             help()
             return
