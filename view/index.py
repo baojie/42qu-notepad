@@ -19,7 +19,7 @@ class History(LoginView):
     def get(self):
         if not self.current_user_id:
             return self.redirect("/:help")
-        name = user_by_id(self.user_id)[0]
+        name = user_by_id(self.current_user_id)[0]
         self.render('/history.html', name=name)
 
 @route('/\:auth/logout')

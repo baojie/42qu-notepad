@@ -11,6 +11,7 @@ from model.user import User
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
         if not self._finished:
+            current_user = self.current_user
             kwds['request'] = self.request
             kwds['this'] = self
             kwds['css'] = css
@@ -54,7 +55,7 @@ class View(web.RequestHandler):
 class LoginView(View):
     def prepare(self):
         super(LoginView, self).prepare()
-        if not self.user_id:
+        if not self.current_user_id:
             self.redirect('/:signin')
 
 def login(self, user_id):
