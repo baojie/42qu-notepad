@@ -14,12 +14,12 @@ from config import HOST
 from lib.page import page_limit_offset
 from _route import route
 
-@route('//')
+@route('/\:')
 class History(LoginView):
     def get(self):
         self.render('/history.html')
 
-@route('//logout')
+@route('/\:logout')
 class History(LoginView):
     def get(self):
         logout(self)
@@ -34,7 +34,7 @@ class History(LoginView):
 #        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
 
 
-@route('//api/(.*)')
+@route('/\:api/(.*)')
 class ScriptApi(View):
     def get(self, url=''):
         if not url:
@@ -50,12 +50,12 @@ class ScriptApi(View):
         self.finish('ok')
         #self.finish('http://%s/%s' % (HOST, url))
         
-@route('/signin')
+@route('/\:signin')
 class SignIndex(View):
     def get(self):
         self.render('/signin.html')
 
-@route('/oauth')
+@route('/\:oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
@@ -77,8 +77,8 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             login(self, user_id)
             self.redirect('/')
 
-@route('/j/history')
-@route('/j/history-(\d+)')
+@route('/\:j/history')
+@route('/\:j/history-(\d+)')
 class J_History(LoginView):
     def get(self, n=1):
         #[timestamp,content, url , count ]
