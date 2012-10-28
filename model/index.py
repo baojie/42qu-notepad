@@ -5,6 +5,7 @@ import time
 from random import choice
 from _db import connection, kv
 from lib.txt_diff import diff_get
+from model.history import mc_txt_brief, mc_url_id_list_by_user_id
     
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
@@ -45,6 +46,8 @@ def txt_save(user_id, url, txt):
     txt_ori = kv.get(str(url_id))
     if txt_ori == txt:
         return
+    mc_txt_brief.delete(url_id)
+    mc_url_id_list_by_user_id.delete(user_id)
     kv.set(str(url_id), txt or '')
     if user_id:
         now = int(time.time())
@@ -54,13 +57,12 @@ def txt_save(user_id, url, txt):
             '(%s,%s,%s) ON DUPLICATE KEY UPDATE view_time=%s',
             (user_id, url_id, now, now)
         )
-    #txt_log_save(user_id, url_id, txt, txt_ori)
+    txt_log_save(user_id, url_id, txt, txt_ori)
 
 def last_update(url_id):
     '''
     返回文本上次更新时间
     '''
-    print 'LAST UPDATE', url_id
     cursor = connection.cursor()
     cursor.execute(
         'select time from txt_log where url_id = %s order by time DESC',
@@ -71,8 +73,7 @@ def last_update(url_id):
 
 def txt_log_save(user_id, url_id, txt, txt_ori):
     now = int(time.time())
-    if txt_ori and now - last_update(url_id) > 2:
-        print 'save log-----------'
+    if txt_ori and now - last_update(url_id) > 600:
         cursor = connection.cursor()
         cursor.execute(
             'insert into txt_log (url_id, user_id, time) values (%s,%s,%s)',
