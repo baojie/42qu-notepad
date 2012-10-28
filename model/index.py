@@ -71,10 +71,11 @@ def last_update(url_id):
 
 def txt_log_save(user_id, url_id, txt, txt_ori):
     now = int(time.time())
-    if txt_ori and now - last_update(url_id) > 6:
+    if txt_ori and now - last_update(url_id) > 2:
+        print 'save log-----------'
         cursor = connection.cursor()
         cursor.execute(
-            'insert delayed into txt_log (url_id, user_id, time) values (%s,%s,%s)',
+            'insert into txt_log (url_id, user_id, time) values (%s,%s,%s)',
             (url_id, user_id, int(time.time()))
         )
         id = cursor.lastrowid
