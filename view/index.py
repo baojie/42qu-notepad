@@ -1,5 +1,4 @@
 #coding:utf-8
-
 import _env
 import time
 import urllib
@@ -35,15 +34,6 @@ class Help(View):
     def get(self):
         self.render('/help.html')
 
-#@route('/api/(.*)')
-#class ScriptApi(View):
-#    def get(self,url=1):
-#        from server import application
-#        handlers = application.handlers[0]
-#        print handlers
-#        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
-
-
 @route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
@@ -64,7 +54,6 @@ class Api(View):
             txt_save(self.current_user_id, url, txt)
             self.finish('http://%s/%s' % (HOST, url))
         self.finish('')
-        
 
 @route('/\:auth/oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
