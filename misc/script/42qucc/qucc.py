@@ -6,7 +6,7 @@ import urllib2
 import sys
 import bz2
 
-HOST = 'pymo.sinaapp.com'
+HOST = '42qu.cc'
 HOST_HTTP = 'http://%s'%HOST
 API_URL = '%s//api'%HOST_HTTP
 
