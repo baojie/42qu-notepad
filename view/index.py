@@ -14,18 +14,18 @@ from config import HOST
 from lib.page import page_limit_offset
 from _route import route
 
-@route('//')
+@route('/\:')
 class History(LoginView):
     def get(self):
         self.render('/history.html')
 
-@route('//logout')
+@route('/\:logout')
 class History(LoginView):
     def get(self):
         logout(self)
         self.redirect('/')
 
-@route('//api/(.*)')
+@route('/\:api/(.*)')
 class ScriptApi(View):
     def get(self, url):
         if not url:
@@ -38,14 +38,14 @@ class ScriptApi(View):
             url = gen_url()
         txt = self.get_argument('txt', '').rstrip()
         txt_save(self.user_id, url, txt)
-        self.finish('http://%s/%s' % (HOST, url))
+        self.finish('http:/:%s/%s' % (HOST, url))
         
-@route('/signin')
+@route('/\:signin')
 class SignIndex(View):
     def get(self):
         self.render('/signin.html')
 
-@route('/oauth')
+@route('/\:oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
     @tornado.web.asynchronous
     def get(self):
