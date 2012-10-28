@@ -27,6 +27,11 @@ class Logout(LoginView):
         logout(self)
         self.redirect('/')
 
+@route('/\:help')
+class Help(View):
+    def get(self):
+        self.render('/help.html')
+
 #@route('/api/(.*)')
 #class ScriptApi(View):
 #    def get(self,url=1):
