@@ -6,6 +6,9 @@ from _db import connection, kv, McNum, McCache, McLimitM, McLimitA, McNum
 from lib.txt import cnenoverflow
 from time import time
 mc_txt_brief = McCache("TxtBrief:%s")
+class USER_NOTE:
+    DEFAULT = 10
+    RM = 0
 
 KV_TXT_SAVE_TIME = "TxtSaveTime:"
 KV_TXT = "Txt:"
@@ -41,7 +44,7 @@ def history_get(user_id, offset=0, limit=0):
 def _history_count(user_id):
     cursor = connection.cursor()
     cursor.execute(
-        'select count(1) from user_note where user_id = %s ', user_id
+        'select count(1) from user_note where user_id = %s and state=%s', user_id, USER_NOTE.DEFAULT
     )
     return cursor.fetchone()[0]
 
@@ -52,9 +55,9 @@ mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
 def url_id_list_by_user_id(user_id, limit, offset):
     cursor = connection.cursor()
     cursor.execute(
-        'select url_id from user_note where user_id = %s '
+        'select url_id from user_note where state>=%s and user_id = %s '
         'order by view_time DESC limit %s offset %s',
-        (user_id, limit, offset)
+        (USER_NOTE.DEFAULT,user_id, limit, offset)
     )
     return [str(i[0]) for i in cursor]
 
