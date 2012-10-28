@@ -83,17 +83,17 @@ class J_History(JsonLoginView):
         self.finish(_history)
         
 
-@route('/(.*)')
-class Index(View):
-    def get(self, url):
-        if not url:
-            url = gen_url()
-            self.redirect(url)
-        else:
-            self.render('/index.html', txt=txt_by_url(url), url=url)
-
-    def post(self, url):
-        if url:
-            txt = self.get_argument('txt', '').rstrip()
-            txt_save(self.user_id, url, txt)
-        self.finish({'time':int(time.time())})
+#@route('/(.*)')
+#class Index(View):
+#    def get(self, url):
+#        if not url:
+#            url = gen_url()
+#            self.redirect(url)
+#        else:
+#            self.render('/index.html', txt=txt_by_url(url), url=url)
+#
+#    def post(self, url):
+#        if url:
+#            txt = self.get_argument('txt', '').rstrip()
+#            txt_save(self.user_id, url, txt)
+#        self.finish({'time':int(time.time())})
