@@ -47,8 +47,7 @@ class ScriptApi(View):
             url = gen_url()
         txt = self.get_argument('txt', '').rstrip()
         txt_save(self.user_id, url, txt)
-        self.finish('ok')
-        #self.finish('http://%s/%s' % (HOST, url))
+        self.finish('http://%s/%s' % (HOST, url))
         
 @route('/\:signin')
 class SignIndex(View):
