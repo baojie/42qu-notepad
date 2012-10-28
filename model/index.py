@@ -15,7 +15,7 @@ def txt_by_url(url):
 
 def gen_url():
     while True:
-        url = ''.join(choice(URL_ENCODE) for i in xrange(9))
+        url = ''.join(choice(URL_ENCODE) for i in choice((7,8,9)))
         if not txt_by_url(url):
             break
     return url
