@@ -5,7 +5,7 @@ import time
 import urllib
 import tornado.web
 import tornado.auth
-from _view import View, LoginView, JsonLoginView, login
+from _view import View, LoginView, JsonLoginView, login, logout
 from model.index import gen_url, txt_save, txt_by_url
 from model.account import account_new
 from model.history import history_get, history_count
@@ -14,9 +14,15 @@ from lib.page import page_limit_offset
 from _route import route
 
 @route('//')
-class History(View):
+class History(LoginView):
     def get(self):
         self.render('/history.html')
+
+@route('//logout')
+class History(LoginView):
+    def get(self):
+        logout(self)
+        self.redirect('/')
 
 @route('//api/(.*)')
 class ScriptApi(View):
@@ -61,7 +67,7 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             self.redirect('/')
 
 @route('/j/history')
-#@route('/j/history-(\d+)')
+@route('/j/history-(\d+)')
 class J_History(JsonLoginView):
     def get(self, n=1):
         #[timestamp,content, url , count ]
