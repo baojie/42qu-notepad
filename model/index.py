@@ -20,6 +20,15 @@ def gen_url():
             break
     return url
 
+def url_by_id(id):
+    cursor = connection.cursor()
+    cursor.execute(
+        'select url from url where id=%s',
+        id
+    )
+    url = cursor.fetchone()
+    return url[0] if url else ''
+
 def url_new(url):
     url = str(url.lower())
     cursor = connection.cursor()
