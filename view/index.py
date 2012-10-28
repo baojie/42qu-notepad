@@ -14,7 +14,7 @@ from lib.page import page_limit_offset
 from _route import route
 
 @route('//')
-class History(LoginView):
+class History(View):
     def get(self):
         self.render('/history.html')
 
