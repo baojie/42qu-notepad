@@ -16,7 +16,7 @@ setup(
     ],
     entry_points = {
         'console_scripts': [
-            '42qucc=42qucc:main',
+            '42qucc=42qucc.qucc:main',
         ],
     },
 )
