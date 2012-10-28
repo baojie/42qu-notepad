@@ -32,7 +32,7 @@ try:
     from sae.kvdb import KVClient
     kv = KVClient()
     _set_ = kv.set
-    def set(key, val, time=0, min_compress_len=1024):
+    def set(key, val, time=0, min_compress_len=4096):
         _set_(key, val, time, min_compress_len)
     kv.set = set 
 except ImportError:
