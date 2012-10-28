@@ -26,7 +26,7 @@ def post(url=''):
     data = ''.join(sys.stdin.readlines())
     files = {'file': ('txt', bz2.compress(data) )}
     r = requests.post(API_URL+url, files=files, timeout=3)
-    print r.text
+    print HOST_HTTP+"/"+r.text
 
 def main():
     argv = sys.argv
