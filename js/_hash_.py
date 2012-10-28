@@ -4,13 +4,8 @@ import _env
 
 __HASH__ =  {
     "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
-<<<<<<< local
-    "index.js" : 'MVD361eEnY8QtCDZNSCOzw.js', #index
-    "history.js" : '_s9LVaizQakqXQPBlSQ6Xg.js', #history
-=======
     "index.js" : '0b0VXNxPkjs-OpTrZz5q3A.js', #index
-    "history.js" : 'r56N-Wsck4XY1LHgW_v-gQ.js', #history
->>>>>>> other
+    "history.js" : 'dnZ-ErAVSaYCNRqnLmYH_g.js', #history
     "paging.js" : 'hryVvC25JZZrNdSLdz71aw.js', #paging
     "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
 }
