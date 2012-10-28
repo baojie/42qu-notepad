@@ -29,9 +29,7 @@ def history_get(user_id, offset=0, limit=0):
 def history_count(user_id):
     cursor = connection.cursor()
     cursor.execute(
-        'select count(url_id) from user_note where user_id = %s '
-        'order by view_time DESC',
-        (user_id)
+        'select count(url_id) from user_note where user_id = %s ', user_id
     )
     return cursor.fetchone()[0]
 
