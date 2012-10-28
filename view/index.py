@@ -24,6 +24,15 @@ class History(LoginView):
         logout(self)
         self.redirect('/')
 
+#@route('/api/(.*)')
+#class ScriptApi(View):
+#    def get(self,url=1):
+#        from server import application
+#        handlers = application.handlers[0]
+#        print handlers
+#        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
+
+
 @route('//api/(.*)')
 class ScriptApi(View):
     def get(self, url=''):
@@ -83,17 +92,18 @@ class J_History(JsonLoginView):
         self.finish(_history)
         
 
-#@route('/(.*)')
-#class Index(View):
-#    def get(self, url):
-#        if not url:
-#            url = gen_url()
-#            self.redirect(url)
-#        else:
-#            self.render('/index.html', txt=txt_by_url(url), url=url)
-#
-#    def post(self, url):
-#        if url:
-#            txt = self.get_argument('txt', '').rstrip()
-#            txt_save(self.user_id, url, txt)
-#        self.finish({'time':int(time.time())})
+@route('/(.*)')
+class Index(View):
+    def get(self, url):
+#        return self.finish(self.request.path)
+        if not url:
+            url = gen_url()
+            self.redirect(url)
+        else:
+            self.render('/index.html', txt=txt_by_url(url), url=url)
+
+    def post(self, url):
+        if url:
+            txt = self.get_argument('txt', '').rstrip()
+            txt_save(self.user_id, url, txt)
+        self.finish({'time':int(time.time())})
