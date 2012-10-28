@@ -5,7 +5,7 @@
 import _env
 import MySQLdb
 from DBUtils.PersistentDB  import PersistentDB as DB
-from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD, MYSQL_DB
+from config import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWD, MYSQL_DB, DISABLE_LOCAL_CACHED
 def _connection(*args, **kwds):
     kwds['maxusage'] = False
     persist = DB (MySQLdb, *args, **kwds)
@@ -19,5 +19,22 @@ connection = _connection(
 try:
     from sae.kvdb import KVClient
     kv = KVClient()
+    import pylibmc
+    mc = pylibmc.Client()
 except:
     from kvstore import kv
+    import cmemcached
+    from config import MEMCACHED_ADDR
+    kw = {}
+    kw['comp_threshold'] = 4096
+    mc = cmemcached.Client(MEMCACHED_ADDR)
+
+from zorm_sae.mc_connection import init_mc
+import zorm_sae.config 
+
+zorm_sae.config.mc = init_mc(
+    mc,
+    disable_local_cached=DISABLE_LOCAL_CACHED
+)
+
+
