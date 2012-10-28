@@ -30,6 +30,20 @@ class Logout(LoginView):
         logout(self)
         self.redirect('/')
 
+@route('/\:help')
+class Help(View):
+    def get(self):
+        self.render('/help.html')
+
+#@route('/api/(.*)')
+#class ScriptApi(View):
+#    def get(self,url=1):
+#        from server import application
+#        handlers = application.handlers[0]
+#        print handlers
+#        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
+
+
 @route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
