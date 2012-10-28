@@ -29,29 +29,26 @@ class Logout(LoginView):
         logout(self)
         self.redirect('/')
 
-#@route('/api/(.*)')
-#class ScriptApi(View):
-#    def get(self,url=1):
-#        from server import application
-#        handlers = application.handlers[0]
-#        print handlers
-#        self.finish(repr(list(zip(handlers,list(i.pattern for i in handlers)))))
-
-
 @route('/\:api/txt/(.*)')
 class Api(View):
     def get(self, url=''):
         if not url:
-            self.finish('..hi.')
+            self.finish('')
         else:
             self.finish(txt_by_url(url))
 
     def post(self, url=''):
-        if not url:
-            url = url_random()
-        txt = self.get_argument('txt', '').rstrip()
-        txt_save(self.current_user_id, url, txt)
-        self.finish('http://%s/%s' % (HOST, url))
+        files = self.request.files
+        txt = files.get('file')
+        if txt:
+            txt = txt[0]['body']
+        if txt:
+            if not url:
+                url = url_random()
+            txt = bz2.decompress(str(txt))
+            txt_save(self.current_user_id, url, txt)
+            self.finish('http://%s/%s' % (HOST, url))
+        self.finish('')
         
 
 @route('/\:auth/oauth')
@@ -114,3 +111,6 @@ class Index(View):
             txt = self.get_argument('txt', '').rstrip()
             txt_save(self.current_user_id, url, txt)
         self.finish({'time':int(time.time())})
+
+if __name__ == '__main__':
+    pass
