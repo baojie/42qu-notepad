@@ -117,7 +117,6 @@ class Index(View):
     def post(self, url):
         if url:
             txt = self.get_argument('txt', '').rstrip()
-            print self.current_user_id,"*******"
             txt_save(self.current_user_id, url, txt)
         self.finish({'time':int(time.time())})
 
