@@ -90,3 +90,8 @@ padding-bottom:65px;
 .back{
 cursor:pointer;
 }
+#note_list_loading{
+width:160px;
+height:24px;
+background:url(/css/img/list-load.gif) no-repeat center center #fff;
+}

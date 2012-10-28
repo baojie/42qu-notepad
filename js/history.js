@@ -1,5 +1,5 @@
 (function() {
-  var date_build, page_history, section_tmpl;
+  var date_build, section_tmpl;
 
   $(function() {
     return $('.back').click(function() {
@@ -23,30 +23,40 @@
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       data = _ref[_i];
       date_string = date_build(data[0]);
+<<<<<<< local
       _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class='more' href=\"/:id/" + data[2] + "\">" + data[3] + "<span>字<span></a>\n</div>");
+=======
+      _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class='more' href=\"/:jump/" + data[2] + "\" target=_blank>" + data[3] + "<span>字<span></a>\n</div>");
+>>>>>>> other
     }
     return _.html();
   };
 
-  page_history = function(pathname) {
-    if (pathname === "/:") {
-      pathname = "/history";
-    } else {
-      pathname = "/" + pathname.slice(2);
+  window.page_history = function(page) {
+    var hash, note_list;
+    if (!page) {
+      page = 1;
     }
-    console.log("/:j" + pathname);
-    return $.getJSON("/:j" + pathname, function(data) {
+    if (page > 1) {
+      hash = "#!" + page;
+    } else {
+      hash = '';
+    }
+    location.hash = hash;
+    note_list = $('#note-list');
+    $('.page').html('<div id="note_list_loading"/>');
+    return $.getJSON("/:j/history-" + page, function(data) {
       var count, href, limit, now;
-      console.log(data);
-      $('.nav').after(section_tmpl(data));
-      href = "http://42qu.cc/history%s";
+      note_list.html(section_tmpl(data));
+      href = "javascript:page_history($page);void(0);";
       count = data[data.length - 1][0];
       now = data[data.length - 1][1];
       limit = data[data.length - 1][2];
-      return page(href, count, now, limit);
+      $('.page').html(pager(href, count, now, limit));
+      return $(window).scrollTop(0);
     });
   };
 
-  page_history(document.location.pathname);
+  page_history(location.hash.slice(2));
 
 }).call(this);

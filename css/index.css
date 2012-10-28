@@ -14,7 +14,6 @@ bottom: 0;
 padding: 0;
 border:0;
 background:url(/css/img/grey.png) repeat 100% 100% #000;
-padding-right:24px;
 }
 .main_wrap{
     background: url("/css/img/notepad.png") repeat-y scroll 0 0 transparent;
@@ -25,7 +24,7 @@ padding-right:24px;
 margin-left:-1px;
 height:100%;
 overflow:hidden;
-padding:0 0 0 49px;
+padding:0px 26px  0 49px;
 }
 #txt{
  background: none repeat scroll 0 0 transparent;
@@ -40,7 +39,6 @@ padding:0 0 0 49px;
     margin-top: 0;
     outline: medium none;
     padding-left: 26px;
-    padding-top: 17px;
     resize: none;
     width: 100%;
 }
