@@ -22,17 +22,18 @@ def help():
     """
 
 def post(url=''):
+    data = ''.join(sys.stdin)
     r = requests.post(API_URL+url, data={'txt':data}, timeout=3) 
     print r.text
 
 def main():
     argv = sys.argv
-    data = ''.join(sys.stdin)
     url = ''
-    if len(argv) == 1 and not data:
-        help()
-        return
-    elif len(argv) > 1:
+    #if len(argv) == 1:
+    #    print argv
+    #    help()
+    #    return
+    if len(argv) > 1:
         if len(argv) > 2:
             help()
             return
