@@ -1,5 +1,5 @@
 (function() {
-  var date, key, post, posted, timer, txt, txt_val;
+  var date, fav, key, post, posted, timer, txt, txt_val;
 
   txt = $('#txt');
 
@@ -11,12 +11,25 @@
 
   txt_val = '';
 
+  fav = function(href) {
+    var link;
+    $('#favicon').remove();
+    link = document.createElement('link');
+    link.type = 'image/gif';
+    link.rel = 'shortcut icon';
+    link.id = 'favicon';
+    link.href = href;
+    return document.getElementsByTagName('head')[0].appendChild(link);
+  };
+
   post = function() {
     if (!posted && (txt_val !== txt.val())) {
       posted = false;
+      fav("/css/img/load.gif");
       $.post(location.href, {
         txt: txt.val()
       }, function() {
+        fav("/css/img/fav.gif");
         posted = true;
         return txt_val = txt.val();
       });
@@ -26,6 +39,9 @@
   };
 
   key = function() {
+    if (posted) {
+      fav('/css/img/favicon.gif');
+    }
     posted = false;
     return 1;
   };

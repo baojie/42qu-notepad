@@ -3,9 +3,9 @@
 import _env
 
 __HASH__ =  {
-    "index.css" : 'qTMnS3GxpD9Dx12nLVX1eQ.css', #index
-    "reset.css" : '2e3_01C9IYVx_RQanGWNKQ.css', #reset
+    "index.css" : 'vxzZnxLvob2LTiPjwDm8_w.css', #index
     "base.css" : 'dEnughKoGCBkAXRcphq2pg.css', #base
+    "reset.css" : '2e3_01C9IYVx_RQanGWNKQ.css', #reset
     "history.css" : 'rrZnoVUtN7gZflrmv5NOdw.css', #history
 }
 
