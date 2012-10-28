@@ -23,7 +23,7 @@ def help():
 
 def post(url=''):
     data = ''.join(sys.stdin)
-    r = requests.post(API_URL+"/set"+url, data={'txt':data}, timeout=3) 
+    r = requests.post(API_URL+url, data={'txt':data}, timeout=3) 
     print r.text
 
 def main():
@@ -36,7 +36,7 @@ def main():
         url = argv[1]
         if url.startswith(HOST_HTTP):
             url = url[len(HOST_HTTP):] 
-            r = requests.get(API_URL+"/get"+url, timeout=3) 
+            r = requests.get(API_URL++url, timeout=3) 
             print r.text.rstrip()
             return
         else:
