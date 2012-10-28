@@ -55,7 +55,9 @@
     post();
     focus(txt[0]);
     return window.onbeforeunload = function() {
-      return post();
+      if (posted = false) {
+        return post();
+      }
     };
   });
 
