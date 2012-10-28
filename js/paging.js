@@ -14,6 +14,9 @@
 
   window.pager = function(href, count, now, limit) {
     var begin, end, htm, i, links, merge_begin, merge_end, omit_len, pageLink, scope, show_begin_mid, spanNow, total;
+    if (!count) {
+      return '';
+    }
     now = parseInt(now);
     if (now <= 0) {
       now = 1;

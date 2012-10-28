@@ -7,6 +7,8 @@ formatstr = (href, page_template, hreftext, templatetext) ->
   page_template
 
 window.pager = (href, count, now, limit) ->
+  if not count
+    return ''
   now = parseInt(now)
   now = 1  if now <= 0
   end = Math.floor((count + limit - 1) / limit)

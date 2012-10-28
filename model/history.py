@@ -2,7 +2,7 @@
 
 import _env
 import time
-from _db import connection, kv, McNum, McCache, McLimitM, McLimitA
+from _db import connection, kv, McNum, McCache, McLimitM, McLimitA, McNum
 from lib.txt import cnenoverflow
 from time import time
 mc_txt_brief = McCache("TxtBrief:%s")
@@ -27,12 +27,13 @@ def history_get(user_id, offset=0, limit=0):
         count_li.append(i[1])
     return zip(time_li, digest_li, id_li, count_li)
 
-def history_count(user_id):
+def _history_count(user_id):
     cursor = connection.cursor()
     cursor.execute(
-        'select count(url_id) from user_note where user_id = %s ', user_id
+        'select count(1) from user_note where user_id = %s ', user_id
     )
     return cursor.fetchone()[0]
+history_count = McNum("HistoryCount:%s",history_count) 
 
 mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
 @mc_url_id_list_by_user_id("{user_id}")

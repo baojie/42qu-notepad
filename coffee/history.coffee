@@ -14,13 +14,13 @@ section_tmpl = (o) ->
     for data in o[..-2]
        date_string = date_build(data[0])
        _ """
-          <div class="section">
-               #{date_string}
-               <p class="content">
-                     #{$.escape(data[1])}
-               </p>
-               <a class='more' href="/:jump/#{data[2]}" target=_blank>#{data[3]}<span>字<span></a>
-          </div>
+  <div class="section">
+       #{date_string}
+       <p class="content">
+             #{$.escape(data[1])}
+       </p>
+       <a class="more" href="/:id/#{data[2]}" target="_blank">#{data[3]}<span>字<span></a>
+  </div>
        """
     _.html() 
 
