@@ -4,18 +4,18 @@ import json
 from tornado import web
 from config import render
 from model.session import session_new, user_id_by_session
-import css,js
+import css, js
 from model._db import mc
 
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
         kwds['request'] = self.request
         kwds['this'] = self
-        kwds['css']=css
-        kwds['js']=js
+        kwds['css'] = css
+        kwds['js'] = js
         if not self._finished:
             self.finish(render(template_name, **kwds))
-    
+
     def on_finish(self):
         mc.reset()
 
@@ -39,7 +39,7 @@ class LoginView(View):
 class JsonView(View):
     def finish(self, arg):
         self.set_header('Content-Type', 'application/json; charset=UTF-8')
-        super(JsonView, self).finish(json.dumps(arg))    
+        super(JsonView, self).finish(json.dumps(arg))
 
 class JsonLoginView(LoginView, JsonView):
     pass
