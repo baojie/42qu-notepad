@@ -17,8 +17,8 @@ from _route import route
 @route('/\:')
 class History(LoginView):
     def get(self):
-        name = user_by_id(self.user_id)[0]
-        self.render('/history.html', name=name)
+        user = user_by_id(self.user_id)[0]
+        self.render('/history.html', name=user[0] if user else '')
 
 @route('/\:logout')
 class Logout(LoginView):
