@@ -1,13 +1,12 @@
 PAGE_LIMIT = 42
 PAGE_NO_TEMPLATE = "<a href=\"%s\">%s</a>"
-template = "<div class=\"page\"></div>"
 formatstr = (href, page_template, hreftext, templatetext) ->
-  href = href.replace("%s", hreftext)
+  href = href.replace("$page", hreftext)
   page_template = page_template.replace(/\"%s\"/, href)
   page_template = page_template.replace(/%s/, templatetext)
   page_template
 
-window.page = (href, count, now, limit) ->
+window.pager = (href, count, now, limit) ->
   now = parseInt(now)
   now = 1  if now <= 0
   end = Math.floor((count + limit - 1) / limit)
@@ -83,10 +82,7 @@ window.page = (href, count, now, limit) ->
   while i < links.length
     htm += links[i]
     i++
-  paging = $(template)
-  $(htm).appendTo paging
-  paging.appendTo $("body")
-
+  return htm
 #
 #var href="http://google.com%s",
 #		count=500,

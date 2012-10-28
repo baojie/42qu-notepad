@@ -90,3 +90,18 @@ padding-bottom:65px;
 .back{
 cursor:pointer;
 }
+#note_list_loading{
+width:160px;
+height:24px;
+background:url(/css/img/list-load.gif) no-repeat center center #fff;
+}
+#nav-signout a,#nav-help a{
+color:#555;
+}
+
+.nav .time,.paging .time{
+padding:26px 0 0 30px;
+width:36px;
+height:34px;
+background:url(/css/img/logo.png) no-repeat center center #fff;
+}

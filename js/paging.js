@@ -1,21 +1,19 @@
 (function() {
-  var PAGE_LIMIT, PAGE_NO_TEMPLATE, formatstr, template;
+  var PAGE_LIMIT, PAGE_NO_TEMPLATE, formatstr;
 
   PAGE_LIMIT = 42;
 
   PAGE_NO_TEMPLATE = "<a href=\"%s\">%s</a>";
 
-  template = "<div class=\"page\"></div>";
-
   formatstr = function(href, page_template, hreftext, templatetext) {
-    href = href.replace("%s", hreftext);
+    href = href.replace("$page", hreftext);
     page_template = page_template.replace(/\"%s\"/, href);
     page_template = page_template.replace(/%s/, templatetext);
     return page_template;
   };
 
-  window.page = function(href, count, now, limit) {
-    var begin, end, htm, i, links, merge_begin, merge_end, omit_len, pageLink, paging, scope, show_begin_mid, spanNow, total;
+  window.pager = function(href, count, now, limit) {
+    var begin, end, htm, i, links, merge_begin, merge_end, omit_len, pageLink, scope, show_begin_mid, spanNow, total;
     now = parseInt(now);
     if (now <= 0) {
       now = 1;
@@ -114,9 +112,7 @@
       htm += links[i];
       i++;
     }
-    paging = $(template);
-    $(htm).appendTo(paging);
-    return paging.appendTo($("body"));
+    return htm;
   };
 
 }).call(this);
