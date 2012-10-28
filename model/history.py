@@ -51,7 +51,7 @@ def _history_count(user_id):
 history_count = McNum(_history_count, "HistoryCount:%s") 
 
 mc_url_id_list_by_user_id = McLimitM("UrlListByUserId<%s", 256)
-#@mc_url_id_list_by_user_id("{user_id}")
+@mc_url_id_list_by_user_id("{user_id}")
 def url_id_list_by_user_id(user_id, limit, offset):
     cursor = connection.cursor()
     cursor.execute(

@@ -54,8 +54,8 @@ def txt_save(user_id, url, txt):
     url_id = url_new(url)
     txt=txt.rstrip()
     if not txt:
-        txt_hide(user_id, url_id)       
-    txt_old = kv.get(str(url_id))
+        txt_hide(user_id, url_id)
+    txt_old = kv.get(str(url_id)) or ''
     if txt_old == txt:
         return
     mc_txt_brief.delete(url_id)
