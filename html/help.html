@@ -11,15 +11,19 @@
 #main {
     margin-left: 250px;
 }
+#nav-help strong{
+    font-size:16px;
+}
 </style>
 </%def>
 <div class="section nav">
 <p class="time"></p>
 <ul id="nav">
 <li id="nav-new"><a href="/">42qu.cc</a></li>
+<li id="nav-achive"><a href="/:">存档</a></li>
 <li id="nav-help"><a href="/:help"><strong>帮助</strong></a></li>
 % if current_user:
-<li id="nav-signout"><a href="/:auth/logout?${_xsrf}">登出</a></li>
+<li id="nav-signout"><a href="/:auth/logout?${_xsrf}">退出</a></li>
 % else:
 <li id="nav-signout"><a href="/:auth/oauth">登录</a></li>
 % endif

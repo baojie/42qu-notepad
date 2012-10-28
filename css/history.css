@@ -41,7 +41,7 @@ margin-top:-2px;
 #nav-new strong{
 text-transform:uppercase;
 font-size:18px;
-font-weight:900;
+font-weight:normal;
 color:#111;
 }
 .section{
@@ -95,7 +95,7 @@ width:160px;
 height:24px;
 background:url(/css/img/list-load.gif) no-repeat center center #fff;
 }
-#nav-signout a,#nav-help a{
+#nav-signout a,#nav-help a,.nav a{
 color:#555;
 }
 

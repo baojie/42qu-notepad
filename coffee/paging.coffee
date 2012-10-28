@@ -78,10 +78,12 @@ window.pager = (href, count, now, limit) ->
   else
     links.push "<span class=\"pgt\">&gt;</span>"
   htm = ""
-  i = 0
-  while i < links.length
-    htm += links[i]
-    i++
+  if links.length > 2
+    i = 0
+    while i < links.length
+      htm += links[i]
+      i++
+  
   return htm
 #
 #var href="http://google.com%s",
