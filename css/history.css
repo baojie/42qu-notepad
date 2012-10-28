@@ -68,6 +68,7 @@ color:#111;
 }
 .content{
     padding-top:9px;
+    overflow:hidden;
 }
 .more{
 color:#0099d2;
