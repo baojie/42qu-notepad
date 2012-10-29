@@ -100,7 +100,7 @@ class J_History(LoginView):
         self.finish(json.dumps(_history + [[count, int(n), limit]]))
         
 @route('/\:id/(\d+)')
-class UrlJump(View):
+class UrlJump(LoginView):
     def get(self, id=0):
         url = url_by_id(id)
         self.redirect('/%s' % url)
