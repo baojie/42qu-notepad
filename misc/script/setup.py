@@ -6,7 +6,10 @@ setup(
     name='42qucc',
     version="0.0.1",
     description= """
-    A paste tool in CLI, the following is the usage:
+    A paste tool in CLI
+        """,
+    long_description="""
+      the following is the usage:
       1.Paste file to 42qu.cc
         hi@Mars ~$ 42qucc < foo.txt            
         http://42qu.cc/xa47qt471        
@@ -15,7 +18,8 @@ setup(
         http://42qu.cc/hi        
       3.Save web page to local file          
         hi@Mars ~$ 42qucc  http://42qu.cc/xa47qt471  >  foo.txt
-        """,
+    
+    """
     author="42qu.com 42区",
     author_email="admin@42qu.com",
     url="http://42qu.cc/:help",
