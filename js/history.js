@@ -17,10 +17,14 @@
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       data = _ref[_i];
       date_string = date_build(data[0]);
-      _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class=\"more\" href=\"/:id/" + data[2] + "\">" + data[3] + "<span>字<span></a>\n</div>");
+      _("<div class=\"section\">\n     " + date_string + "\n     <p class=\"content\">\n           " + ($.escape(data[1])) + "\n     </p>\n     <a class=\"more\" href=\"javascript:void(0)\" rel=\"" + data[2] + "\">" + data[3] + "<span>字<span></a>\n</div>");
     }
     return _.html();
   };
+
+  $(".section .more").on("click", function() {
+    return location.href = "/:id/" + this.rel;
+  });
 
   window.page_history = function(page) {
     var hash, note_list;
