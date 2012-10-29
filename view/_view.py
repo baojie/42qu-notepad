@@ -3,7 +3,7 @@ import _env
 import json
 from tornado import web
 from config import render
-from model.session import session_new, session_rm, user_id_by_session
+from model.session import session_new, session_rm, id_by_session
 import css, js
 from model._db import mc
 from model.user import User
@@ -37,7 +37,7 @@ class View(web.RequestHandler):
     def get_current_user(self):
         s = self.get_cookie('S')
         if s:
-            user_id = user_id_by_session(s)
+            user_id = id_by_session(s)
             if not user_id:
                 self.clear_cookie('S')
             else:
@@ -65,7 +65,7 @@ def login(self, user_id):
     self.set_cookie('S', session)
 
 def logout(self):
-    s = self.get_cookie('S')
-    session_rm(s)
+    if self.current_user_id:
+        session_rm(self.current_user_id)
     self.clear_cookie('S')
     

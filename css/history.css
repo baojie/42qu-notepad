@@ -80,6 +80,9 @@ text-decoration:none;
 display:block;
 margin-top:34px;
 }
+.more:hover{
+    color:#d20
+}
 .more span{
 padding-left:3px;
 }
@@ -115,7 +118,7 @@ background:url(/css/img/logo.png) no-repeat center center #fff;
 width:32px;
 vertical-align:-12px;
 height:32px;
-margin-left:-10px;
+margin-left:-3px;
 background:url(/css/img/window_app_list_add.png) no-repeat center center #fff;
 margin-top:64px;
 display:inline-block;
