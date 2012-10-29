@@ -11,7 +11,8 @@ try:
 except:
     module_directory='/tmp/%s'%RENDER_PATH[0].strip('/').replace('/', '.')
 else:
-    module_directory=sae.const.SAE_TMP_PATH
+    if hasattr(sae.const,"SAE_TMP_PATH"):
+        module_directory=sae.const.SAE_TMP_PATH
 
 template_lookup = TemplateLookup(
     directories=tuple(RENDER_PATH),
