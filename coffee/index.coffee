@@ -16,18 +16,19 @@ fav = (href)->
 
 
 post = ->
-    val = $.trim(txt.val())
-    if ! posted && (txt_val!=val)
-        posted = false
-        fav("/css/img/load.gif")
-        $.post(
-            location.href,
-            {txt: val},
-            ->
-                fav("/css/img/fav.gif")
-                posted = true 
-                txt_val = val
-        )
+    if not posted
+        val = $.trim(txt.val())
+        if txt_val!=val
+            posted = false
+            fav("/css/img/load.gif")
+            $.post(
+                location.href,
+                {txt: val},
+                ->
+                    fav("/css/img/fav.gif")
+                    posted = true 
+                    txt_val = val
+            )
     timer && clearTimeout timer
     timer = setTimeout(post,3000)
 
@@ -107,12 +108,11 @@ $ ->
     txt_val = $.trim(txt.val())
     txt.keydown(key)
     txt.keyup(key)
+    txt.blur(post)
 
-    post()
     focus txt[0]
-    window.onbeforeunload = ->
-        if posted = false
-            post()
+    window.onbeforeunload post
+    post()
 
 
     txt.bind('keydown',
@@ -122,5 +122,5 @@ $ ->
     )
 
     if !($.cookie.get('S'))
-        $('.more').css("background-position-y",0).attr('target','_blank')
+        $('.more').css("background-position","0 0").attr('target','_blank')
 
