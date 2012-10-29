@@ -7,7 +7,7 @@ __HASH__ =  {
     "history.css" : 'M7APyWRgmUdhU4-4wMCXBw.css', #history
     "index.css" : 'r32onSxdK2Ra7DuRSbCWcg.css', #index
     "base.css" : 'dEnughKoGCBkAXRcphq2pg.css', #base
-    "help.css" : 'suuq3YTnH2PiR8dXW1jDFA.css', #help
+    "help.css" : 'b4rnmKfIPNYONWS0TO5qyA.css', #help
 }
 
 
