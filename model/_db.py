@@ -15,7 +15,7 @@ from MySQLdb.converters import FIELD_TYPE, conversions
 class Connection:
     def __init__(self, host, port, user, passwd, db, charset):
         self.conn_params = conn_params = dict(
-                host=host, user=user,
+                host=host, user=user, port=port,
                 db=db, init_command='set names %s'%charset,
         )
         if passwd :
