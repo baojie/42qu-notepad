@@ -116,7 +116,7 @@ background:url(/css/img/logo.png) no-repeat center center #fff;
 
 .add{
 width:32px;
-vertical-align:-24px;
+vertical-align:-12px;
 height:32px;
 margin-left:-10px;
 background:url(/css/img/window_app_list_add.png) no-repeat center center #fff;
@@ -128,7 +128,7 @@ color:#666;
 margin-left:27px;
 }
 .foot{
-padding:0 250px 64px 50px;
+padding:18px 250px 64px 50px;
 margin:auto;
 width:540px;
 }
