@@ -104,11 +104,15 @@ enableTextareaTabInsertion = (t, evt)->
         #setTimeout("var t=$('" + t.class + "'); t.focus(); t.setSelectionRange(" + ss + ", " + se + ");", 0)
         t.setSelectionRange(ss,se)
         false
+
+save = ->
+    setTimeout(post,0)
+
 $ ->
     txt_val = $.trim(txt.val())
     txt.keydown(key)
     txt.keyup(key)
-    txt.blur(post)
+    txt.blur(save)
 
     focus txt[0]
     post()

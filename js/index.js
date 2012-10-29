@@ -1,5 +1,5 @@
 (function() {
-  var date, enableTextareaTabInsertion, fav, key, post, posted, timer, txt, txt_val;
+  var date, enableTextareaTabInsertion, fav, key, post, posted, save, timer, txt, txt_val;
 
   txt = $('#txt');
 
@@ -131,11 +131,15 @@
     }
   };
 
+  save = function() {
+    return setTimeout(post, 0);
+  };
+
   $(function() {
     txt_val = $.trim(txt.val());
     txt.keydown(key);
     txt.keyup(key);
-    txt.blur(post);
+    txt.blur(save);
     focus(txt[0]);
     post();
     txt.bind('keydown', function(e) {
