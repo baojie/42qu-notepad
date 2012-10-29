@@ -18,7 +18,7 @@ def pre_config(o):
  
     else:
         o.DEBUG = False
-        #o.DEBUG = True
+        o.DEBUG = True
  
         o.HOST = "42qu.cc"
         o.HOST_CSS_JS = "%s.sinaapp.com"%sae.const.APP_NAME
