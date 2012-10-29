@@ -16,10 +16,12 @@ function focus(sel) {
     _focus(sel, length, length);
 }
 _gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_trackPageLoadTime'],['_setDomainName', location.host.split(".").slice("-2").join(".")]];
+
+
 $(function(){
    $('.back').click(function(){
         $(window).scrollTop(0)
-    })
+    });
     (function() {
 
         var ga = document.createElement('script');
