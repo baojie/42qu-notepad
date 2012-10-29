@@ -44,7 +44,7 @@ class View(web.RequestHandler):
                 return User(user_id)
         return None 
 
-    def perpare(self):
+    def prepare(self):
         super(View, self).prepare()
         mc.reset()
 

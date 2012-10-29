@@ -28,6 +28,7 @@ def pre_config(o):
         o.MYSQL_DB = sae.const.MYSQL_DB 
 
     o.DISABLE_LOCAL_CACHED = False
+#    o.DISABLE_LOCAL_CACHED = True 
 
     from render import render
     o.render = render
