@@ -7,7 +7,6 @@ from _db import connection, kv, McCache
 from lib.txt_diff import diff_get
 from model.history import mc_txt_brief, mc_url_id_list_by_user_id, KV_TXT_SAVE_TIME, history_count, txt_get, txt_set, USER_NOTE
 
-KV_TXT_SAVE_TIME = "TxtSaveTime:"
 
 URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -67,8 +66,8 @@ def txt_save(user_id, url, txt):
     if txt:
         txt_touch(user_id, url_id)
 
-    kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
     txt_log_save(user_id, url_id, txt, txt_old)
+    kv.set(KV_TXT_SAVE_TIME+str(url_id), now) 
 
 def txt_hide(user_id, url_id):
     cursor = connection.cursor()
@@ -118,20 +117,12 @@ def _mc_flush(user_id, url_id):
     mc_url_id_list_by_user_id.delete(user_id)
 
 
-mc_txt_log_last_time = McCache("TxtLogLastTime:%s")
 
-@mc_txt_log_last_time("{url_id}")
 def txt_log_last_time(url_id):
-    '''
-    返回文本上次更新时间
-    '''
-    cursor = connection.cursor()
-    cursor.execute(
-        'select time from txt_log where url_id = %s order by time DESC limit 1',
-        url_id
-    )
-    t = cursor.fetchone()
-    return t[0] if t else 0
+    t = kv.get(KV_TXT_SAVE_TIME+str(url_id))
+    if not t:
+        return 0
+    return int(t) 
 
 def txt_log_save(user_id, url_id, txt, txt_old):
     now = int(time.time())
