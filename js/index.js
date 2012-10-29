@@ -24,17 +24,19 @@
 
   post = function() {
     var val;
-    val = $.trim(txt.val());
-    if (!posted && (txt_val !== val)) {
-      posted = false;
-      fav("/css/img/load.gif");
-      $.post(location.href, {
-        txt: val
-      }, function() {
-        fav("/css/img/fav.gif");
-        posted = true;
-        return txt_val = val;
-      });
+    if (!posted) {
+      val = $.trim(txt.val());
+      if (txt_val !== val) {
+        posted = false;
+        fav("/css/img/load.gif");
+        $.post(location.href, {
+          txt: val
+        }, function() {
+          fav("/css/img/fav.gif");
+          posted = true;
+          return txt_val = val;
+        });
+      }
     }
     timer && clearTimeout(timer);
     return timer = setTimeout(post, 3000);
@@ -133,20 +135,17 @@
     txt_val = $.trim(txt.val());
     txt.keydown(key);
     txt.keyup(key);
-    post();
+    txt.blur(post);
     focus(txt[0]);
-    window.onbeforeunload = function() {
-      if (posted = false) {
-        return post();
-      }
-    };
+    window.onbeforeunload = post;
+    post();
     txt.bind('keydown', function(e) {
       var self;
       self = $(this);
       return enableTextareaTabInsertion(this, e);
     });
     if (!($.cookie.get('S'))) {
-      return $('.more').css("background-position-y", 0).attr('target', '_blank');
+      return $('.more').css("background-position", "0 0").attr('target', '_blank');
     }
   });
 
