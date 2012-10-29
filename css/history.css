@@ -80,6 +80,9 @@ text-decoration:none;
 display:block;
 margin-top:34px;
 }
+.more:hover{
+    color:#d20
+}
 .more span{
 padding-left:3px;
 }
