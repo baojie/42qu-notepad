@@ -15,7 +15,8 @@ function focus(sel) {
     length=sel.value.length;
     _focus(sel, length, length);
 }
-_gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_trackPageLoadTime'],['_setDomainName', location.host.split(".").slice("-2").join(".")]];
+
+_gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_setDomainName', location.host.split(".").slice("-2").join(".")]];
 
 
 $(function(){
