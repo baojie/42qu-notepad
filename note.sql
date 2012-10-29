@@ -5,6 +5,8 @@ CREATE TABLE  `account` (
   `email` varchar(128) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+ALTER TABLE  `app_py001`.`account` ADD UNIQUE  `email` (  `email` )
+
 DROP TABLE IF EXISTS `user_note`;
 CREATE TABLE  `user_note` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,7 +22,7 @@ CREATE TABLE  `user_note` (
 DROP TABLE IF EXISTS `url`;
 CREATE TABLE  `url` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `url` varbinary(512) NOT NULL,
+  `url` varbinary(999) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
