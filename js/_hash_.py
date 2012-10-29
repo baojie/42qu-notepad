@@ -3,14 +3,11 @@
 import _env
 
 __HASH__ =  {
-    "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
+    "base.js" : 'FGPPSiRJgk9rb7AP-zOoQw.js', #base
     "index.js" : 'gfzrHp0nAE4EqKlsaYHj0g.js', #index
-    "history.js" : 'WuXw8EkKCIuLEtFNACVCPQ.js', #history
-<<<<<<< local
-=======
+    "history.js" : '7bZ_bDZE4Nb6ryOynRO4Kw.js', #history
     "paging.js" : 'HV6PX0oDIW5R2pqlIMActw.js', #paging
     "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
->>>>>>> other
 }
 
 

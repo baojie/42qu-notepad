@@ -7,11 +7,7 @@ __HASH__ =  {
     "base.css" : 'dEnughKoGCBkAXRcphq2pg.css', #base
     "help.css" : 'suuq3YTnH2PiR8dXW1jDFA.css', #help
     "reset.css" : '4yUW2pgRTE8SngskVbqJRQ.css', #reset
-<<<<<<< local
-    "index.css" : 'r32onSxdK2Ra7DuRSbCWcg.css', #index
-=======
     "history.css" : 'ISZ5KZATHfb6RQhLifuldg.css', #history
->>>>>>> other
 }
 
 
