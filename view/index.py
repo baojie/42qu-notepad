@@ -58,6 +58,10 @@ class Api(View):
 
 @route('/\:auth/oauth')
 class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
+    
+    _OPENID_ENDPOINT = "https://www.google.com.hk/accounts/o8/ud"
+    _OAUTH_ACCESS_TOKEN_URL = "https://www.google.com.hk/accounts/OAuthGetAccessToken"
+
     @tornado.web.asynchronous
     def get(self):
         if self.get_argument("openid.mode", None):
