@@ -24,7 +24,13 @@ section_tmpl = (o) ->
 $(".section .more").live(
     "click"
     ->
-        location.href= "/:id/"+this.rel
+        self = this
+        self.href="/:id/"+this.rel
+        setTimeout(
+            -> 
+                self.href = "javascript:void(0)"
+            0
+        ) 
 )
 
 

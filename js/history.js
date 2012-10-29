@@ -23,7 +23,12 @@
   };
 
   $(".section .more").live("click", function() {
-    return location.href = "/:id/" + this.rel;
+    var self;
+    self = this;
+    self.href = "/:id/" + this.rel;
+    return setTimeout(function() {
+      return self.href = "javascript:void(0)";
+    }, 0);
   });
 
   window.page_history = function(page) {
