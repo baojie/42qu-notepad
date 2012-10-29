@@ -144,12 +144,6 @@
     txt.blur(save);
     focus(txt[0]);
     post();
-    window.onbeforeunload = function() {
-      if (!posted) {
-        return "内容正在保存 ，确定离开吗 ? ( 网页图标 : 黑色 , 表示已保存 ; 灰色 , 表示待保存 )";
-      }
-      return true;
-    };
     txt.bind('keydown', function(e) {
       var self;
       self = $(this);
