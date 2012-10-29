@@ -19,7 +19,7 @@ _gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_trackPageLoadTi
 
 
 $(function(){
-   $('.back').click(function(){
+    $('.back').click(function(){
         $(window).scrollTop(0)
     });
     (function() {
