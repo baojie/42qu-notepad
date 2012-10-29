@@ -126,7 +126,7 @@ def txt_log_last_time(url_id):
 
 def txt_log_save(user_id, url_id, txt, txt_old):
     now = int(time.time())
-    if txt_old and now - txt_log_last_time(url_id) > 1:
+    if txt_old and now - txt_log_last_time(url_id) > 600:
         cursor = connection.cursor()
         cursor.execute(
             'insert into txt_log (url_id, user_id, time) values (%s,%s,%s)',
