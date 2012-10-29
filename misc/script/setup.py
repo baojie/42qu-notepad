@@ -3,8 +3,8 @@
 from setuptools import setup, find_packages 
 
 setup(
-    name='cc42',
-    version="0.0.2",
+    name='42qucc',
+    version="0.0.3",
     description= """
     A paste tool in CLI
         """,
