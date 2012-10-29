@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='42qucc',
-    version="0.0.1",
+    version="0.0.2",
     description= """
     A paste tool in CLI
         """,
@@ -19,7 +19,7 @@ setup(
       3.Save web page to local file          
         hi@Mars ~$ 42qucc  http://42qu.cc/xa47qt471  >  foo.txt
     
-    """
+    """,
     author="42qu.com 42区",
     author_email="admin@42qu.com",
     url="http://42qu.cc/:help",
