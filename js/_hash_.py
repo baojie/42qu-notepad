@@ -4,6 +4,7 @@ import _env
 
 __HASH__ =  {
     "index.js" : 'hJxKuE4DwNHlz9cbAcIJng.js', #index
+    "all.js" : '8u2gVeRI7kmeSHDXObncwA.js', #all
     "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
     "base.js" : 'YF6cB3emWJXHzYXMgpBHZA.js', #base
     "history.js" : 'FHTxqtEHu0xrCgEpevJHYA.js', #history
