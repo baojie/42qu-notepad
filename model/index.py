@@ -85,7 +85,13 @@ def txt_touch(user_id, url_id):
     cursor.execute('select id,state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
     r = cursor.fetchone()
     if r:
-        cursor.execute('update user_note set view_time=%s , state=%s where id=%s',(now,USER_NOTE.DEFAULT, r[0]))
+        id, state = r
+        if state < USER_NOTE.DEFAULT or id != txt_last_id(user_id):
+            cursor.execute('update user_note set view_time=%s , state=%s where id=%s',(now,USER_NOTE.DEFAULT, id))
+            mc_url_id_list_by_user_id.delete(user_id)
+            mc_txt_last_id.set(user_id, url_id)
+            if state < USER_NOTE.DEFAULT:
+                history_count.delete(user_id)
     else:
         cursor.execute(
             'insert into user_note (user_id, url_id, view_time, state) values '
@@ -93,7 +99,19 @@ def txt_touch(user_id, url_id):
             (user_id, url_id, now, USER_NOTE.DEFAULT, now, USER_NOTE.DEFAULT)
         )
         history_count.delete(user_id)
-    mc_url_id_list_by_user_id.delete(user_id)
+        mc_url_id_list_by_user_id.delete(user_id)
+        mc_txt_last_id.set(user_id, url_id)
+
+mc_txt_last_id =  McCache("TxtLastId:%s")
+
+@mc_txt_last_id("{user_id}")
+def txt_last_id(user_id):
+    cursor = connection.cursor()
+    cursor.execute('select id from user_note where user_id=%s and state>=%s order by view_time desc limit 1',( user_id, USER_NOTE.DEFAULT))
+    r = cursor.fetchone()
+    if r:
+        return r[0]
+    return 0
 
 def _mc_flush(user_id, url_id):
     history_count.delete(user_id)
@@ -109,7 +127,7 @@ def txt_log_last_time(url_id):
     '''
     cursor = connection.cursor()
     cursor.execute(
-        'select time from txt_log where url_id = %s order by time DESC',
+        'select time from txt_log where url_id = %s order by time DESC limit 1',
         url_id
     )
     t = cursor.fetchone()
