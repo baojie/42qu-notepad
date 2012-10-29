@@ -15,7 +15,7 @@ handlers = route.handlers
 
 application = tornado.web.Application(
     handlers,
-    debug=DEBUG,
+    debug=DEBUG
 #    [
 #        (r"/signin", SignIndex),
 #        (r"/history", History),
