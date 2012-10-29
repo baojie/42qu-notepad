@@ -39,7 +39,7 @@ key = ->
 
 $ ->
     txt_val = $.trim(txt.val())
-    txt.keydown(key)       
+    txt.keydown(key)
     txt.keyup(key)
 
     post()
