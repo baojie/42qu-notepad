@@ -6,9 +6,16 @@ from mako.lookup import TemplateLookup
 from config import DEBUG
 RENDER_PATH = [join(_env.PREFIX, 'html')]
 
+try:
+    import sae.const
+except:
+    module_directory='/tmp/%s'%RENDER_PATH[0].strip('/').replace('/', '.')
+else:
+    module_directory=sae.const.SAE_TMP_PATH
+
 template_lookup = TemplateLookup(
     directories=tuple(RENDER_PATH),
-    #module_directory='/tmp/%s'%RENDER_PATH[0].strip('/').replace('/', '.'),
+    module_directory=module_directory,
     disable_unicode=True,
     encoding_errors='ignore',
     default_filters=['str', 'h'],
