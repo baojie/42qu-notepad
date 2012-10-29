@@ -20,7 +20,7 @@ def pre_config(o):
         o.DEBUG = False
 #        o.DEBUG = True 
         o.HOST = "42qu.cc"
-        o.HOST_CSS_JS = "%s.sinaapp.com"%sae.const.APP_NAME
+        o.HOST_CSS_JS = "%s.sae.sinacdn.com"%sae.const.APP_NAME
         o.MYSQL_HOST = sae.const.MYSQL_HOST 
         o.MYSQL_PORT = int(sae.const.MYSQL_PORT)
         o.MYSQL_USER = sae.const.MYSQL_USER 
