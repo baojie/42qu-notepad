@@ -121,3 +121,6 @@ $ ->
             enableTextareaTabInsertion(this,e)
     )
 
+    if !($.cookie.get('S'))
+        $('.more').css("background-position-y",0).attr('target','_blank')
+

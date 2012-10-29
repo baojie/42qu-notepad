@@ -52,7 +52,7 @@ position:relative;
 width:40px;
 }
 .more {
-    background: url("/css/img/bookmark.png") no-repeat scroll center center transparent;
+    background: url("/css/img/unlogin.png") no-repeat scroll 0 -41px transparent;
     bottom: 0;
     display: block;
     height: 41px;

@@ -140,11 +140,14 @@
         return post();
       }
     };
-    return txt.bind('keydown', function(e) {
+    txt.bind('keydown', function(e) {
       var self;
       self = $(this);
       return enableTextareaTabInsertion(this, e);
     });
+    if (!($.cookie.get('S'))) {
+      return $('.more').css("background-position-y", 0).attr('target', '_blank');
+    }
   });
 
 }).call(this);
