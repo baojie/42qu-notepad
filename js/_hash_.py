@@ -7,13 +7,7 @@ __HASH__ =  {
     "base.js" : 'xVbfwK4lLRAPjYMx5ldWmg.js', #base
     "paging.js" : 'HV6PX0oDIW5R2pqlIMActw.js', #paging
     "index.js" : 'gfzrHp0nAE4EqKlsaYHj0g.js', #index
-<<<<<<< local
     "history.js" : 'WuXw8EkKCIuLEtFNACVCPQ.js', #history
-=======
-    "history.js" : '_s9LVaizQakqXQPBlSQ6Xg.js', #history
-    "paging.js" : 'HV6PX0oDIW5R2pqlIMActw.js', #paging
-    "ext.js" : 'fYbDzFtJEhehMZhJPy1i6Q.js', #ext
->>>>>>> other
 }
 
 
