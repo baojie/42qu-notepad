@@ -13,7 +13,8 @@ except:
 else:
     if hasattr(sae.const,"SAE_TMP_PATH"):
         module_directory=sae.const.SAE_TMP_PATH
-
+    else:
+        module_directory = None
 template_lookup = TemplateLookup(
     directories=tuple(RENDER_PATH),
     module_directory=module_directory,
