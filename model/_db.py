@@ -58,6 +58,9 @@ class CursorWrapper(object) :
 
     def __getattr__(self, name) :
         return getattr(self._cursor, name)
+    
+    def __iter__(self):
+        return iter(self._cursor)
 
     def execute(self, *args, **kwargs):
         try:
