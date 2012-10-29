@@ -31,7 +31,7 @@ padding-top:18px;
 float:left;
 list-style:none outside none;
 margin:0;
-margin-right:30px;
+margin-right:64px;
 color:#555;
 cursor:pointer;
 }
@@ -116,11 +116,17 @@ background:url(/css/img/logo.png) no-repeat center center #fff;
 
 .add{
 width:32px;
+vertical-align:-11px;
 height:32px;
 margin-left:-10px;
 background:url(/css/img/window_app_list_add.png) no-repeat center center #fff;
 margin-top:64px;
-display:block;
+margin-bottom:12px;
+display:inline-block;
+}
+.add_mail{
+color:#555;
+margin-left:27px;
 }
 .foot{
 padding:0 250px 0 50px;
