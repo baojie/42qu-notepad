@@ -65,7 +65,7 @@ def login(self, user_id):
     self.set_cookie('S', session)
 
 def logout(self):
-    s = self.get_cookie('S')
-    session_rm(s)
+    if self.current_user_id:
+        session_rm(self.current_user_id)
     self.clear_cookie('S')
     
