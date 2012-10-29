@@ -137,7 +137,7 @@
     txt.keyup(key);
     txt.blur(post);
     focus(txt[0]);
-    window.onbeforeunload(post);
+    window.onbeforeunload = post;
     post();
     txt.bind('keydown', function(e) {
       var self;
