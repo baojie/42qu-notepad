@@ -15,3 +15,8 @@ function focus(sel) {
     length=sel.value.length;
     _focus(sel, length, length);
 }
+$(function(){
+   $('.back').click(function(){
+        $(window).scrollTop(0)
+    })
+})

@@ -1,6 +1,3 @@
-$ ->
-   $('.back').click ->
-        $(window).scrollTop(0)
 date_build = (timestamp) ->
     date = new Date(timestamp * 1000)
     month = date.getMonth() + 1
