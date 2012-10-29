@@ -60,15 +60,11 @@ class CursorWrapper(object) :
         return getattr(self._cursor, name)
 
     def execute(self, *args, **kwargs):
-        count = 0
         try:
             return self._execute(*args, **kwargs)
         except:
-            if 3 <= count:
-                raise
-            else:
-                count += 1
-                self._cursor = self.farm.cursor()
+            self._cursor = self.farm.cursor()
+            return self._execute(*args, **kwargs)
 
     def _execute(self, *args, **kwargs) :
         try :
