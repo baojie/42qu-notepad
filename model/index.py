@@ -77,12 +77,17 @@ def txt_hide(user_id, url_id):
     if r and r[0] > USER_NOTE.RM:
         _mc_flush(user_id) 
 
+def txt_view_id_state(user_id, url_id):
+    cursor = connection.cursor()
+    cursor.execute('select id,state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
+    r = cursor.fetchone()
+    return r
+
 def txt_touch(user_id, url_id):
     if not user_id:return
     now = int(time.time())
     cursor = connection.cursor()
-    cursor.execute('select id,state from user_note where url_id=%s and user_id=%s',(url_id, user_id))
-    r = cursor.fetchone()
+    r = txt_view_id_state(user_id, url_id) 
     if r:
         id, state = r
         if state < USER_NOTE.DEFAULT or id != txt_last_id(user_id):

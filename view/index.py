@@ -8,7 +8,7 @@ import tornado.web
 import tornado.auth
 from _view import View, LoginView, login, logout
 from model.account import account_new, user_by_id
-from model.index import url_random, txt_save, txt_by_url, url_new, url_by_id,txt_touch, txt_get
+from model.index import url_random, txt_save, txt_by_url, url_new, url_by_id,txt_touch, txt_get, txt_view_id_state
 from model.history import history_get, history_count
 from config import HOST
 from lib.page import page_limit_offset
@@ -102,8 +102,12 @@ class J_History(LoginView):
 @route('/\:id/(\d+)')
 class UrlJump(LoginView):
     def get(self, id=0):
-        url = url_by_id(id)
-        self.redirect('/%s' % url)
+        user_id = self.current_user_id
+        if txt_view_id_state(user_id, id):
+            url = url_by_id(id)
+            self.redirect('/%s' % url)
+        else:
+            self.redirect("/:help")
 
 @route('/(.*)')
 class Index(View):
