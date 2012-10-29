@@ -27,7 +27,7 @@ class Logout(LoginView):
     def get(self):
         self.check_xsrf_cookie()
         logout(self)
-        self.redirect('/')
+        self.redirect('/:help')
 
 @route('/\:help')
 class Help(View):
