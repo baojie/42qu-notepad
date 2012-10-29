@@ -44,7 +44,8 @@ class View(web.RequestHandler):
                 return User(user_id)
         return None 
 
-    def on_finish(self):
+    def perpare(self):
+        super(View, self).prepare()
         mc.reset()
 
     @property
