@@ -19,4 +19,17 @@ $(function(){
    $('.back').click(function(){
         $(window).scrollTop(0)
     })
-})
+}
+
+_gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_trackPageLoadTime'],['_setDomainName', location.host.split(".").slice("-2").join(".")]];
+
+(function() {
+
+    var ga = document.createElement('script');
+    var s = document.getElementsByTagName('script')[0];
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl': 'http://www') + '.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(ga, s);
+
+})())
