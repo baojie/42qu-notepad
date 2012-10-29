@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages 
 
 setup(
-    name='42qucc',
+    name='cc42',
     version="0.0.2",
     description= """
     A paste tool in CLI
