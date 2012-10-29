@@ -111,7 +111,6 @@ $ ->
     txt.blur(post)
 
     focus txt[0]
-    window.onbeforeunload = post
     post()
 
 
