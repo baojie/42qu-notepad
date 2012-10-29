@@ -1,12 +1,6 @@
 (function() {
   var date_build, section_tmpl;
 
-  $(function() {
-    return $('.back').click(function() {
-      return $(window).scrollTop(0);
-    });
-  });
-
   date_build = function(timestamp) {
     var date, day, month, year;
     date = new Date(timestamp * 1000);
