@@ -64,7 +64,7 @@ class GoogleHandler(tornado.web.RequestHandler, tornado.auth.GoogleMixin):
             user = self.get_authenticated_user(self.async_callback(self._on_auth))
             return
         ax_attrs=["name", "email", "language", "username"]
-        callback_uri = self.request.uri
+        callback_uri = "http://%s/:"%HOST 
         args = self._openid_args(callback_uri, ax_attrs=ax_attrs)
         self.redirect(self._OPENID_ENDPOINT + "?hl=zh-CN&" + urllib.urlencode(args))
 
