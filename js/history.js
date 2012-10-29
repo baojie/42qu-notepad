@@ -22,7 +22,7 @@
     return _.html();
   };
 
-  $(".section .more").on("click", function() {
+  $(".section .more").live("click", function() {
     return location.href = "/:id/" + this.rel;
   });
 

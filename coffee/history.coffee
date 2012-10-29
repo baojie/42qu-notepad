@@ -21,7 +21,7 @@ section_tmpl = (o) ->
        """
     _.html() 
 
-$(".section .more").on(
+$(".section .more").live(
     "click"
     ->
         location.href= "/:id/"+this.rel
