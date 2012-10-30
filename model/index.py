@@ -14,7 +14,10 @@ URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
  
 def txt_by_url(url):
     url_id = url_new(url)
-    return txt_get(url_id)
+    r = txt_get(url_id)
+    if r:
+        r+="\n"
+    return r
 
 def url_random():
     while True:
@@ -49,9 +52,21 @@ def url_new(url):
         cursor.execute('insert into url (url) values(%s)', url)
         return cursor.lastrowid
 
+def txt_rstrip(txt):
+    if isinstance(txt, unicode):
+        txt = txt.encode('utf-8',"ignore")
+    return '\n'.join(
+        map(
+            str.rstrip,
+            txt.replace('\r\n', '\n')\
+               .replace('\r', '\n').rstrip('\n ')\
+               .split('\n')
+        )
+    ).rstrip()
+
 def txt_save(user_id, url, txt):
     url_id = url_new(url)
-    txt=txt.rstrip()
+    txt=txt_rstrip(txt)
 
     if not txt:
         txt_hide(user_id, url_id)
@@ -60,7 +75,7 @@ def txt_save(user_id, url, txt):
     if txt_old == txt:
         return
     mc_txt_brief.delete(url_id)
-    txt_set(url_id, txt)
+    txt_set(url_id, txt_rstrip(txt))
     now = int(time.time())
 
     if txt:
