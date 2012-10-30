@@ -15,8 +15,6 @@ URL_ENCODE = 'abcdefghijklmnopqrstuvwxyz0123456789'
 def txt_by_url(url):
     url_id = url_new(url)
     r = txt_get(url_id)
-    if r:
-        r+="\n"
     return r
 
 def url_random():
