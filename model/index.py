@@ -141,7 +141,11 @@ def txt_log_save(user_id, url_id, txt, txt_old):
         kv.set('TxtLog:%s' % id, txt_old)
         diff = diff_get(txt_old, txt)
         kv.set('TxtDiff:%s' % id, diff)
-        mc_txt_log_last_time.set(id, now) 
+
+ 
+        kv.set(KV_TXT_SAVE_TIME+str(url_id), now)
 
 if __name__ == "__main__":
     print url_new('sssafes')
+
+
