@@ -18,7 +18,7 @@ def txt_by_url(url):
 
 def url_random():
     while True:
-        url = ''.join(choice(URL_ENCODE) for i in xrange(choice((7,8,9))))
+        url = ''.join(choice(URL_ENCODE) for i in xrange(choice((6,7,8,9,10))))
         if not txt_by_url(url):
             break
     return url
