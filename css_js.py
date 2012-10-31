@@ -79,7 +79,7 @@ def merge_js( src_list):
     ]
 
     for i in src_list:
-        result.append("""LOAD('http://%sjs%s%s')"""%( HOST_CSS_JS, i[len(_env.PREFIX)+3:]))
+        result.append("""LOAD('http://%s/js%s')"""%( HOST_CSS_JS, i[len(_env.PREFIX)+3:]))
     return result
 
 

@@ -16,12 +16,22 @@ section_tmpl = (o) ->
        <p class="content">
              #{$.escape(data[1])}
        </p>
-       <a class="more" href="/:id/#{data[2]}">#{data[3]}<span>字<span></a>
+       <a class="more" href="javascript:void(0)" rel="#{data[2]}">#{data[3]}<span>字<span></a>
   </div>
        """
     _.html() 
 
-
+$(".section .more").live(
+    "click"
+    ->
+        self = this
+        self.href="/:id/"+this.rel
+        setTimeout(
+            -> 
+                self.href = "javascript:void(0)"
+            0
+        ) 
+)
 
 
 window.page_history = (page) ->
