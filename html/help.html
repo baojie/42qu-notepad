@@ -51,6 +51,38 @@
         <p>如果您对参与开发感兴趣 , 欢迎邮件 42qu.hr@gmail.com </p>
     </div>
 </div>
+<div style="margin-top:27px">
+<p>API 文档</p>
+<p>
+1.API接口 
+ <pre class="url">   API_URL = 'http://42qu.cc/:api/txt/' </pre>
+2.写笔记:
+  <pre class="url"> 
+   <p>支持方法:POST</p>
+   <p> 参数:</p>
+   <p><pre class="url">txt  笔记内容</pre></p>
+   <p><pre class="url">url  默认为null,返回随机生成的url, 可以自定义</pre></p>
+   <p> 示例:</p>
+   <p><pre class="url">url = '' (自定义时url='hello', hello为自定义的url)</pre></p>
+   <p><pre class="url">data = 'hello world'</pre></p>
+   <p><pre class="url">files = {'file': ('txt', bz2.compress(data) )}</pre></p>
+   <p><pre class="url">HTTP_POST.(API_URL+url, files=files)</pre></p>
+   <p>返回值:</p>
+   <p><pre class="url">返回笔记的地址</pre></p>
+   </pre>
+
+3.读笔记
+    <pre class="url">
+    <p>支持方法:GET</p>
+    <p>参数:</p>
+    <p><pre class="url">url</pre></p>  
+    <p>示例:</p>
+    <p><pre class="url">url = 'hello'</pre></p>  
+    <p><pre class="url">HTTP_GET.(API_URL+url)</pre></p>
+    <p>返回值:</p>
+    <p><pre class="url">返回笔记内容</pre></p>
+    </pre>
+</p>
 <div class="section nav">
 <p class="time back"></p>
 </div>
