@@ -64,39 +64,24 @@
         </p>
     </div>
 
-</div>
 <div style="margin-top:27px">
-<p>API 文档</p>
+<p> 附 : API 文档</p>
 <p>
-1.API接口 
- <pre class="url">   API_URL = 'http://42qu.cc/:api/txt/' </pre>
-2.写笔记:
-  <pre class="url"> 
-   <p>支持方法:POST</p>
-   <p> 参数:</p>
-   <p><pre class="url">txt  笔记内容</pre></p>
-   <p><pre class="url">url  默认为null,返回随机生成的url, 可以自定义</pre></p>
-   <p> 示例:</p>
-   <p><pre class="url">url = '' (自定义时url='hello', hello为自定义的url)</pre></p>
-   <p><pre class="url">data = 'hello world'</pre></p>
+ <pre class="url">http://42qu.cc/:api/txt/</pre>
+   <p>录入笔记 : POST</p>
+   <p>使用上传文件的方式 , 上传一个文件名为txt , 经过bzip压缩的文本文件 </p>
+   <p>返回值为生成的随机网址 ; 如果想自定义网址 , 可以使用诸如 http://42qu.cc/:api/txt/test1234 的 API地址</p>
    <p><pre class="url">files = {'file': ('txt', bz2.compress(data) )}</pre></p>
-   <p><pre class="url">HTTP_POST.(API_URL+url, files=files)</pre></p>
-   <p>返回值:</p>
-   <p><pre class="url">返回笔记的地址</pre></p>
-   </pre>
 
-3.读笔记
     <pre class="url">
-    <p>支持方法:GET</p>
-    <p>参数:</p>
-    <p><pre class="url">url</pre></p>  
-    <p>示例:</p>
-    <p><pre class="url">url = 'hello'</pre></p>  
-    <p><pre class="url">HTTP_GET.(API_URL+url)</pre></p>
-    <p>返回值:</p>
-    <p><pre class="url">返回笔记内容</pre></p>
+    <p>读取笔记 : GET</p>
+    <p>示例 :</p>
+    <p><pre class="url">http://42qu.cc/:api/txt/test1234</pre></p>
+    <p>其中 , test1234 为自定义的网址 </p>
+    <p>返回值经过 bzip 压缩 </p>
     </pre>
 </p>
 <div class="section nav">
 <p id="back" class="time back"></p>
+</div>
 </div>
