@@ -7,6 +7,7 @@ from model.session import session_new, session_rm, id_by_session
 import css, js
 from model._db import mc
 from model.user import User
+import datetime
 
 class View(web.RequestHandler):
     def render(self, template_name=None, **kwds):
@@ -62,7 +63,8 @@ class LoginView(View):
 def login(self, user_id):
     user_id = int(user_id)
     session = session_new(user_id)
-    self.set_cookie('S', session)
+    expires = datetime.datetime.utcnow() + datetime.timedelta(days=365)
+    self.set_cookie('S', session, expires=expires)
 
 def logout(self):
     if self.current_user_id:
