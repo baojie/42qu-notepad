@@ -26,7 +26,6 @@ import uuid
 from tornado import web
 from tornado.web import HTTPError, utf8
 from tld_name import tld_name
-from profile_middleware import profile_middleware
 
 from tornado import escape
 from tornado import locale
@@ -101,39 +100,10 @@ PID = str(getpid()).ljust(7)
 
 #logging.warn("PID:%s", PID)
 
-#@profile_middleware([SQLSTORE, mc])
-@profile_middleware([])
-def _execute(self, transforms, *args, **kwargs):
-    """Executes this request with the given output transforms."""
-    request = self.request
-    method = request.method
-    self._transforms = transforms
-
-    if method not in self.SUPPORTED_METHODS:
-        raise HTTPError(405)
-
-#    logging.warn("PID %s %s %s %s%s", PID, self.get_cookie('S') or '-', method, request.host, request.path,)
-
-    if method not in ('GET', 'HEAD') and self.application.settings.get('xsrf_cookies'):
-        self.check_xsrf_cookie()
-    self.prepare()
-
-    if not self._finished:
-        getattr(self, 'init')(*args, **kwargs)
-        if not self._finished:
-            getattr(self, method.lower())(*args, **kwargs)
-
-            if self._auto_finish and not self._finished:
-                self.finish()
-
-    #logging.warn("END %s %s%s", PID, request.host, request.path)
-
-web.RequestHandler._execute = _execute
 
 def _init(self, *args, **kwds):
     pass
 
-web.RequestHandler._execute = _execute
 web.RequestHandler.init = _init 
 
 
