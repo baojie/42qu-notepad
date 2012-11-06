@@ -63,7 +63,7 @@ class LoginView(View):
 def login(self, user_id):
     user_id = int(user_id)
     session = session_new(user_id)
-    expires = datetime.datetime.utcnow() + datetime.timedelta(days=365)
+    expires = datetime.datetime.utcnow() + datetime.timedelta(days=3650)
     self.set_cookie('S', session, expires=expires)
 
 def logout(self):
