@@ -16,23 +16,12 @@ function focus(sel) {
     _focus(sel, length, length);
 }
 
-_gaq = [['_setAccount', 'UA-35931591-1'], ['_trackPageview'], ['_setDomainName', location.host.split(".").slice("-2").join(".")]];
 
 
 $(function(){
     $('.back').click(function(){
         $(window).scrollTop(0)
     });
-    (function() {
-
-        var ga = document.createElement('script');
-        var s = document.getElementsByTagName('script')[0];
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl': 'http://www') + '.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(ga, s);
-
-    })();
 })
 
 
