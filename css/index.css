@@ -26,11 +26,13 @@ height:100%;
 overflow:hidden;
 padding:0px 26px  0 49px;
 }
+/*
 #main{
 padding: 0 0 0 40px;
 overflow:hidden;
 height:100%;
 }
+*/
 #left{
 float:left;
 left:-64px;
@@ -39,6 +41,7 @@ height:100%;
 margin-left:-100%;
 position:relative;
 }
+/*
 .more{
 display:block;
 position:absolute;
@@ -49,6 +52,7 @@ height:32px;
 background:url(img/more.png) no-repeat center center transparent;
 cursor:pointer;
 }
+*/
 #txt{
     text-shadow:1px 1px 1px #fff;
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
@@ -83,9 +87,9 @@ width:40px;
     position: absolute;
     width: 67px;
     margin-bottom: 23px;
-    margin-left: 26px;
+    margin-left: 17px;
     cursor:pointer;
 }
 .more:hover{
-margin-left:29px;
+margin-left:21px;
 }

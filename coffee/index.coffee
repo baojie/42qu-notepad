@@ -39,6 +39,8 @@ key = ->
     return 1
 
 enableTextareaTabInsertion = (t, evt)->
+    self = $ t
+    now_top = self.scrollTop()
     kc =  if evt.which then evt.which else evt.keyCode
     isSafari = navigator.userAgent.toLowerCase().indexOf('safari') != -1
 
@@ -103,6 +105,7 @@ enableTextareaTabInsertion = (t, evt)->
                     se += offset
         #setTimeout("var t=$('" + t.class + "'); t.focus(); t.setSelectionRange(" + ss + ", " + se + ");", 0)
         t.setSelectionRange(ss,se)
+        self.scrollTop(now_top)
         false
 
 save = ->

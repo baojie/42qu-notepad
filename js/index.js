@@ -51,7 +51,9 @@
   };
 
   enableTextareaTabInsertion = function(t, evt) {
-    var full_indented_line, isSafari, kc, num_lines, offset, range, se, sel, shft, ss, starts_with_tab, stored_range, ta_val, tab, tab_regexp, tablen, was_tab;
+    var full_indented_line, isSafari, kc, now_top, num_lines, offset, range, se, sel, self, shft, ss, starts_with_tab, stored_range, ta_val, tab, tab_regexp, tablen, was_tab;
+    self = $(t);
+    now_top = self.scrollTop();
     kc = evt.which ? evt.which : evt.keyCode;
     isSafari = navigator.userAgent.toLowerCase().indexOf('safari') !== -1;
     if (kc === 9 || (isSafari && kc === 25)) {
@@ -127,6 +129,7 @@
         }
       }
       t.setSelectionRange(ss, se);
+      self.scrollTop(now_top);
       return false;
     }
   };
