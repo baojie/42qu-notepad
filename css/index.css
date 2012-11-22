@@ -13,7 +13,7 @@ right: 0;
 bottom: 0;
 padding: 0;
 border:0;
-background:url(/css/img/grey.png) repeat 100% 100% #000;
+background:url(/css/img/grey.png) repeat 100% 100% #fff;
 }
 .main_wrap{
     background: url("/css/img/notepad.png") repeat-y scroll 0 0 transparent;
